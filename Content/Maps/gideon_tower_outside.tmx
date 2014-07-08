@@ -36,12 +36,12 @@
  </layer>
  <layer name="roof" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer name="roof2" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt2E0KgCAQhmEvUC27TLWK7tHfokX336bQwqQiihrN94EhMKKPSBlVCgAAIE6drt4ZyySCAAAAvKB9+HyiK1XX+qP64bvOuP1a7EbpAD9k/rFBbb/tvF6T7+N8JtS9zyQdIFKsPZDSSAeA9/6yPg3SARCdUHtBVyod4Ab2uMAxM6fNHAl5jTL5r56n+co+E8x1lboq636xM+ajBTOvCPE=
+   eJzt2E0KgzAQhuHsi3bpZbSr0nu0jQsXvf+2EyjUhlqCqU5+3gcGISJ+EROSGAMA2zpoB/iTUvoB4O0mdffajhpBAAAANnCNfL6Rak3Y+ugc+a5f/PVa7UbtAAVy/5g1n9/28bo2+8fZTa57n0k7QKWYe6Dloh0AyStlfrLaAVCdXNeCvlY7wArscYFlbky7MZLzHOXyh56npWp+JthJDVKn2f3+S1uKniW0CQc=
   </data>
  </layer>
  <layer name="roof-shadow" width="50" height="50">
@@ -49,7 +49,7 @@
    eJztmDtuwzAMQAU4v8XJZKRz0anI0nZqumToDXKGDr2Fj5aj1YrElCEkWX+qQAkQTpzY4pP4kxZCiAWzroi+keuTECP+v0lK2rc22LhS9+/sOkz6MOmH5Xpg5JAMSyEuOz3OoK97df/UIdvm5AW9t1M61uDADHuLbZhlTt4Rg3zvRt/foP9wMGAW6WdHw/xieRTKH+V7e/QcXpfcHNMcjcDwOcPhK8/ku2aRHJdSHNN6nJaaJZe8ku9boXwK+2Sh+LiyyPFy8Bz1tdcMtTgwy1mPC9dYLvClKS4uUtfIp0pyAAuMKzXF3wZxH98L8ntJDqqdXqNIlCsL5CtaQ2pyUJZzBMvOwlKbg/ob5AMfgZ6gRt4NVag3voIZcIxwc3Qe9aZXOlIGbg7aB+N+ktqPc/ZZ/OYsqgzzf+uTvhxrABy2ugNrBJ+54mFQOs5x2Gonfn6oYLfJh1y2x0oNHyphd2kOaXvpuS/NkXP+oSf07WNyxkAqA+5p17pGdIZeswQH7GNz2+8YT3LdqWRL5dh4rrvN/q1mmLN/js3XZ+iZUwiHpS7f9kRdAoPLZlO+l/2AicXFgecb+7iP/8SqT66hLLZn6B4093zH+vk3YZH7FxNDSLxycFBZqhxhZKg59xa/Sto7Sw44i+HUlDoA8czNkauWcXLk7Oc4OXIJ93rkYuDOVTkYWojxlFzbEgf09zE8uH5z1z/ME8rCHds2peeuf5WDMrlYwKe4+sEADmt9bCW2Xbb7ntm06lOhZzYNc3jnq9b9KuTMoNUY9/WrlvOU7/7jn6G8/gBCoH6v
   </data>
  </layer>
- <objectgroup name="scripts" width="50" height="50">
+ <objectgroup name="scripts">
   <object type="player_spawn" gid="324" x="1184" y="352"/>
   <object name="sc2" type="level_change" gid="323" x="1184" y="288">
    <properties>
@@ -87,7 +87,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="collision" width="50" height="50">
+ <objectgroup name="collision" visible="0">
   <object x="1248" y="288">
    <polygon points="0,0 64,0 64,32 0,32"/>
   </object>
