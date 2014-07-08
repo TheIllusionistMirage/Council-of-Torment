@@ -44,3 +44,6 @@ Icon
 *.suo
 *.vcxproj.filters
 *.vcxproj.user
+
+Release
+Debug
