@@ -45,6 +45,11 @@ Icon
 *.vcxproj.filters
 *.vcxproj.user
 *.opensdf
+*.obj
+*.log
+*.tlog
+*.pdb
+*.exe
 
 Release
 Debug
