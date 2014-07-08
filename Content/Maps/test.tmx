@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="test" tilewidth="32" tileheight="32">
+  <image source="../Textures/Tilesets/test.png" width="256" height="1280"/>
+ </tileset>
+ <layer name="background" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt0aENACAUQ8EvsIT9tyVMAI4STpxv+lpVNQAAAAAAAAAAAAAAgAf0A7c3/kSPLOvvsXF740/0yKJHFj2y6JFFDwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAyDEBqkafKQ==
+  </data>
+ </layer>
+ <layer name="background2" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztzgEJAAAMA6C1eP+mjzEYmsAEAAAAAAAAAAAAAAAAWHDtAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACMePaTABg=
+  </data>
+ </layer>
+ <layer name="object" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztzjEJAAAIADATeNo/qrcBRIQtwSIAAAAAAAAAAAAAAAAA2JDXAYa6DgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABvNOSyACU=
+  </data>
+ </layer>
+ <layer name="object2" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt0bENgDAQBEFXAkRAZNx/df4CPn8Lz0ibn3StAQAAAAAAAAAAAAAAAH9wRGfSVbhpZ3f0JL2Vozbmj7X4Yy09+pJG5SgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIBiE2ZHBVY=
+  </data>
+ </layer>
+ <layer name="shadow" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt0bsKgDAQRcHFwgfmo/10N1irXVxhBg7ZMnAjAAAAAAAAAAAAAAAA/mHJ5pcYZ404pnyfYpy+R8u2vO9inL7Hnn39Dy72qMUetdijFnsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAdJybaB4I=
+  </data>
+ </layer>
+ <layer name="roof" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztzjEJAAAIADATeNo/qrcBRIQtwSIAAAAAAAAAAAAAAAAA2JDXAYa6DgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABvNOSyACU=
+  </data>
+ </layer>
+ <layer name="roof-shadow" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbnEAAAQ==
+  </data>
+ </layer>
+</map>

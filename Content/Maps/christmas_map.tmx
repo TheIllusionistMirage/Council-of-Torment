@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="25" height="25" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="NaturalLight" value="True"/>
+ </properties>
+ <tileset firstgid="1" name="christmas_map" tilewidth="32" tileheight="32">
+  <image source="../Textures/Tilesets/christmas_map.png" width="256" height="1280"/>
+ </tileset>
+ <tileset firstgid="321" name="scriptingTiles" tilewidth="32" tileheight="32">
+  <image source="../Textures/Tilesets/scriptingTiles.png" width="256" height="120"/>
+ </tileset>
+ <layer name="background" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJztwwEJAAAMBKFr8P3bLsdAwVVTVfXVAy3dJKA=
+  </data>
+ </layer>
+ <layer name="object" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJztVVEKwjAMzRGcCBMUP5wgbIJ/7noezaOZYYMhJFnS6d8ePLpu7XtJmrIOADqFA/KGPCCPsAyT3oU98/EsvteC75cePXzz0XBV3mk14bEOYp2M/yTmd8Pb8tAoPfaVeVjaNG4K2+LRFvI8qKYZHwJ5cH3uw/Mgn4gulLX9h0+py+faeczVnWIZkQ+xdwfwUiRNWH31K2g5eHdgqb53NltkE9TV7mqkdxvHYzqrMeAV7d8sMjlFesCLiXtZ+l4PZGPK9lhNr2f7V9Yg4lV7N+b+LStW/Btv2O8g1g==
+  </data>
+ </layer>
+ <layer name="object2" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJxjYMAEylgwpUAJh7kqVDAb3Q4VJPO1gViHinag2wXC0kAsQ0C9OhXs5CYgr08FOwgBcv1BShoixx/USKOUABEGBgdKzdBioF16HQW0B6YD7YAhBGhVB6CD0Tw1CoY7AADtMgZf
+  </data>
+ </layer>
+ <layer name="collision" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJxjYMAEUkAsjUTLYFEzCkbBKBgFo2AUjIJRMAoGDgAAF+8Ahw==
+  </data>
+ </layer>
+ <layer name="shadow" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJxjYBi+QAmIlaFYhcZ2yACxDh513AwMDZTaJUNAnhp26NLBDm4q2gELf/T4BdnBxcBwABemxB8g/SBahIHBgRNIc0LFOdGwCFQdOYCTsJIhB0SokHbwAWC8UCV94gLUiNdRQD+Aq2ygJtACYm0G/GX/KBgFtAQAX0wPSQ==
+  </data>
+ </layer>
+ <layer name="roof" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJztlMEOgjAQRPcXPOChohIFNEbCL/LpbkM32Ux2RUu5Mcmk0JY3bAslIgo0S1pUxT6ze/aT3Tjz/pFkndh14lcpo/kxp3audQbysY7YPhbYVp+wxYPiW3WM6tkb+85ugRtSH+6HZHWKf2Rf2FejDs0Xts7Ae71OneJrSY5Xh86x3l/PHQy+zsH9kGexFhHy3ynjm0a49zJqGG8pX96+S7uGbfGjAoyxp1J8/Ka8vqjDiiyLGcg/r3JzhIt5JXK8rJJ8Szls6+wrJb2+Wymu89p/aUmv2dPGMbt2LeoD0uMU3g==
+  </data>
+ </layer>
+ <layer name="roof-shadow" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJztlN0OgjAMhfsOhhuZiZqg3hBf0UeXJl08Nv0ZoHf7kqawwDm03RiJqCwxqkyQmUHymdbDOkfRroFeg8RJnn8kPlWr5hJcMxPoYx2Wj9ZGTb2GTKJ/kXwDfc53pY/fiWteZuakjmdQh/bA+wLvLPGq+noeWEfm49Vxpe95IFYdmYfVJ6LPPJiD4dNah95LyGysIdY8rLlHHq1kZ8E7G3u89J7y9vI/fPT1Xrz+ra2ltb9b9KN/XItHhneGI7b2/xf7sNPpEL0BhRsaiA==
+  </data>
+ </layer>
+ <objectgroup name="scripts" width="25" height="25">
+  <object type="player_spawn" gid="324" x="352" y="320"/>
+ </objectgroup>
+ <objectgroup name="shadow-walls" width="25" height="25"/>
+</map>

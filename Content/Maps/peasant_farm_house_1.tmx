@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="24" height="24" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="natural_light" value="False"/>
+ </properties>
+ <tileset firstgid="1" name="peasant_farm_house_1" tilewidth="32" tileheight="32">
+  <image source="../Textures/Tilesets/peasant_farm_house_1.png" width="256" height="1280"/>
+ </tileset>
+ <tileset firstgid="321" name="scriptingTiles" tilewidth="32" tileheight="32">
+  <image source="../Textures/Tilesets/scriptingTiles.png" width="256" height="120"/>
+  <tile id="0">
+   <properties>
+    <property name="alpha" value=""/>
+    <property name="blue" value=""/>
+    <property name="green" value=""/>
+    <property name="red" value=""/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="background" width="24" height="24">
+  <data encoding="base64" compression="zlib">
+   eJxjYWBgYBnFo5jK2IJETI75DiRgcswPIAGPmj9qPr3Np2X+GsWjeCRgAKItKPE=
+  </data>
+ </layer>
+ <layer name="background2" width="24" height="24">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2BoAh4GhgNcQOzPwNDgAOT7I4m7AmkPoDgQMziQaT43UD8nkOZEmAsX54LQNAW8QKdz0diOUTAKRsEoGKkAAGNaBvY=
+  </data>
+ </layer>
+ <layer name="object" width="24" height="24">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2BoAh8g9gViLgaGA35I4iB+PpAuoND8ECAOReIHI8xnKAfiCgrNj8EjVw/EDRSaDwNRSGwHKpkJA4lAnATEyVQ2Fxlk0dBsZBBHvSCHgxQoHQ7EaTQwfxSMglFAPgAAIekLVA==
+  </data>
+ </layer>
+ <layer name="object2" width="24" height="24">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2BogzA0fi4N7OAF4ngou5QG5oNACo3MHQWDA8QxMDQMtBtGwSgYBQgAABjNAuc=
+  </data>
+ </layer>
+ <layer name="shadow" width="24" height="24">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2BogzgozcPA4MDFwHAAWQ6bGKkgDYg5oWxONDkeLGLEAm4GhgYkNhhjEycXIJvDCwwHkFtBYUEL82F2cELoA7QwH4eaIWF+PA3MHwWjYBRQBgBzywpt
+  </data>
+ </layer>
+ <layer name="object3" width="24" height="24">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2D4gngam59CY/NHwSgYBaNgFNAGAACOHADE
+  </data>
+ </layer>
+ <layer name="roof" width="24" height="24">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo4D6wIKB4QApmAzzMYA3FjFukl2O23xsgNbmkwtg5kcCcRQQR0P5EVQ2HwQykdgJNDCfFgBmfiwNzUc2O5wG5pOCR8EoGAWYAACSJhOi
+  </data>
+ </layer>
+ <layer name="roof2" width="24" height="24">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2BggQWNzRo1n3Q7B6v5QzX842lsPj5Aa/NHwSgYqgAAQ7YD4A==
+  </data>
+ </layer>
+ <layer name="roof-shadow" width="24" height="24">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo4D6gB2I2YjEQLUNpJrPQYIeDlINHzV/RJgfS2PzU2loPjDPOADzzgFiMFDtATKsGAWjYNgDAEo2Dtc=
+  </data>
+ </layer>
+ <objectgroup name="scripts" width="24" height="24">
+  <object name="lar2" type="level_change" gid="323" x="320" y="288">
+   <properties>
+    <property name="coresponding" value="lar1"/>
+    <property name="direction" value="south"/>
+    <property name="map" value="gideon_tower_outside_west"/>
+   </properties>
+  </object>
+  <object name="Baldric" type="player_spawn" gid="324" x="320" y="320">
+   <properties>
+    <property name="val1" value="val2"/>
+   </properties>
+  </object>
+  <object name="camplight" type="light_source" gid="321" x="224" y="256">
+   <properties>
+    <property name="alpha" value="255"/>
+    <property name="blue" value="0"/>
+    <property name="flicker_radius" value="5"/>
+    <property name="flicker_speed" value="50"/>
+    <property name="flickering" value="True"/>
+    <property name="green" value="174"/>
+    <property name="radius" value="100"/>
+    <property name="red" value="255"/>
+   </properties>
+  </object>
+  <object name="camplight" type="light_source" gid="321" x="352" y="416">
+   <properties>
+    <property name="alpha" value="255"/>
+    <property name="blue" value="0"/>
+    <property name="flicker_radius" value="15"/>
+    <property name="flicker_speed" value="50"/>
+    <property name="flickering" value="True"/>
+    <property name="green" value="174"/>
+    <property name="radius" value="150"/>
+    <property name="red" value="255"/>
+   </properties>
+  </object>
+  <object name="torchanim" type="animation" gid="334" x="352" y="416" visible="0">
+   <properties>
+    <property name="file" value="torch_right.png"/>
+    <property name="frame_size" value="32"/>
+    <property name="frame_time" value="0.1"/>
+    <property name="layer" value="roof"/>
+   </properties>
+  </object>
+  <object name="et1" type="animation" gid="334" x="352" y="416">
+   <properties>
+    <property name="file" value="torch_right.png"/>
+    <property name="frame_size" value="32"/>
+    <property name="frame_time" value="0.3"/>
+    <property name="layer" value="roof"/>
+   </properties>
+  </object>
+  <object name="et1h34" type="animation" gid="334" x="448" y="256">
+   <properties>
+    <property name="file" value="villager_sleeping.png"/>
+    <property name="frame_size" value="64"/>
+    <property name="frame_time" value="0.6"/>
+    <property name="layer" value="object"/>
+   </properties>
+  </object>
+  <object name="et1h3423" type="animation" gid="334" x="224" y="256">
+   <properties>
+    <property name="file" value="candle.png"/>
+    <property name="frame_size" value="32"/>
+    <property name="frame_time" value="0.3"/>
+    <property name="layer" value="object"/>
+   </properties>
+  </object>
+  <object name="et1h3423123" type="animation" gid="334" x="416" y="256">
+   <properties>
+    <property name="file" value="candle.png"/>
+    <property name="frame_size" value="32"/>
+    <property name="frame_time" value="0.3"/>
+    <property name="layer" value="shadow"/>
+   </properties>
+  </object>
+  <object name="camplight2" type="light_source" gid="321" x="416" y="256">
+   <properties>
+    <property name="alpha" value="255"/>
+    <property name="blue" value="0"/>
+    <property name="flicker_radius" value="5"/>
+    <property name="flicker_speed" value="50"/>
+    <property name="flickering" value="True"/>
+    <property name="green" value="174"/>
+    <property name="radius" value="100"/>
+    <property name="red" value="255"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="collision" width="24" height="24" visible="0">
+  <object gid="331" x="384" y="320"/>
+  <object gid="331" x="384" y="384"/>
+  <object gid="331" x="384" y="416"/>
+  <object gid="331" x="384" y="448"/>
+  <object gid="331" x="384" y="480"/>
+  <object gid="331" x="384" y="512"/>
+  <object gid="331" x="352" y="512"/>
+  <object gid="331" x="352" y="480"/>
+  <object gid="331" x="320" y="512"/>
+  <object gid="331" x="288" y="512"/>
+  <object gid="331" x="256" y="512"/>
+  <object gid="331" x="256" y="480"/>
+  <object gid="331" x="224" y="480"/>
+  <object gid="331" x="192" y="448"/>
+  <object gid="331" x="192" y="480"/>
+  <object gid="331" x="192" y="416"/>
+  <object gid="331" x="192" y="384"/>
+  <object gid="331" x="192" y="352"/>
+  <object gid="331" x="192" y="320"/>
+  <object gid="331" x="192" y="288"/>
+  <object gid="331" x="224" y="288"/>
+  <object gid="331" x="256" y="288"/>
+  <object gid="331" x="288" y="288"/>
+  <object gid="331" x="288" y="256"/>
+  <object gid="331" x="320" y="256"/>
+  <object gid="331" x="352" y="256"/>
+  <object gid="331" x="384" y="256"/>
+  <object gid="331" x="384" y="288"/>
+  <object gid="331" x="352" y="288"/>
+  <object gid="331" x="352" y="320"/>
+  <object name="collide_only_south" gid="331" x="288" y="384"/>
+  <object gid="331" x="384" y="352"/>
+ </objectgroup>
+</map>

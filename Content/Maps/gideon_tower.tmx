@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="natural_light" value="False"/>
+ </properties>
+ <tileset firstgid="1" name="gideon_tower" tilewidth="32" tileheight="32">
+  <image source="../Textures/Tilesets/gideon_tower.png" width="256" height="1280"/>
+ </tileset>
+ <tileset firstgid="321" name="scriptingTiles" tilewidth="32" tileheight="32">
+  <image source="../Textures/Tilesets/scriptingTiles.png" width="256" height="120"/>
+ </tileset>
+ <layer name="background" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt1kFKw0AUBuC5QttUqKDQ6sob2G70ZnM0j+YkmdDXUESQJKV+i49HQhbD/HlvZpVSWgEAAAAAAAAAAAAAAAAAAAAAf7YNdrU+jt5vb2Cd/0G7zy/Fa/Fc7It1cQg5PIR8ll7vPWv3963uf5CH2pTa1OeDTGbJI2bxfqVuUt8fsWeWXve9GuWRP6/UkkfehO/kMVse3d7HmXWsWdS5JY8Z8gj/fz6ly/NjqO25seu/lcf0ecQ+6bIZ90l7btR7V5bHtHmszzUPM+v4w7M8ps8jnh9DNsOMGs8ueUybR3PW7flTOt9t9/37j+JLf8yXSbjP5lG/dPUki9kz+Y2l1wkAAAAAAAAAAAAAAAAAAAAAcAu+AcWerWI=
+  </data>
+ </layer>
+ <layer name="background2" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt1kEKwjAQBdDsehC7qq5slnXruTyaR3MEQSmVWqRpoO/Bp4HOIvATSEoAAAAAAAAAAAAAAAAAAAAAwBquW29g5w6R9rUe3t/bNrvZty5yjJxm5vRTxjnSRy4p3af+54+1Tsr41sVYnh/hT3nBmdfH+vRRF33URR91efbR/D5LAVN3xNsWAAAAAAAAAAAAAAAAAAAAAABY6gGdUAxF
+  </data>
+ </layer>
+ <layer name="object" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt1k0KwjAQBtC5QtcKdWV14w9WdCEIejGPboqCddVWiBZ5D4YEEsKQb5FEAAAAAAAAAAAAAAAAAAAAAABAXttU+4496280Qiw71i/P8ZBqlrcVkl3PfatUi5yNMEgZ8hiDa2suj/z63PEp4paqeUtumdshOaeq3fUoNO907iyKnIf/mXlrXj/HTTz+tmW8/3GnH5xfhDyGmrTmTT7HeLwrVbwykcU4VL9uAAAAAAAAAAAAAAAAAAAAAABgZO4tSgju
+  </data>
+ </layer>
+ <layer name="shadow" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt09FqwkAQBdAhoFXB1jf9CF/FJ8FP76fVxYqrRNzdVgjmHBg2hBkS5rIRAAAAAAAAAAAAAAAAAAAAAMB/+DrVx5NaFfT0zVAnZfF59273e3ZZLaN+vy0zY5ZnsY1zDoeI7zifx11cs0lk8lqLwr4ue543fEcmZUrzyO9ISx5/mRuT0jxy8ngdeQyLPIZFHsNyyWNfMXPZ67TwTCan2lT/3fis43ZvSdfXmGnZqyzK9WXySO1e3Ys2KZPZk9oU9PTNAAAAAAAAAAAAAAAAAAAAAAC8mx8f0Abq
+  </data>
+ </layer>
+ <layer name="roof" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt1jEKgDAMBdBewcHJgo6OnsD7H0sL6mKLk63ge5CldPhQkjQEAAAAAAAAAAAAAAAAAAAAAABoq28dgJtxr6l1CPigGPQH/zQH+/pL1sJ5mlFDzSBk6ZW2cj2wFO7GN4NwKc2ltFvOf5W3qKt/qKQ7CgAAAAAAAAAAAAAAAAAAAADgzzZAEANG
+  </data>
+ </layer>
+ <layer name="roof-shadow" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt1DsOgCAQQEEaiXew8RSW3v9Yln4aUJQtnEkIW74AISUAAAAAAAAAAAAAAAAAAAAAAIA2OToAOpqiA2jiv3pmiQ7gZI0O4BW5cuee0rnNh3n4sINdzVt2F32NhZUuMwAAAAAAAAAAAAAAAAAAAADAX21klwFA
+  </data>
+ </layer>
+ <objectgroup name="scripts" width="100" height="100">
+  <object name="Baldric" type="player_spawn" gid="324" x="1376" y="1440">
+   <properties>
+    <property name="val1" value="val2"/>
+   </properties>
+  </object>
+  <object name="sc1" type="level_change" gid="323" x="1376" y="1408">
+   <properties>
+    <property name="coresponding" value="sc2"/>
+    <property name="direction" value="south"/>
+    <property name="map" value="gideon_tower_outside"/>
+   </properties>
+  </object>
+  <object name="lb1" type="light_source" gid="321" x="1312" y="1504">
+   <properties>
+    <property name="alpha" value="255"/>
+    <property name="blue" value="255"/>
+    <property name="flickering" value="False"/>
+    <property name="green" value="255"/>
+    <property name="radius" value="150"/>
+    <property name="red" value="255"/>
+   </properties>
+  </object>
+  <object name="lb2" type="light_source" gid="321" x="1376" y="1504">
+   <properties>
+    <property name="alpha" value="255"/>
+    <property name="blue" value="255"/>
+    <property name="flickering" value="False"/>
+    <property name="green" value="255"/>
+    <property name="radius" value="150"/>
+    <property name="red" value="255"/>
+   </properties>
+  </object>
+  <object name="lb3" type="light_source" gid="321" x="1440" y="1504">
+   <properties>
+    <property name="alpha" value="255"/>
+    <property name="blue" value="255"/>
+    <property name="flickering" value="False"/>
+    <property name="green" value="255"/>
+    <property name="radius" value="150"/>
+    <property name="red" value="255"/>
+   </properties>
+  </object>
+  <object name="npc_gideon" type="npc" gid="327" x="1252" y="1542">
+   <properties>
+    <property name="can_move" value="True"/>
+    <property name="file" value="gideon"/>
+    <property name="health" value="100"/>
+    <property name="idle_animation" value="1"/>
+    <property name="mana" value="100"/>
+    <property name="velocity" value="30"/>
+   </properties>
+  </object>
+  <object name="npc_gideon1" type="npc" gid="327" x="1259" y="1551">
+   <properties>
+    <property name="can_move" value="True"/>
+    <property name="file" value="gideon"/>
+    <property name="health" value="100"/>
+    <property name="idle_animation" value="1"/>
+    <property name="mana" value="100"/>
+    <property name="velocity" value="30"/>
+   </properties>
+  </object>
+  <object name="npc_gideon2" type="npc" gid="327" x="1267" y="1556">
+   <properties>
+    <property name="can_move" value="True"/>
+    <property name="file" value="gideon"/>
+    <property name="health" value="100"/>
+    <property name="idle_animation" value="1"/>
+    <property name="mana" value="100"/>
+    <property name="velocity" value="30"/>
+   </properties>
+  </object>
+  <object name="npc_gideon3" type="npc" gid="327" x="1280" y="1568">
+   <properties>
+    <property name="can_move" value="True"/>
+    <property name="file" value="gideon"/>
+    <property name="health" value="100"/>
+    <property name="idle_animation" value="1"/>
+    <property name="mana" value="100"/>
+    <property name="velocity" value="30"/>
+   </properties>
+  </object>
+  <object name="npc_gideon4" type="npc" gid="327" x="1312" y="1568">
+   <properties>
+    <property name="can_move" value="True"/>
+    <property name="file" value="gideon"/>
+    <property name="health" value="100"/>
+    <property name="idle_animation" value="1"/>
+    <property name="mana" value="100"/>
+    <property name="velocity" value="30"/>
+   </properties>
+  </object>
+  <object name="npc_gideon5" type="npc" gid="327" x="1472" y="1664">
+   <properties>
+    <property name="can_move" value="True"/>
+    <property name="file" value="gideon"/>
+    <property name="health" value="100"/>
+    <property name="idle_animation" value="1"/>
+    <property name="mana" value="100"/>
+    <property name="velocity" value="30"/>
+   </properties>
+  </object>
+  <object name="npc_gideon6" type="npc" gid="327" x="1440" y="1632">
+   <properties>
+    <property name="can_move" value="True"/>
+    <property name="file" value="gideon"/>
+    <property name="health" value="100"/>
+    <property name="idle_animation" value="1"/>
+    <property name="mana" value="100"/>
+    <property name="velocity" value="30"/>
+   </properties>
+  </object>
+  <object name="npc_gideon7" type="npc" gid="327" x="1472" y="1632">
+   <properties>
+    <property name="can_move" value="True"/>
+    <property name="file" value="gideon"/>
+    <property name="health" value="100"/>
+    <property name="idle_animation" value="1"/>
+    <property name="mana" value="100"/>
+    <property name="velocity" value="30"/>
+   </properties>
+  </object>
+  <object name="npc_gideon8" type="npc" gid="327" x="1472" y="1600">
+   <properties>
+    <property name="can_move" value="True"/>
+    <property name="file" value="gideon"/>
+    <property name="health" value="100"/>
+    <property name="idle_animation" value="1"/>
+    <property name="mana" value="100"/>
+    <property name="velocity" value="30"/>
+   </properties>
+  </object>
+  <object name="npc_gideon10" type="npc" gid="327" x="1440" y="1600">
+   <properties>
+    <property name="can_move" value="True"/>
+    <property name="file" value="gideon"/>
+    <property name="health" value="100"/>
+    <property name="idle_animation" value="1"/>
+    <property name="mana" value="100"/>
+    <property name="velocity" value="30"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="collision" width="100" height="100" visible="0">
+  <object x="1408" y="1408">
+   <polygon points="0,0 32,0 32,32"/>
+  </object>
+  <object x="1440" y="1408">
+   <polygon points="0,0 96,0 96,32 0,32"/>
+  </object>
+  <object x="1536" y="1440">
+   <polygon points="0,0 64,0 64,64"/>
+  </object>
+  <object x="1600" y="1504">
+   <polygon points="0,0 32,0 32,192 0,192"/>
+  </object>
+  <object x="1600" y="1696">
+   <polygon points="0,0 0,64 -64,64"/>
+  </object>
+  <object x="1280" y="1760">
+   <polygon points="0,0 256,0 256,32 0,32"/>
+  </object>
+  <object x="1280" y="1760">
+   <polygon points="0,0 -64,0 -64,-64"/>
+  </object>
+  <object x="1216" y="1536">
+   <polygon points="0,0 0,-96 96,-96"/>
+  </object>
+  <object x="1184" y="1536">
+   <polygon points="0,0 32,0 32,160 0,160"/>
+  </object>
+  <object x="1312" y="1408">
+   <polygon points="0,0 32,0 32,32 0,32"/>
+  </object>
+  <object x="1344" y="1440">
+   <polygon points="0,0 0,-32 32,-32"/>
+  </object>
+  <object x="1504" y="1472">
+   <polygon points="0,0 32,0 32,32 0,32"/>
+  </object>
+  <object x="1504" y="1600">
+   <polygon points="0,0 32,0 32,32"/>
+  </object>
+  <object x="1536" y="1632">
+   <polygon points="0,0 0,-32 32,-32"/>
+  </object>
+  <object x="1536" y="1568">
+   <polygon points="0,0 0,32 -32,32"/>
+  </object>
+  <object x="1568" y="1600">
+   <polygon points="0,0 -32,0 -32,-32"/>
+  </object>
+  <object x="1408" y="1696">
+   <polygon points="0,0 32,0 32,32"/>
+  </object>
+  <object x="1440" y="1728">
+   <polygon points="0,0 0,-32 32,-32"/>
+  </object>
+  <object x="1440" y="1664">
+   <polygon points="0,0 0,32 -32,32"/>
+  </object>
+  <object x="1472" y="1696">
+   <polygon points="0,0 -32,0 -32,-32"/>
+  </object>
+  <object x="1344" y="1696">
+   <polygon points="0,0 32,0 32,32 0,32"/>
+  </object>
+  <object x="1248" y="1632">
+   <polygon points="0,0 32,0 32,32 0,32"/>
+  </object>
+ </objectgroup>
+</map>

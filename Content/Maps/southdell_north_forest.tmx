@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="10" height="10" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="southdell_north_forest" tilewidth="32" tileheight="32">
+  <image source="../Textures/Tilesets/southdell_north_forest.png" width="256" height="1280"/>
+ </tileset>
+ <tileset firstgid="321" name="scriptingTiles" tilewidth="32" tileheight="32">
+  <image source="../Textures/Tilesets/scriptingTiles.png" width="256" height="120"/>
+ </tileset>
+ <layer name="background" width="10" height="10">
+  <data encoding="base64" compression="zlib">
+   eJzjY2Bg4ANiETTMhwMTo4ZUtcNBHXr4YVOLTQ26WgDwpAZX
+  </data>
+ </layer>
+ <layer name="background2" width="10" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxTYmBgUAZiUQYEALIPMOAAYgwMDiBanoGhAZcaGJBH6MGrVhYqL0ukeYTUwcwj5EZizZNH0DjNE0Pji2JRixzGQPUHYGGJHD4AanIIiA==
+  </data>
+ </layer>
+ <layer name="object" width="10" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxzZGBgcAJiZwYEcMQipsxAOVAEYiUizbIEYisq2DnUAABpNQKJ
+  </data>
+ </layer>
+ <layer name="object2" width="10" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFgwkAAAGQAAE=
+  </data>
+ </layer>
+ <layer name="shadow" width="10" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFgwkAAAGQAAE=
+  </data>
+ </layer>
+ <layer name="object3" width="10" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYCAMJIlQMwqoAwAlHAAa
+  </data>
+ </layer>
+ <layer name="roof" width="10" height="10">
+  <data encoding="base64" compression="zlib">
+   eJyTZhgFgwkAACvAABw=
+  </data>
+ </layer>
+ <layer name="roof2" width="10" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYMANBIFYCIiF8agBAUkglgJiaQLqRgFhAACzEACF
+  </data>
+ </layer>
+ <layer name="roof-shadow" width="10" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAOEARiISLUGQKxFJXsHI4AAIIYAG8=
+  </data>
+ </layer>
+ <objectgroup name="scripts" width="10" height="10"/>
+ <objectgroup name="collision" width="10" height="10"/>
+</map>

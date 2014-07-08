@@ -1,0 +1,40 @@
+console_print
+	message		string
+------------------------------------------------------
+light_source
+	alpha			integer
+	red				integer
+	blue			integer
+	green			integer
+	radius			integer
+	flickering		bool
+	flicker_radius	float
+	flicker_speed	float
+------------------------------------------------------
+level_change
+	direction	string
+	map		string
+------------------------------------------------------
+animation_play
+	id		integer
+------------------------------------------------------
+animation_loop
+	id		integer
+------------------------------------------------------
+player_move
+	direction	string
+------------------------------------------------------
+tile_change
+	id		integer
+	layer		string
+------------------------------------------------------
+console_command
+	cmd			string
+	param		string
+	hasParam	bool
+------------------------------------------------------
+animation
+	file		string
+	frame_size	integer
+	frame_time	float
+	layer		string

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="20" height="20" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="natural_light" value="True"/>
+ </properties>
+ <tileset firstgid="1" name="gideon_tower_outside_west" tilewidth="32" tileheight="32">
+  <image source="../Textures/Tilesets/gideon_tower_outside_west.png" width="256" height="1280"/>
+ </tileset>
+ <tileset firstgid="321" name="scriptingTiles" tilewidth="32" tileheight="32">
+  <image source="../Textures/Tilesets/scriptingTiles.png" width="256" height="120"/>
+ </tileset>
+ <layer name="background" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzjY2Bg4KMytsCDh6N5tMYiaHx+EvWjq0c3j5B6Ut1HCRaAmsePZj42TIr7COklxQ6QuDgV4xZmjwwRGJsZ4gyYfqDEPFLcRm46IdcsAQL+ESAjDsgNn6FqHjUxAHixHUE=
+  </data>
+ </layer>
+ <layer name="background2" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBh5QA+3eIMRkDYGYhMq2GMJxNxAM62BtA0F5sgCzcAnbwjEyO42JWCePAHzQO62AmKYu22JdCetgBgQqzMwHJADYnUoFiPgB2QgD9HPgKT3ABY7HGB2INuDw7yGRCCdBMTJSDQ5QBRqnifEDQxyaFgdjY8PiCHoA4EQcykC8lCzYO6kFMDcE4wmLkOiOaD8ANMjg4RlyXQXzDx0TG3zBgPAlm4pSccA8Rggmw==
+  </data>
+ </layer>
+ <layer name="object" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJy1lMkKwkAMhucpvNkeiwuCO6644H6qntST+iI+2jyaf3UG4pApzHT6w0faQH4SklYIIYZgwID8W3ioZc87+/VL8AupzG9hMCfPY9AGHdAFPRJtvezBRtXvMOP2F7/5TCPlOwFTEmegBuqgAZoW/9hhPrN3TlWHPZi92/yWiCuwVrkIJCpGOd42oUZytVdwA3firUkYn1T8z/sg8QlelncqvasQ4ryO4OTpx/V1BhdPP7rHWO21iA4F602lgf3KUAW/AnW/kt4r8lJ/T67Ku08XfQCKFCGK
+  </data>
+ </layer>
+ <layer name="object2" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBh5wByIzbBgoHgDOeap4RYnyzw93OJkmUdrIAvEnkSqTQHiVCLMCyTSvBwgzgViJyB2xiIPc1ckEEcBcTSRfGzAC4i9CbgnEYiTgDgZzX5sIAiIgwmYhw6IDRdqAWL8jA+g+z+IArNAgN7+JzZdEwvIdT856ZUYgJ5eSQUA3UsSag==
+  </data>
+ </layer>
+ <layer name="shadow" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFlABuIGbDg8kxj4uB4QAahosB5RtIMY+XgcGBE0gjYwYkNlD+ALFmCZJiMRFAkkrmOJKgNhKIo4A4mkp2DzTwxCEegkdPLB65QBxmxRDtIsLmxUDdgI6JAZ449JJiBrr7qGkeAwHzcMUXLhBJwDxs4UtPAAA3+xiN
+  </data>
+ </layer>
+ <layer name="roof" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJy1kz0OhCAQRqfwFp7Av2JXbe0ttDBLufe/hkMCCeIMA4gv+WIi8fFlBICyDMJ6VdjXF/a5NJgW05l9qG+pdwvj+2C+mBEzYWbCWyf0o7w+Ob4QnG/N9Nk5UGyY/aEvt5fr4zr+MEqIxj1HnEv3/EdE4/5vbnYQcCjztB6/h88h+Dq4nmnfFzMnBff7wRFy2E6xLsmX4tHML/gkUpySL7XfCS7oJow=
+  </data>
+ </layer>
+ <layer name="roof2" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzNkzsKgDAQBbdKr1YeQRMr9RR+G9HjeHRfobBI1iSwhQ+GfCDDhk2IdLMSnQtGiVXZZ0ChXF8GcmAjfAd8O0aOYfPDc6YCteBPuUtMtH0OND/2WWWndn1fri2C5904Cr9PyZG9HC3oQC94hkA95e3yZQQTmNnaF/4nJFdMUj2h3mr7Up3a9VnG0//6tZ/iuwDJ8yAx
+  </data>
+ </layer>
+ <layer name="roof-shadow" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYWBgYKEiZiMCk2IeIRAAxOwMDA3UMg8EWBkYHLC5G5s92EA4Cfagm0kpQHf7KBg+QJMBHL+geD0Aw+SYg2wGMP0dIDf9CUJpDgbK8hu6u9DdRI55ILOY8ZhDqnn4/EhL84D+aKCmeeyQ8uEAIYwvDpAxAE40FQo=
+  </data>
+ </layer>
+ <objectgroup name="scripts" width="20" height="20">
+  <object name="ds2" type="level_change" gid="323" x="608" y="320">
+   <properties>
+    <property name="coresponding" value="ds1"/>
+    <property name="direction" value="east"/>
+    <property name="map" value="gideon_tower_outside"/>
+   </properties>
+  </object>
+  <object name="Baldric" type="player_spawn" gid="324" x="576" y="320">
+   <properties>
+    <property name="val1" value="val2"/>
+   </properties>
+  </object>
+  <object name="lar1" type="level_change" gid="323" x="160" y="192">
+   <properties>
+    <property name="coresponding" value="lar2"/>
+    <property name="direction" value="south"/>
+    <property name="map" value="peasant_farm_house_1"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="collision" width="20" height="20" visible="0">
+  <object gid="331" x="192" y="192"/>
+  <object gid="331" x="224" y="192"/>
+  <object gid="331" x="128" y="192"/>
+  <object gid="331" x="96" y="192"/>
+  <object gid="331" x="64" y="192"/>
+  <object gid="331" x="32" y="192"/>
+  <object gid="331" x="160" y="160"/>
+  <object gid="331" x="192" y="160"/>
+  <object gid="331" x="128" y="160"/>
+  <object gid="331" x="256" y="160"/>
+  <object gid="331" x="288" y="160"/>
+  <object gid="331" x="320" y="160"/>
+  <object gid="331" x="320" y="192"/>
+  <object gid="331" x="352" y="192"/>
+  <object gid="331" x="384" y="192"/>
+  <object gid="331" x="416" y="192"/>
+  <object gid="331" x="448" y="192"/>
+  <object gid="331" x="448" y="224"/>
+  <object gid="331" x="480" y="224"/>
+  <object gid="331" x="512" y="224"/>
+  <object gid="331" x="512" y="256"/>
+  <object gid="331" x="544" y="256"/>
+  <object gid="331" x="544" y="288"/>
+  <object gid="331" x="576" y="288"/>
+  <object gid="331" x="576" y="256"/>
+  <object gid="331" x="608" y="256"/>
+  <object gid="331" x="608" y="288"/>
+  <object gid="331" x="544" y="384"/>
+  <object gid="331" x="576" y="384"/>
+  <object gid="331" x="608" y="384"/>
+  <object gid="331" x="608" y="384"/>
+  <object gid="331" x="608" y="352"/>
+  <object gid="331" x="576" y="352"/>
+  <object gid="331" x="512" y="384"/>
+  <object gid="331" x="480" y="416"/>
+  <object gid="331" x="512" y="416"/>
+  <object gid="331" x="544" y="416"/>
+  <object gid="331" x="576" y="416"/>
+  <object gid="331" x="576" y="416"/>
+  <object gid="331" x="576" y="416"/>
+  <object gid="331" x="608" y="416"/>
+  <object gid="331" x="448" y="448"/>
+  <object gid="331" x="416" y="448"/>
+  <object gid="331" x="384" y="448"/>
+  <object gid="331" x="384" y="480"/>
+  <object gid="331" x="352" y="480"/>
+  <object gid="331" x="416" y="480"/>
+  <object gid="331" x="480" y="480"/>
+  <object gid="331" x="448" y="480"/>
+  <object gid="331" x="320" y="512"/>
+  <object gid="331" x="320" y="512"/>
+  <object gid="331" x="352" y="512"/>
+  <object gid="331" x="384" y="512"/>
+  <object gid="331" x="320" y="544"/>
+  <object gid="331" x="288" y="544"/>
+  <object gid="331" x="256" y="544"/>
+  <object gid="331" x="256" y="512"/>
+  <object gid="331" x="256" y="608"/>
+  <object gid="331" x="256" y="576"/>
+  <object gid="331" x="256" y="640"/>
+  <object gid="331" x="224" y="640"/>
+  <object gid="331" x="192" y="640"/>
+  <object gid="331" x="160" y="640"/>
+  <object gid="331" x="128" y="640"/>
+  <object gid="331" x="96" y="640"/>
+  <object gid="331" x="64" y="640"/>
+  <object gid="331" x="32" y="640"/>
+  <object gid="331" x="0" y="640"/>
+  <object name="collide_only_south" gid="331" x="128" y="480"/>
+  <object name="collide_only_south" gid="331" x="224" y="480"/>
+  <object name="collide_only_south" gid="331" x="64" y="480"/>
+  <object name="collide_only_south" gid="331" x="256" y="480"/>
+  <object name="collide_only_south" gid="331" x="32" y="480"/>
+  <object gid="331" x="0" y="448"/>
+  <object gid="331" x="0" y="480"/>
+  <object gid="331" x="0" y="512"/>
+  <object gid="331" x="0" y="544"/>
+  <object gid="331" x="0" y="576"/>
+  <object gid="331" x="0" y="608"/>
+  <object gid="331" x="0" y="416"/>
+  <object gid="331" x="0" y="384"/>
+  <object gid="331" x="32" y="384"/>
+  <object gid="331" x="32" y="352"/>
+  <object gid="331" x="32" y="320"/>
+  <object gid="331" x="0" y="288"/>
+  <object gid="331" x="0" y="256"/>
+  <object gid="331" x="0" y="224"/>
+  <object gid="331" x="0" y="192"/>
+  <object name="collide_only_south" gid="331" x="224" y="288"/>
+  <object name="collide_only_south" gid="331" x="256" y="288"/>
+  <object gid="331" x="192" y="288"/>
+  <object gid="331" x="128" y="352"/>
+  <object gid="331" x="96" y="384"/>
+  <object gid="331" x="192" y="352"/>
+  <object gid="331" x="224" y="352"/>
+  <object gid="331" x="256" y="352"/>
+  <object gid="331" x="288" y="352"/>
+  <object gid="331" x="320" y="352"/>
+  <object gid="331" x="352" y="352"/>
+  <object gid="331" x="384" y="352"/>
+  <object gid="331" x="416" y="352"/>
+  <object gid="331" x="448" y="352"/>
+  <object gid="331" x="480" y="352"/>
+  <object gid="331" x="512" y="352"/>
+  <object gid="331" x="256" y="384"/>
+  <object gid="331" x="192" y="416"/>
+  <object gid="331" x="224" y="384"/>
+  <object gid="331" x="224" y="416"/>
+  <object gid="331" x="224" y="448"/>
+  <object gid="331" x="192" y="448"/>
+  <object gid="331" x="128" y="512"/>
+  <object gid="331" x="96" y="544"/>
+  <object gid="331" x="128" y="544"/>
+  <object gid="331" x="64" y="544"/>
+  <object gid="331" x="64" y="512"/>
+  <object gid="331" x="160" y="480"/>
+  <object gid="331" x="192" y="480"/>
+ </objectgroup>
+</map>

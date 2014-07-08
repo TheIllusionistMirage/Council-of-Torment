@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="25" height="25" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="natural_light" value="True"/>
+ </properties>
+ <tileset firstgid="1" name="gideon_tower_outside_camp" tilewidth="32" tileheight="32">
+  <image source="../Textures/Tilesets/gideon_tower_outside_camp.png" width="256" height="1280"/>
+ </tileset>
+ <tileset firstgid="321" name="scriptingTiles" tilewidth="32" tileheight="32">
+  <image source="../Textures/Tilesets/scriptingTiles.png" width="256" height="120"/>
+  <tile id="0">
+   <properties>
+    <property name="alpha" value=""/>
+    <property name="blue" value=""/>
+    <property name="green" value=""/>
+    <property name="red" value=""/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="background" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJxjYWBgYBnFNMPVaJhS8wSQMJrZDZTaI4AFN6OafwCKSbYDm9lY/HKAXH8QMh85vJqRaHQ15JiLLcyA+AA+NaTYoQrF5LiFkB2qWLAzmfYQaz65/hmpdpAb78SkKXLNJyZtUQNTIz+Sagct7KGk3KLUDmraRc3ymBLzybWPmvUvLcwnBwMA1b8wYg==
+  </data>
+ </layer>
+ <layer name="background2" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFowA3aGVgOEBrO1iBdrQwMDRQag4zAflaBgYHGJtcf4Hc6k/ArSB7aqHmR5BofjgWvgUE47WTXGDOgOpGdHu8KTTfArd4Aw4pkoEZDrMCqGhHAA5xCyrkD2+oO4FmORigmWdBRHojFugjmQOyCxjvB2DupzSekYE/Fc0iBLxplC9GwSgYKgAAK8gYfg==
+  </data>
+ </layer>
+ <layer name="object" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFowAVZAFxNhDnALE4jcwtAuJiIC4BYnkqmC3GAHErsrmlVDAX2c1yDNRxKzqgtpuxAVkGhgZ0sU4g7qKRfTAwEYgnEaFOlAERh5SASiCuwiFXyACJQ0pBIxA34ZGnll8oBchpN5cEfaS4P5MCe4gFpNpBbvjTwy/Y7MHFppX9o2B4AQBaSxxF
+  </data>
+ </layer>
+ <layer name="object2" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2B4AFkglgNi+YF2CBLIBOIsIM4G4hwgzsWiRpSBoYESO4D6GcSAWByIS4C4lBLDhjlADquhCoa6H0bdPwpGAfUAACeaBTo=
+  </data>
+ </layer>
+ <layer name="shadow" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFQxWw0MEOZjrYMZAgB4hzaWxHCRCX0tgOEJClgx2jYBSMglEwCgYPAAB0mAHn
+  </data>
+ </layer>
+ <layer name="roof" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFQwUkAnESECcDcQoQp1LJXF4g5sNhrjgVzAeZLQrEYkjmEWMuIT+ihwWpbiUmPPmR2OSERSYQZwFxNhl6SbWDloDWdoDMh6VDfgJqKbUni4Z28DIQF1bk5mOY+cS4Hzl95xJpDynmo9uRA7WHmuajA5gduPRTaj66PclQPoimRdk7CkYBpQAAeSQZHw==
+  </data>
+ </layer>
+ <layer name="roof2" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo4D2gH+gHYAHJAJxEhAnA3EKEKdS0WxeIOZjoK3/aW0HsvniNLKDXgAW17QEsLREK0CO2Sk0Nh9mBzF5h5KwgeVRWpmPrSxAp0fBKBhMAABGswsd
+  </data>
+ </layer>
+ <layer name="roof-shadow" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJztk90JwCAMhANq7VgZzdEcrREqpKVtjMlLwYMDBfmO/BgBIC7/xpm8MefruXgwE0AFJn6nM2pzwgNT0q6sgd4XDb/XIvWN90Zbw2g9Fm4XMVqf61uGBz9/8J0yMAi75SFpt6ySZtFM+1S7k3J3R2Zh+R8zfE3GLP/8jyj1y8LnOXxGd1v5y8tePgD3Hx7B
+  </data>
+ </layer>
+ <objectgroup name="scripts" width="25" height="25">
+  <object name="lv6" type="level_change" gid="323" x="0" y="448">
+   <properties>
+    <property name="coresponding" value="lv5"/>
+    <property name="direction" value="west"/>
+    <property name="map" value="gideon_tower_outside"/>
+   </properties>
+  </object>
+  <object name="lv4" type="level_change" gid="323" x="0" y="416">
+   <properties>
+    <property name="coresponding" value="lv3"/>
+    <property name="direction" value="west"/>
+    <property name="map" value="gideon_tower_outside"/>
+   </properties>
+  </object>
+  <object name="lv2" type="level_change" gid="323" x="0" y="384">
+   <properties>
+    <property name="coresponding" value="lv1"/>
+    <property name="direction" value="west"/>
+    <property name="map" value="gideon_tower_outside"/>
+   </properties>
+  </object>
+  <object name="Baldric" type="player_spawn" gid="324" x="32" y="416">
+   <properties>
+    <property name="val1" value="val2"/>
+   </properties>
+  </object>
+  <object name="af1" type="animation" gid="334" x="384" y="256">
+   <properties>
+    <property name="file" value="fisherman.png"/>
+    <property name="frame_size" value="47"/>
+    <property name="frame_time" value="0.2"/>
+    <property name="layer" value="object"/>
+   </properties>
+  </object>
+  <object name="set234" type="animation" gid="334" x="416" y="224">
+   <properties>
+    <property name="file" value="water1.png"/>
+    <property name="frame_size" value="32"/>
+    <property name="frame_time" value="0.2"/>
+    <property name="layer" value="background"/>
+   </properties>
+  </object>
+  <object name="set2342" type="animation" gid="334" x="416" y="192">
+   <properties>
+    <property name="file" value="water1.png"/>
+    <property name="frame_size" value="32"/>
+    <property name="frame_time" value="0.3"/>
+    <property name="layer" value="background"/>
+   </properties>
+  </object>
+  <object name="set234s" type="animation" gid="334" x="448" y="224">
+   <properties>
+    <property name="file" value="water1.png"/>
+    <property name="frame_size" value="32"/>
+    <property name="frame_time" value="0.3"/>
+    <property name="layer" value="background"/>
+   </properties>
+  </object>
+  <object name="set234f" type="animation" gid="334" x="480" y="224">
+   <properties>
+    <property name="file" value="water1.png"/>
+    <property name="frame_size" value="32"/>
+    <property name="frame_time" value="0.3"/>
+    <property name="layer" value="background"/>
+   </properties>
+  </object>
+  <object name="set234fd" type="animation" gid="334" x="416" y="256">
+   <properties>
+    <property name="file" value="water1.png"/>
+    <property name="frame_size" value="32"/>
+    <property name="frame_time" value="0.2"/>
+    <property name="layer" value="background"/>
+   </properties>
+  </object>
+  <object name="set234sgs" type="animation" gid="334" x="480" y="256">
+   <properties>
+    <property name="file" value="water1.png"/>
+    <property name="frame_size" value="32"/>
+    <property name="frame_time" value="0.3"/>
+    <property name="layer" value="background"/>
+   </properties>
+  </object>
+  <object name="set234sas" type="animation" gid="334" x="384" y="224">
+   <properties>
+    <property name="file" value="water1.png"/>
+    <property name="frame_size" value="32"/>
+    <property name="frame_time" value="0.3"/>
+    <property name="layer" value="background"/>
+   </properties>
+  </object>
+  <object name="set234s124" type="animation" gid="334" x="448" y="192">
+   <properties>
+    <property name="file" value="water1.png"/>
+    <property name="frame_size" value="32"/>
+    <property name="frame_time" value="0.3"/>
+    <property name="layer" value="background"/>
+   </properties>
+  </object>
+  <object name="set234s23" type="animation" gid="334" x="384" y="192">
+   <properties>
+    <property name="file" value="water1.png"/>
+    <property name="frame_size" value="32"/>
+    <property name="frame_time" value="0.3"/>
+    <property name="layer" value="background"/>
+   </properties>
+  </object>
+  <object name="set234sht3" type="animation" gid="334" x="480" y="192">
+   <properties>
+    <property name="file" value="water1.png"/>
+    <property name="frame_size" value="32"/>
+    <property name="frame_time" value="0.3"/>
+    <property name="layer" value="background"/>
+   </properties>
+  </object>
+  <object name="set234slol" type="animation" gid="334" x="416" y="160">
+   <properties>
+    <property name="file" value="water1.png"/>
+    <property name="frame_size" value="32"/>
+    <property name="frame_time" value="0.3"/>
+    <property name="layer" value="background"/>
+   </properties>
+  </object>
+  <object name="set234slolo" type="animation" gid="334" x="448" y="160">
+   <properties>
+    <property name="file" value="water1.png"/>
+    <property name="frame_size" value="32"/>
+    <property name="frame_time" value="0.3"/>
+    <property name="layer" value="background"/>
+   </properties>
+  </object>
+  <object name="fireplaceanim" type="animation" gid="334" x="256" y="416">
+   <properties>
+    <property name="file" value="fireplace.png"/>
+    <property name="frame_size" value="64"/>
+    <property name="frame_time" value="0.1"/>
+    <property name="layer" value="roof"/>
+   </properties>
+  </object>
+  <object name="camplight" type="light_source" gid="321" x="256" y="416">
+   <properties>
+    <property name="alpha" value="255"/>
+    <property name="blue" value="0"/>
+    <property name="flicker_radius" value="10"/>
+    <property name="flicker_speed" value="60"/>
+    <property name="flickering" value="True"/>
+    <property name="green" value="174"/>
+    <property name="radius" value="200"/>
+    <property name="red" value="255"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="collision" width="25" height="25" visible="0">
+  <object gid="331" x="352" y="224"/>
+  <object gid="331" x="320" y="224"/>
+  <object gid="331" x="288" y="224"/>
+  <object gid="331" x="256" y="224"/>
+  <object gid="331" x="224" y="224"/>
+  <object gid="331" x="224" y="256"/>
+  <object gid="331" x="192" y="256"/>
+  <object gid="331" x="192" y="256"/>
+  <object gid="331" x="160" y="256"/>
+  <object gid="331" x="128" y="256"/>
+  <object gid="331" x="96" y="288"/>
+  <object gid="331" x="96" y="256"/>
+  <object gid="331" x="64" y="288"/>
+  <object gid="331" x="64" y="320"/>
+  <object gid="331" x="32" y="320"/>
+  <object gid="331" x="32" y="288"/>
+  <object gid="331" x="0" y="288"/>
+  <object gid="331" x="0" y="320"/>
+  <object gid="331" x="0" y="352"/>
+  <object gid="331" x="0" y="512"/>
+  <object gid="331" x="32" y="512"/>
+  <object gid="331" x="64" y="512"/>
+  <object gid="331" x="96" y="512"/>
+  <object gid="331" x="96" y="544"/>
+  <object gid="331" x="96" y="576"/>
+  <object gid="331" x="128" y="576"/>
+  <object gid="331" x="128" y="608"/>
+  <object gid="331" x="160" y="608"/>
+  <object gid="331" x="192" y="640"/>
+  <object gid="331" x="192" y="640"/>
+  <object gid="331" x="224" y="640"/>
+  <object gid="331" x="256" y="640"/>
+  <object gid="331" x="288" y="640"/>
+  <object gid="331" x="288" y="640"/>
+  <object gid="331" x="160" y="640"/>
+  <object gid="331" x="320" y="640"/>
+  <object gid="331" x="352" y="640"/>
+  <object gid="331" x="352" y="608"/>
+  <object gid="331" x="384" y="608"/>
+  <object gid="331" x="384" y="576"/>
+  <object gid="331" x="416" y="576"/>
+  <object gid="331" x="416" y="544"/>
+  <object gid="331" x="448" y="544"/>
+  <object gid="331" x="448" y="512"/>
+  <object gid="331" x="480" y="512"/>
+  <object gid="331" x="480" y="480"/>
+  <object gid="331" x="512" y="480"/>
+  <object gid="331" x="512" y="448"/>
+  <object gid="331" x="544" y="448"/>
+  <object gid="331" x="544" y="416"/>
+  <object gid="331" x="544" y="384"/>
+  <object gid="331" x="512" y="416"/>
+  <object gid="331" x="512" y="384"/>
+  <object gid="331" x="512" y="352"/>
+  <object gid="331" x="544" y="352"/>
+  <object gid="331" x="544" y="320"/>
+  <object gid="331" x="544" y="288"/>
+  <object gid="331" x="544" y="256"/>
+  <object gid="331" x="512" y="256"/>
+  <object gid="331" x="480" y="256"/>
+  <object gid="331" x="448" y="256"/>
+  <object gid="331" x="448" y="288"/>
+  <object gid="331" x="416" y="288"/>
+  <object gid="331" x="416" y="256"/>
+  <object gid="331" x="384" y="256"/>
+  <object gid="331" x="384" y="224"/>
+  <object gid="331" x="384" y="192"/>
+  <object gid="331" x="384" y="192"/>
+  <object gid="331" x="352" y="192"/>
+  <object gid="331" x="416" y="224"/>
+  <object gid="331" x="448" y="224"/>
+  <object gid="331" x="480" y="224"/>
+  <object gid="331" x="512" y="224"/>
+  <object gid="331" x="480" y="192"/>
+  <object gid="331" x="480" y="192"/>
+  <object gid="331" x="448" y="192"/>
+  <object gid="331" x="416" y="192"/>
+  <object gid="331" x="384" y="160"/>
+  <object gid="331" x="416" y="160"/>
+  <object gid="331" x="448" y="160"/>
+  <object gid="331" x="480" y="160"/>
+  <object gid="331" x="512" y="192"/>
+  <object gid="331" x="0" y="480"/>
+  <object gid="331" x="288" y="448"/>
+  <object gid="331" x="256" y="448"/>
+  <object gid="331" x="160" y="384"/>
+  <object gid="331" x="192" y="352"/>
+ </objectgroup>
+</map>

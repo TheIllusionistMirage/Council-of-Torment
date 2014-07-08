@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="50" height="50" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="natural_light" value="True"/>
+ </properties>
+ <tileset firstgid="1" name="gideon_tower_outside" tilewidth="32" tileheight="32">
+  <image source="../Textures/Tilesets/gideon_tower_outside.png" width="256" height="1280"/>
+ </tileset>
+ <tileset firstgid="321" name="scriptingTiles" tilewidth="32" tileheight="32">
+  <image source="../Textures/Tilesets/scriptingTiles.png" width="256" height="120"/>
+ </tileset>
+ <layer name="background" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztmMFqwzAMhn3oAwTGYLDLYLTrW2zQww459JjXyaPt0RaTiGlCku0Q29LY4SfUcev/kyzb9RBCGAzrlKla4z8W9n9SlMPYIqY3ohIGjaUlB2UA4bFLOU6hPYcm7OG66IUI2rQ8tOC4L3oXBLmCvtHvg/BMxaEmR/T4meDAin5f1xzMz+hzb45SRb+X8HteXTauFEMPDsiT1ueaeN+6PjQW2vaG4n5m2jC7ZQ7MAJK+Y4WD4ZqjMMN5zcFM+oksvRmwRykXA8NklQPPqxuzRkXOyRmH9A44rNYHZtA4pFx45bAoPOdTHNrZv4dwzY5hPU8Cwz2D1wITXXfoWkv9WhWOH/iP66wn/3S/PqKmW/Fz3qUasKgasW/tfRS8L2ekj2F7b7UePMdf4hgN+AFNRLkMvX1z3rX7DY6jt3+s3HuavXng7hZbMUgsNTjonJjCz1lGEv2NFAfmqVkTmuccjlwWqzVRotw9YiLPlpLGxPtzCUfOmn2kxu28kIq/1tZbUpw1r9YY9mhywJEzly3OqT3yyrCsAV84X145uFxY/Q9UytHbxxEM3jjofuyNgTtPeM0F1l9j8Mrxz9BH3wra0p0=
+  </data>
+ </layer>
+ <layer name="background2" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztmcttwzAMhgmkLnLMAk1HaC6FdMyxxyKnrtDXpe0AXqA7abSSiIUohCW7cmKRhj6AUCLHwM/wIVkGmM7Nla1S4awB2lscY6aFBsD1za/Qv3mVTMOi7ZjhXIv+7TXFAzXvUbsLzUZiVKlU0tjT2Pq5Qxkp2djzzy68dlDUp6m3daMrq6SyJCwsI6cM1odVVM8x0I+seKwvL2USMR9wbwwPiTg1XZ8rSbDuudhvYnv/OVklrpEPRoDGMdB/6ddiy65p6k2atRNcv5b8Ibp8b/13Tdo9lvU+bfnjMd0oQf8r2hvaO9oH2ufI+8xpdFeQlcUX2jfaDxzz/XfkfZJ8IDZw1P8SzMU0mr5JAZAPfdpoD7pJ3CehJkJSWukckGJk2doszQfP04BJ1c0ZOmPx57Va8bVP8TA9+33p5zKh/nCOkNRrSeMuMWqph/+Ser7UhMScyuG5tIBMeB8iP7TXDH/Gq5RDa32nzp000Qhfv4d4ZN+XUNup93Va4HHIfWd6h7ZFu58mJ4tL5NLc+v8AhG5Eiw==
+  </data>
+ </layer>
+ <layer name="object" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzNWktvEzEQngNXGoG0JEVqqp5QhCp6IfTCBbVIoFLKLQdAPE48CuJ9zaU3+E/9aYwTT/NlMn5s1pvkk0bOeh17Ps+MPXZCVBbXWbZYOpn11wKS850mqFhuQSnS9eNV8IzvsT1BKTrpvsjoq2twbcpD9y+lNTai7+u3/PNOzXGRSxPE7KHLLyxfve67oHdFi/wc7s7KMT6HuJQC9ks07zcOv1n+sDwEcXBcdn3ZzxxL2vbJnoNSQE4dmrdBSC+WcS+z/x7NuOg4agrtY6GYSOmX226fZn5ZkofGMlz22CY3E21603YTIIeYvZcB9m3FfwwD5rHn/esFyw2W29NyUiccBqrftqF55IztuNyZCm2znPHnbagb+HYyL6nYK4HQPpiyz3O/1goO1TPGeJvrVQyal9bjMet8rPS2cB/arINLzNecnLJ+zzJ4PKLFtXcdsNbnCt4f0TQ2rO8+YXlK07VX+lkXQuPLGnpCEx7JPsQmbcd6DNYaUAfr5mCtY7o+ho8sn6D83I6aSei1V/LD2PxiHvmd5QeUP325DttIbiS57o6PaV6r3H6xgK5/H9L1nn+fe4bJheXr6D8yptZpFOiP241XPd9OX5xjB1xTY/7zkuUVy+sW9cuFcECbWHofeAnZoG3oudbvYnM/8sL6X+aOV+qMkbtOy3hWez/3l07cXr2f2Ze+ryCjLI0QX70vn0T6sPQP2SPGtQmknwOos3zf4hE7F2Mdxp7+Tolcy91BuX31PNEulO9ac6r91HrXxB5We1fn9tVfCf2t+8Gcz+izoXs+7dMWt78sF14wrzmn+DqAffVpfg9Mcau8/8TmWL4j48t+LvpJvdP/nxLJa3RbFwtyZgjpb72LrYPIoYI6yVPwPcYGzrPFQXMRX8I1CeOOVD2OjXOYsmdf1VUqV9B2qxsvLq87DYyt+9D3WaExUHfkqD+n7Co2wfl/E3h2a+iQ58byJ9TLzV8Hnq24sNanZUTiF/0lF0NfWj4SupdvS7TPx+Dyi2Oa3NNMoO8EYjlW2zxygPmdFRvCQfqsY4PUvV2uOB1HPpezSq2vv5u58inkQA11adseiFiMr4uDk1RuhDgy6lYVxzn2yN0/JGfVttgEseY2xEfn3pvKIwdnRm6wCaL/L/CW5R3Le5rdDcN+cbVOYR6RysFXJehHH2g+R5f9Qu7JHvBarH+j03mPzjVCZ7iSPDW+kb3HD2Gt1Xt1yh7WeQhRikcqvtEW+l2OT6XOoCXtEbKPwPp9Rc4H1ryH7j5i59YSPOqeQSy/r3MOD6FNexwm7gHlfx914qR0Poyw7sItDvq/LbE5z71ja8rjP47axVY=
+  </data>
+ </layer>
+ <layer name="object2" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztmr1OwzAQxz0wwxSYKG+AGNpOgIQETIAYK3WFga+Br70vwDvxaJxpLJ1OdS+2Lz67zU/6K7ISO3/b568oxpTHDtImUVJ9nkDPoBfQK+hN104076AP0CfoC3SgayeYU5I+A51rGEngUtuAEDfaBipgpG1gi7jXNjCwNVyQ9L6KC57j9jo1ZuF75nAp731NbLvaOXTSpqfM8+P2Wtu+pgZsX8S0q+0/G2MN6EjUURhu/z5CPq6ZPPhZ6n1sdHD79xTwmJ/0PPbtu2zscH1/Ysxvnz4ksHXBMbFJzKD9S+4Dru1nBXt3rJs/Jf3Xtv5J+t0F7UXkKy1+YtfbUBrmXdx9Dqn5MnXubUg5faF1Dl3VPzljKIaSzx4WHPt0HNgrF4suD+WngyS/EzZLLVzaFxOuP+j48I2ZuVl+g523Za9Kh3yfpW1M06Wds31zY671V+o9vrk11343tPzhG3o5XBn+HF0Dt6A7bRMD/wwxVQe59pddwevxA+ixY751a5zG2h76v0HIGQ3vrWLyh0D/N/hmnk/x0VcdUnzgmMJniNjycuGrQ2p5ueuS8j5ff2nWQWofLlWHP+RxMos=
+  </data>
+ </layer>
+ <layer name="shadow" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztmMtOAjEUhmcrEzQxAiHx8go+ggt0g7BSV9523heo7Hk0H82fwMGTSYdOnbanA+dL/szQnCl/y2mnnCzzQxvahfYqtv+nrxh0oC7UM3jh7SYOLH3t+7PpDHl5gV6hN+gd+hD0ZIPPfTEfJtAn9AV9Q1PoGDpaXolDyzUGPA94PpxDF4b4B+jR8Tskc2sEjQ3tT9BztlgXecW+EDdD/MyTNa/kmds48oTHMadv8df/i1/Frdv/YoM8OaP7HSbT59ThYyFM3hH3E9xMTYYYSwvXVqGd2obLMZxG9qXYofXdFXVRnxNpA2tIaQ/dZvg52CWWP0PtkvBzcJXYK+gaumHPUB9NgM7Nt9AddC/kwyV/TJSdm2Pjkj+pUDb3lwJe6lA292X/DV3ha10CXzk+f2eGWOu2mk5divWIJtAJ1G/sulOouS/WnUIgWQNV0sLXu0CaVM47SrporjebgbQBZcWm/BabMo6mo3uzsu2ErhcoiiLHL1pqLek=
+  </data>
+ </layer>
+ <layer name="roof" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzdWT2P1DAQnYKGIrvSSUmoERUdUIFoQHAdVEDPLVfw9RtIAf/rfhoebd7t22Hs2JvNx/GkUbKJ45lnj8fjWZHTUAXZBNlmvt+Y5zt6/yjIfZGbZ/31XrhaSekaYz/3WyXafw5y1duN6xe6Xge5EOm07QNHrN5zcvH65d8b+l1HvtV2TZA2yJOex5C+Rs7LJTY2lXkfQy0HLornGTzwzVT+ZecD1ybDriCd+tTDAR7h/c1F/w3m5Fx80Ceubd8v5r8EjzPmg/WqronWSkf3SZ/y8LSAx1TrXVGTHfDjXcH3LwrnYyoeDLvWW/N8DNj+NtVwBHidKOx+h+sY/VP6VEonx9ZzxE2OV1NzgS7MTU3Pec52ctgzLzPXRyXzchE5ttnOA/IT+Fsrwza9CvJ6328311pnIN4rOAY0crzfaJs3mX2Cw1RrnWHXPd97c5UL5GVzw/JRwJ/Yv1JjixymFj8GzrXmOWeBfrtPejy8MZgbbAPHrsqx6+1AH2vgwuconJs8m947z0K77pwc4J+p9w21wxh6vuvZ9CHIxyCfRtjYZAits3+4WA52/cHu3Jh6Ktj/crjY9q0cc7imvufMpdiWFJ8Y2O+HfPkywx7MJ/YJnAGgR597PmjtteM8xCMX7zLs57HH3m/PnRw3cL6NxUbvPld/DKn1AZtSZxTObZrDtcvNB9hvYu9+ZvSjsDUJ9pUUKnMdghfrWa+nT5+leGwz7GQgv+ec39OfEwe+B/kR5PdebvMaFfAbyjnxvj9PdTH9Xg3M2sdnWXseY/12/NX+P70Adq5i64b3D5x7atqXU/uiHW/k9hzbuV1qDJgDi87Lt4h+5rAVP35wHVTEjyeQyukjfN+hD5v325rANsLB8nEo3NZjbJzzdKdgx7g0foIL2yyR314M/Sp7f7J6uX/4NtsbqxHn8kY7keP1obHn1146Odwf/Y71hX3Ys6+0xlgK6NP4lLsPpLCGs89YoM7OazmV768RiBPbO2a3BepQdxW8xpeEl0+VgGuCSyOWHw6hluXnweIULspjzhprKbC3ozYcA+97S2Moh4+982qCSwJjH/OrVL1y6lyjFKf+T/S/8FiTXwGlXNbIoQTYM9bMQ+vbXk2f64DW/jXltKjPv3TeaR0QNX3kIIq1nTP+AorXf2E=
+  </data>
+ </layer>
+ <layer name="roof2" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt2E0KgCAQhmEvUC27TLWK7tHfokX336bQwqQiihrN94EhMKKPSBlVCgAAIE6drt4ZyySCAAAAvKB9+HyiK1XX+qP64bvOuP1a7EbpAD9k/rFBbb/tvF6T7+N8JtS9zyQdIFKsPZDSSAeA9/6yPg3SARCdUHtBVyod4Ab2uMAxM6fNHAl5jTL5r56n+co+E8x1lboq636xM+ajBTOvCPE=
+  </data>
+ </layer>
+ <layer name="roof-shadow" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztmDtuwzAMQAU4v8XJZKRz0anI0nZqumToDXKGDr2Fj5aj1YrElCEkWX+qQAkQTpzY4pP4kxZCiAWzroi+keuTECP+v0lK2rc22LhS9+/sOkz6MOmH5Xpg5JAMSyEuOz3OoK97df/UIdvm5AW9t1M61uDADHuLbZhlTt4Rg3zvRt/foP9wMGAW6WdHw/xieRTKH+V7e/QcXpfcHNMcjcDwOcPhK8/ku2aRHJdSHNN6nJaaJZe8ku9boXwK+2Sh+LiyyPFy8Bz1tdcMtTgwy1mPC9dYLvClKS4uUtfIp0pyAAuMKzXF3wZxH98L8ntJDqqdXqNIlCsL5CtaQ2pyUJZzBMvOwlKbg/ob5AMfgZ6gRt4NVag3voIZcIxwc3Qe9aZXOlIGbg7aB+N+ktqPc/ZZ/OYsqgzzf+uTvhxrABy2ugNrBJ+54mFQOs5x2Gonfn6oYLfJh1y2x0oNHyphd2kOaXvpuS/NkXP+oSf07WNyxkAqA+5p17pGdIZeswQH7GNz2+8YT3LdqWRL5dh4rrvN/q1mmLN/js3XZ+iZUwiHpS7f9kRdAoPLZlO+l/2AicXFgecb+7iP/8SqT66hLLZn6B4093zH+vk3YZH7FxNDSLxycFBZqhxhZKg59xa/Sto7Sw44i+HUlDoA8czNkauWcXLk7Oc4OXIJ93rkYuDOVTkYWojxlFzbEgf09zE8uH5z1z/ME8rCHds2peeuf5WDMrlYwKe4+sEADmt9bCW2Xbb7ntm06lOhZzYNc3jnq9b9KuTMoNUY9/WrlvOU7/7jn6G8/gBCoH6v
+  </data>
+ </layer>
+ <objectgroup name="scripts" width="50" height="50">
+  <object type="player_spawn" gid="324" x="1184" y="352"/>
+  <object name="sc2" type="level_change" gid="323" x="1184" y="288">
+   <properties>
+    <property name="coresponding" value="sc1"/>
+    <property name="direction" value="south"/>
+    <property name="map" value="gideon_tower"/>
+   </properties>
+  </object>
+  <object name="lv3" type="level_change" gid="323" x="1568" y="672">
+   <properties>
+    <property name="coresponding" value="lv4"/>
+    <property name="direction" value="east"/>
+    <property name="map" value="gideon_tower_outside_camp"/>
+   </properties>
+  </object>
+  <object name="lv5" type="level_change" gid="323" x="1568" y="704">
+   <properties>
+    <property name="coresponding" value="lv6"/>
+    <property name="direction" value="east"/>
+    <property name="map" value="gideon_tower_outside_camp"/>
+   </properties>
+  </object>
+  <object name="ds1" type="level_change" gid="323" x="0" y="1184">
+   <properties>
+    <property name="coresponding" value="ds2"/>
+    <property name="direction" value="west"/>
+    <property name="map" value="gideon_tower_outside_west"/>
+   </properties>
+  </object>
+  <object name="lv1" type="level_change" gid="323" x="1568" y="640">
+   <properties>
+    <property name="coresponding" value="lv2"/>
+    <property name="direction" value="east"/>
+    <property name="map" value="gideon_tower_outside_camp"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="collision" width="50" height="50">
+  <object x="1248" y="288">
+   <polygon points="0,0 64,0 64,32 0,32"/>
+  </object>
+  <object x="1312" y="320">
+   <polygon points="0,0 0,-64 64,-64"/>
+  </object>
+  <object x="1376" y="160">
+   <polygon points="0,0 -32,0 -32,-32"/>
+  </object>
+  <object x="1344" y="160">
+   <polygon points="0,0 32,0 32,96 0,96"/>
+  </object>
+  <object x="1024" y="256">
+   <polygon points="0,0 64,0 64,64"/>
+  </object>
+  <object x="1024" y="160">
+   <polygon points="0,0 32,0 32,96 0,96"/>
+  </object>
+  <object x="1056" y="128">
+   <polygon points="0,0 0,32 -32,32"/>
+  </object>
+  <object x="1088" y="288">
+   <polygon points="0,0 64,0 64,32 0,32"/>
+  </object>
+  <object x="1216" y="288">
+   <polygon points="0,0 32,0 32,32"/>
+  </object>
+  <object x="1152" y="320">
+   <polygon points="0,0 0,-32 32,-32"/>
+  </object>
+ </objectgroup>
+</map>
