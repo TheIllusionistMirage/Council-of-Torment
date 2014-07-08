@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objecttypes>
+ <objecttype name="level_change" color="#a0a0a4"/>
+ <objecttype name="console_print" color="#a0a0a4"/>
+ <objecttype name="light_source" color="#a0a0a4"/>
+ <objecttype name="animation_play" color="#a0a0a4"/>
+ <objecttype name="animation_loop" color="#a0a0a4"/>
+ <objecttype name="player_move" color="#a0a0a4"/>
+ <objecttype name="tile_change" color="#a0a0a4"/>
+ <objecttype name="console_command" color="#a0a0a4"/>
+ <objecttype name="animation" color="#a0a0a4"/>
+</objecttypes>
