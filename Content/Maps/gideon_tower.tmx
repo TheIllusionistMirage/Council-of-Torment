@@ -39,7 +39,7 @@
    eJzt1DsOgCAQQEEaiXew8RSW3v9Yln4aUJQtnEkIW74AISUAAAAAAAAAAAAAAAAAAAAAAIA2OToAOpqiA2jiv3pmiQ7gZI0O4BW5cuee0rnNh3n4sINdzVt2F32NhZUuMwAAAAAAAAAAAAAAAAAAAADAX21klwFA
   </data>
  </layer>
- <objectgroup name="scripts" width="100" height="100">
+ <objectgroup name="scripts">
   <object name="Baldric" type="player_spawn" gid="324" x="1376" y="1440">
    <properties>
     <property name="val1" value="val2"/>
@@ -183,7 +183,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="collision" width="100" height="100" visible="0">
+ <objectgroup name="collision" visible="0">
   <object x="1408" y="1408">
    <polygon points="0,0 32,0 32,32"/>
   </object>
