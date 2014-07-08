@@ -44,6 +44,7 @@ Icon
 *.suo
 *.vcxproj.filters
 *.vcxproj.user
+*.opensdf
 
 Release
 Debug
