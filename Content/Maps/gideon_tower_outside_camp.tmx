@@ -57,7 +57,7 @@
    eJztk90JwCAMhANq7VgZzdEcrREqpKVtjMlLwYMDBfmO/BgBIC7/xpm8MefruXgwE0AFJn6nM2pzwgNT0q6sgd4XDb/XIvWN90Zbw2g9Fm4XMVqf61uGBz9/8J0yMAi75SFpt6ySZtFM+1S7k3J3R2Zh+R8zfE3GLP/8jyj1y8LnOXxGd1v5y8tePgD3Hx7B
   </data>
  </layer>
- <objectgroup name="scripts" width="25" height="25">
+ <objectgroup name="triggers">
   <object name="lv6" type="level_change" gid="323" x="0" y="448">
    <properties>
     <property name="coresponding" value="lv5"/>
@@ -209,7 +209,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="collision" width="25" height="25" visible="0">
+ <objectgroup name="collision" visible="0">
   <object gid="331" x="352" y="224"/>
   <object gid="331" x="320" y="224"/>
   <object gid="331" x="288" y="224"/>

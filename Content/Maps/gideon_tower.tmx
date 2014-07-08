@@ -39,7 +39,10 @@
    eJzt1DsOgCAQQEEaiXew8RSW3v9Yln4aUJQtnEkIW74AISUAAAAAAAAAAAAAAAAAAAAAAIA2OToAOpqiA2jiv3pmiQ7gZI0O4BW5cuee0rnNh3n4sINdzVt2F32NhZUuMwAAAAAAAAAAAAAAAAAAAADAX21klwFA
   </data>
  </layer>
- <objectgroup name="scripts">
+ <objectgroup name="images">
+  <object gid="38" x="1472" y="1600"/>
+ </objectgroup>
+ <objectgroup name="triggers">
   <object name="Baldric" type="player_spawn" gid="324" x="1376" y="1440">
    <properties>
     <property name="val1" value="val2"/>

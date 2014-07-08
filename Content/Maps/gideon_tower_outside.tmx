@@ -49,7 +49,8 @@
    eJztmDtuwzAMQAU4v8XJZKRz0anI0nZqumToDXKGDr2Fj5aj1YrElCEkWX+qQAkQTpzY4pP4kxZCiAWzroi+keuTECP+v0lK2rc22LhS9+/sOkz6MOmH5Xpg5JAMSyEuOz3OoK97df/UIdvm5AW9t1M61uDADHuLbZhlTt4Rg3zvRt/foP9wMGAW6WdHw/xieRTKH+V7e/QcXpfcHNMcjcDwOcPhK8/ku2aRHJdSHNN6nJaaJZe8ku9boXwK+2Sh+LiyyPFy8Bz1tdcMtTgwy1mPC9dYLvClKS4uUtfIp0pyAAuMKzXF3wZxH98L8ntJDqqdXqNIlCsL5CtaQ2pyUJZzBMvOwlKbg/ob5AMfgZ6gRt4NVag3voIZcIxwc3Qe9aZXOlIGbg7aB+N+ktqPc/ZZ/OYsqgzzf+uTvhxrABy2ugNrBJ+54mFQOs5x2Gonfn6oYLfJh1y2x0oNHyphd2kOaXvpuS/NkXP+oSf07WNyxkAqA+5p17pGdIZeswQH7GNz2+8YT3LdqWRL5dh4rrvN/q1mmLN/js3XZ+iZUwiHpS7f9kRdAoPLZlO+l/2AicXFgecb+7iP/8SqT66hLLZn6B4093zH+vk3YZH7FxNDSLxycFBZqhxhZKg59xa/Sto7Sw44i+HUlDoA8czNkauWcXLk7Oc4OXIJ93rkYuDOVTkYWojxlFzbEgf09zE8uH5z1z/ME8rCHds2peeuf5WDMrlYwKe4+sEADmt9bCW2Xbb7ntm06lOhZzYNc3jnq9b9KuTMoNUY9/WrlvOU7/7jn6G8/gBCoH6v
   </data>
  </layer>
- <objectgroup name="scripts">
+ <objectgroup name="images"/>
+ <objectgroup name="triggers">
   <object type="player_spawn" gid="324" x="1184" y="352"/>
   <object name="sc2" type="level_change" gid="323" x="1184" y="288">
    <properties>

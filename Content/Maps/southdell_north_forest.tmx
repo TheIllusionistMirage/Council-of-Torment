@@ -51,6 +51,6 @@
    eJxjYKAOEARiISLUGQKxFJXsHI4AAIIYAG8=
   </data>
  </layer>
- <objectgroup name="scripts" width="10" height="10"/>
- <objectgroup name="collision" width="10" height="10"/>
+ <objectgroup name="triggers"/>
+ <objectgroup name="collision"/>
 </map>

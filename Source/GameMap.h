@@ -1,5 +1,7 @@
 #pragma once
 
+#include <SFML/Graphics/Sprite.hpp>
+
 #include "AnimationTile.h"
 #include "MapTrigger.h"
 #include "MapLayer.h"
@@ -36,12 +38,13 @@ class GameMap
 		std::map<std::string, std::unique_ptr<Humanoid>>& getNPCs();
 
 	private:
-		State::Context context;
+		std::map<int, std::map<int, std::vector<sf::ConvexShape>>> collisionMap;
+		std::vector<std::unique_ptr<AnimationTile>> animationMap;
+		std::map<std::string, std::unique_ptr<Humanoid>> NPCs;
+		std::map<int, sf::Sprite> imageLayer;
 		std::vector<Tmx::Object> objectList;
 		std::vector<MapLayer> layerList;
-		std::map<int, std::map<int, std::vector<sf::ConvexShape>>> collisionMap;
-		std::map<std::string, std::unique_ptr<Humanoid>> NPCs;
-		std::vector<std::unique_ptr<AnimationTile>> animationMap;
+		State::Context context;
 
 		std::unique_ptr<Tmx::Map> map;
 		sf::Vector2f spawnLocation;
@@ -50,6 +53,6 @@ class GameMap
 		int mapWidth;
 		bool naturalLight;
 
-		std::map<std::string, std::unique_ptr<MapTrigger>> mapScripts;
-		std::map<std::string, std::unique_ptr<MapTrigger>> npcScripts;
+		std::map<std::string, std::unique_ptr<MapTrigger>> mapTriggers;
+		std::map<std::string, std::unique_ptr<MapTrigger>> npcTriggers;
 };

@@ -49,7 +49,7 @@
    eJxjYWBgYKEiZiMCk2IeIRAAxOwMDA3UMg8EWBkYHLC5G5s92EA4Cfagm0kpQHf7KBg+QJMBHL+geD0Aw+SYg2wGMP0dIDf9CUJpDgbK8hu6u9DdRI55ILOY8ZhDqnn4/EhL84D+aKCmeeyQ8uEAIYwvDpAxAE40FQo=
   </data>
  </layer>
- <objectgroup name="scripts" width="20" height="20">
+ <objectgroup name="triggers">
   <object name="ds2" type="level_change" gid="323" x="608" y="320">
    <properties>
     <property name="coresponding" value="ds1"/>
@@ -70,7 +70,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="collision" width="20" height="20" visible="0">
+ <objectgroup name="collision" visible="0">
   <object gid="331" x="192" y="192"/>
   <object gid="331" x="224" y="192"/>
   <object gid="331" x="128" y="192"/>

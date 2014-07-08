@@ -40,9 +40,10 @@
 			NPCs.clear();
 			layerList.clear();
 			objectList.clear();
-			mapScripts.clear();
+			mapTriggers.clear();
 			collisionMap.clear();
 			animationMap.clear();
+			imageLayer.clear();
 			context.lightManager->clearLights();
 
 			// Check if the lighting is natural
@@ -78,7 +79,18 @@
 			// Iterate through the object groups
 			for(auto&& objectGroup : map->GetObjectGroups())
 			{
-				if (objectGroup->GetName() == "collision")
+				// Parse the image layer
+				if (objectGroup->GetName() == "images")
+				{
+					for (auto&& object : objectGroup->GetObjects())
+					{
+						sf::Vector2f imagePos = {(float)object->GetX(), (float)object->GetY()};
+						//object->GetGid();
+					}
+				}
+
+				// Parse the collision layer
+				else if (objectGroup->GetName() == "collision")
 				{
 					for (auto&& object : objectGroup->GetObjects())
 					{
@@ -147,7 +159,8 @@
 					}
 				}
 
-				else
+				// Parse the trigger layer.
+				else if (objectGroup -> GetName() == "triggers")
 					for(int i = 0; i != objectGroup->GetNumObjects(); ++i)
 					{
 						auto object = objectGroup->GetObject(i);
@@ -179,7 +192,7 @@
 									trigger->setProperties(object->GetProperties().GetList());
 									trigger->setName(object->GetName());
 
-									mapScripts.insert(std::pair<std::string, std::unique_ptr<MapTrigger>>(object->GetName(), std::move(trigger)));
+									mapTriggers.insert(std::pair<std::string, std::unique_ptr<MapTrigger>>(object->GetName(), std::move(trigger)));
 								}
 						else if(object -> GetType() == "animation")
 						{
@@ -264,15 +277,15 @@
 
 							// Add the trigger to the map
 							if(trigger->isNpcOnly())
-								npcScripts.insert(std::pair<std::string, std::unique_ptr<MapTrigger>>(object->GetName(), std::move(trigger)));
+								npcTriggers.insert(std::pair<std::string, std::unique_ptr<MapTrigger>>(object->GetName(), std::move(trigger)));
 							else
-								mapScripts.insert(std::pair<std::string, std::unique_ptr<MapTrigger>>(object->GetName(), std::move(trigger)));
+								mapTriggers.insert(std::pair<std::string, std::unique_ptr<MapTrigger>>(object->GetName(), std::move(trigger)));
 						}
 					}
 			}
 
 			context.console->logInfo("Loaded map " + currentMapName + ".tmx into memory.");
-			context.console->logInfo("Current map contains " + std::to_string(mapScripts.size()) + " triggers.");
+			context.console->logInfo("Current map contains " + std::to_string(mapTriggers.size()) + " triggers.");
 
 			if(naturalLight == true)
 				context.console -> logInfo("Map has natural lighting.");
@@ -318,7 +331,7 @@
  */
 	void GameMap::update(sf::Time elapsedTime)
 	{
-		for(auto&& script : mapScripts)
+		for(auto&& script : mapTriggers)
 		{
 			sf::FloatRect bounds = context.player->getCollisionBounds();
 
@@ -498,7 +511,7 @@
  */
 	void GameMap::executeTrigger(std::string name)
 	{
-		mapScripts[name]->executeTrigger();
+		mapTriggers[name]->executeTrigger();
 	}
 
 /* ----------------------------------------------------------------------
