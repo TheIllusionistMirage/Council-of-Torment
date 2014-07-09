@@ -75,7 +75,7 @@ void GameWorld::render()
 
 	for (auto&& x : imageLayerReference)
 	{
-		if (x.second.getPosition().y < context.player->getPosition().y)
+		if (x.second.getPosition().y <= context.player->getPosition().y)
 		context.window->draw(x.second);
 	}
 
