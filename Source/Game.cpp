@@ -225,13 +225,24 @@ void Game::renderMenuMap()
 
 	// Render the layers of the map
 	menuMap.render("background");
+	menuMap.renderAnimations("background");
 	menuMap.render("background2");
 	menuMap.render("object");
+	menuMap.renderAnimations("object");
 	menuMap.render("object2");
 	menuMap.render("shadow");
+	menuMap.render("object3");
+	menuMap.renderAnimations("shadow");
+
+	// Render the image layer of the map
+	std::vector<sf::Sprite>& imageLayerReference = menuMap.getImageLayer();
+	for(auto& x : imageLayerReference)
+		context.window->draw(x);
+
 	menuMap.render("roof");
 	menuMap.render("roof2");
 	menuMap.render("roof-shadow");
+	menuMap.renderAnimations("roof");
 
 	// Render the light manager
 	lightManager.render(menuCamera);
