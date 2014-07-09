@@ -85,7 +85,14 @@
 					for (auto&& object : objectGroup->GetObjects())
 					{
 						sf::Vector2f imagePos = {(float)object->GetX(), (float)object->GetY()};
-						//object->GetGid();
+						sf::Sprite image;
+						unsigned int gid = object->GetGid();
+						
+						image.setTexture(context.contentManager->getTileset("gideon_tower"));
+						image.setTextureRect(sf::IntRect(((gid % TILES_PER_ROW) * TILE_SIZE)-32, (gid / TILES_PER_ROW) * TILE_SIZE, 32, 32));
+						image.setPosition(imagePos);
+
+						imageLayer.insert(std::make_pair(object->GetY(), image));
 					}
 				}
 
@@ -562,4 +569,15 @@
 		{
 			i.second->update(elapsedTime);
 		}
+	}
+
+/* ----------------------------------------------------------------------
+* Author: Octav
+* Date: 26th May 2014
+* Description: Updates every NPC in the map
+* ----------------------------------------------------------------------
+*/
+	std::map<int, sf::Sprite>& GameMap::getImageLayer()
+	{
+		return imageLayer;
 	}

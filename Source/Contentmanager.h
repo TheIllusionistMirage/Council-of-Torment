@@ -25,7 +25,8 @@ namespace Textures
 		ITEMS,
 		FISHERMAN,
 		SCROLL_UP,
-		SCROLL_DOWN
+		SCROLL_DOWN,
+
 	};
 }
 
@@ -85,12 +86,14 @@ class ContentManager
 	public:
 		sf::Texture loadTexture(const std::string& filename) const;
 		sf::Texture& getTexture(Textures::ID textureID) const;
+		sf::Texture& getTileset(std::string key) const;
 		sf::Shader& getShader(Shaders::ID shaderID) const;
 		sf::Font& getFont(Fonts::ID fontID) const;
 
 	private:
 		std::map<Sounds::ID, std::unique_ptr<sf::SoundBuffer>> soundBufferMap;
 		std::map<Textures::ID, std::unique_ptr<sf::Texture>> textureMap;
+		std::map<std::string, std::unique_ptr<sf::Texture>> tilesetsMap;
 		std::map<Shaders::ID, std::unique_ptr<sf::Shader>> shaderMap;
 		std::map<Music::ID, std::unique_ptr<sf::Music>> musicMap;
 		std::map<Fonts::ID, std::unique_ptr<sf::Font>> fontMap;
@@ -106,6 +109,7 @@ class ContentManager
 	private:
 		void loadShader(Shaders::ID shaderID, const std::string& filename, sf::Shader::Type type);
 		void loadTexture(Textures::ID textureID, const std::string& filename);
+		void loadTileset(std::string key, const std::string& filename);
 		void loadSoundBuffer(Sounds::ID soundID, const std::string& filename);
 		void loadMusic(Music::ID musicID, const std::string& filename);
 		void loadFont(Fonts::ID fontID, const std::string& filename);

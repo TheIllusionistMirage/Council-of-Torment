@@ -32,10 +32,11 @@ class GameMap
 		int getMapHeight() const;
 		int getMapWidth() const;
 		bool isNaturalLighting() const;
-		MapLayer& getLayer(std::string name);
-		std::unique_ptr<Tmx::Map>& getMapObject();
 		std::map<int, std::map<int, std::vector<sf::ConvexShape>>>& getCollisionMap();
 		std::map<std::string, std::unique_ptr<Humanoid>>& getNPCs();
+		std::map<int, sf::Sprite>& getImageLayer();
+		std::unique_ptr<Tmx::Map>& getMapObject();
+		MapLayer& getLayer(std::string name);
 
 	private:
 		std::map<int, std::map<int, std::vector<sf::ConvexShape>>> collisionMap;

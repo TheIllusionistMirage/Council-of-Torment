@@ -36,11 +36,11 @@
  </layer>
  <layer name="roof-shadow" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt1DsOgCAQQEEaiXew8RSW3v9Yln4aUJQtnEkIW74AISUAAAAAAAAAAAAAAAAAAAAAAIA2OToAOpqiA2jiv3pmiQ7gZI0O4BW5cuee0rnNh3n4sINdzVt2F32NhZUuMwAAAAAAAAAAAAAAAAAAAADAX21klwFA
+   eJzt1LsNgDAMBUA3IFZANExByWyMTsevgfBJCu4kK24iPdlRIgAAAAAAAAAAAAAAAAAAAAAAAJ6pSweAjLrSAVi0EVPqHf/VPUPpAOyMpQPwivriSZqzufWbvvowB6srb9ku8mpOKg49AAAAAAAAAAAAAAAAAAAAAMBfzZWsAdk=
   </data>
  </layer>
  <objectgroup name="images">
-  <object gid="38" x="1472" y="1600"/>
+  <object gid="38" x="1344" y="1536"/>
  </objectgroup>
  <objectgroup name="triggers">
   <object name="Baldric" type="player_spawn" gid="324" x="1376" y="1440">
