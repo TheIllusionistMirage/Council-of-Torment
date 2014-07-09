@@ -11,7 +11,7 @@
  </tileset>
  <layer name="background" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt1kFKw0AUBuC5QttUqKDQ6sob2G70ZnM0j+YkmdDXUESQJKV+i49HQhbD/HlvZpVSWgEAAAAAAAAAAAAAAAAAAAAAf7YNdrU+jt5vb2Cd/0G7zy/Fa/Fc7It1cQg5PIR8ll7vPWv3963uf5CH2pTa1OeDTGbJI2bxfqVuUt8fsWeWXve9GuWRP6/UkkfehO/kMVse3d7HmXWsWdS5JY8Z8gj/fz6ly/NjqO25seu/lcf0ecQ+6bIZ90l7btR7V5bHtHmszzUPM+v4w7M8ps8jnh9DNsOMGs8ueUybR3PW7flTOt9t9/37j+JLf8yXSbjP5lG/dPUki9kz+Y2l1wkAAAAAAAAAAAAAAAAAAAAAcAu+AcWerWI=
+   eJzt1lFKwzAcwOFcYWsnKChs+uQN3F70ZjmaRzPNUhrLEEGajvk9fPxp2UPJb0m7CSFsAAAAAAAAAAAAAAAAAAAAAIA/21Xuy3yY3d9dwXP+B8M6PycvyVOyT7bJoepwV/VZ+3lv2bC+r2X9K3GcfZp9uT5o0qRH3eLtwuzCeX/Ue2bt575Vsx7x48JMPWJX/U6PZj3y2tdn1rG0KOeWHg16VP//eArf3x/jTCN/d3V6tOhR75PcZr5PhvdG+e6KeizbYzvNOJ5Zxx+u9Vi+R/3+GNukkc+o+dmlx7I9+kle88cwfdvuz/ffk0/7o12T6ns2zvZLnictmjf5jbWfEwAAAAAAAAAAAAAAAAAAAADgGnwBM9WtLg==
   </data>
  </layer>
  <layer name="background2" width="100" height="100">
@@ -21,7 +21,7 @@
  </layer>
  <layer name="object" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt1k0KwjAQBtC5QtcKdWV14w9WdCEIejGPboqCddVWiBZ5D4YEEsKQb5FEAAAAAAAAAAAAAAAAAAAAAABAXttU+4496280Qiw71i/P8ZBqlrcVkl3PfatUi5yNMEgZ8hiDa2suj/z63PEp4paqeUtumdshOaeq3fUoNO907iyKnIf/mXlrXj/HTTz+tmW8/3GnH5xfhDyGmrTmTT7HeLwrVbwykcU4VL9uAAAAAAAAAAAAAAAAAAAAAABgZO4tSgju
+   eJzt1r0KwjAUBtD7Cp0V6mR18QcrOggOvpiPbqSKdbIVYoucA5fcIYRLviGJAAAAAAAAAAAAAAAAAAAAAACAvLap9h/2rH8xCLHsuO+QapZxDhq7jvtWqRY5B6GXMuQxBpdWL4/8utzxKeJ6yj4JT+dUdbrzoeegeadzZ1HkPPzPzFt9/Vg30fxty3j/406/OL8IefQ1afX3fI7RvCtVvDKRxThUQw8AAAAAAAAAAAAAAAAAAAAAADAyN/kDB+o=
   </data>
  </layer>
  <layer name="shadow" width="100" height="100">
@@ -36,11 +36,18 @@
  </layer>
  <layer name="roof-shadow" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt1LsNgDAMBUA3IFZANExByWyMTsevgfBJCu4kK24iPdlRIgAAAAAAAAAAAAAAAAAAAAAAAJ6pSweAjLrSAVi0EVPqHf/VPUPpAOyMpQPwivriSZqzufWbvvowB6srb9ku8mpOKg49AAAAAAAAAAAAAAAAAAAAAMBfzZWsAdk=
+   eJzt1DsOgCAQQEEaiXew8RSW3v9Yln4aUJQtnEkIW74AISUAAAAAAAAAAAAAAAAAAAAAAIA2OToAOpqiA2jiv3pmiQ7gZI0O4BW5cuee0rnNh3n4sINdzVt2F32NhZUuMwAAAAAAAAAAAAAAAAAAAADAX21klwFA
   </data>
  </layer>
  <objectgroup name="images">
-  <object gid="38" x="1344" y="1536"/>
+  <object gid="26" x="1504" y="1600"/>
+  <object gid="26" x="1408" y="1696"/>
+  <object gid="66" x="1472" y="1504"/>
+  <object gid="2147483714" x="1568" y="1632"/>
+  <object gid="22" x="1504" y="1504"/>
+  <object gid="2" x="1504" y="1504"/>
+  <object gid="29" x="1344" y="1728"/>
+  <object gid="2" x="1344" y="1728"/>
  </objectgroup>
  <objectgroup name="triggers">
   <object name="Baldric" type="player_spawn" gid="324" x="1376" y="1440">

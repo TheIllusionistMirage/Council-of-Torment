@@ -3,6 +3,9 @@
 #include "Console.h"
 #include "LightManager.h"
 
+#include <time.h>
+#include <stdlib.h>
+
 /* ----------------------------------------------------------------------
  * Author: Julian
  * Date: 19 January 2014
@@ -84,15 +87,15 @@
 				{
 					for (auto&& object : objectGroup->GetObjects())
 					{
-						sf::Vector2f imagePos = {(float)object->GetX(), (float)object->GetY()};
+						sf::Vector2f imagePos = {(float)object->GetX(), (float)object->GetY()-32};
 						sf::Sprite image;
 						unsigned int gid = object->GetGid();
 						
-						image.setTexture(context.contentManager->getTileset("gideon_tower"));
+						image.setTexture(context.contentManager->getTileset(currentMapName.substr(0, currentMapName.size() - 4)));
 						image.setTextureRect(sf::IntRect(((gid % TILES_PER_ROW) * TILE_SIZE)-32, (gid / TILES_PER_ROW) * TILE_SIZE, 32, 32));
 						image.setPosition(imagePos);
 
-						imageLayer.insert(std::make_pair(object->GetY(), image));
+						imageLayer.push_back(image);
 					}
 				}
 
@@ -577,7 +580,7 @@
 * Description: Updates every NPC in the map
 * ----------------------------------------------------------------------
 */
-	std::map<int, sf::Sprite>& GameMap::getImageLayer()
+	std::vector<sf::Sprite>& GameMap::getImageLayer()
 	{
 		return imageLayer;
 	}

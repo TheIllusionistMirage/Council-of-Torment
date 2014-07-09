@@ -71,12 +71,12 @@ void GameWorld::render()
 	context.gameMap -> renderAnimations("shadow");
 
 	// Render the image layer of the map
-	std::map<int, sf::Sprite>& imageLayerReference = context.gameMap -> getImageLayer();
+	std::vector<sf::Sprite>& imageLayerReference = context.gameMap -> getImageLayer();
 
 	for (auto&& x : imageLayerReference)
 	{
-		if (x.second.getPosition().y <= context.player->getPosition().y)
-		context.window->draw(x.second);
+		if (x.getPosition().y/10 <= context.player->getPosition().y)
+			context.window->draw(x);
 	}
 
 	// Render the player
@@ -85,8 +85,8 @@ void GameWorld::render()
 
 	for (auto&& x : imageLayerReference)
 	{
-		if (x.second.getPosition().y > context.player->getPosition().y)
-			context.window->draw(x.second);
+		if (x.getPosition().y > context.player->getPosition().y)
+			context.window->draw(x);
 	}
 
 	// Render the humanoids

@@ -34,7 +34,7 @@ class GameMap
 		bool isNaturalLighting() const;
 		std::map<int, std::map<int, std::vector<sf::ConvexShape>>>& getCollisionMap();
 		std::map<std::string, std::unique_ptr<Humanoid>>& getNPCs();
-		std::map<int, sf::Sprite>& getImageLayer();
+		std::vector<sf::Sprite>& getImageLayer();
 		std::unique_ptr<Tmx::Map>& getMapObject();
 		MapLayer& getLayer(std::string name);
 
@@ -42,8 +42,8 @@ class GameMap
 		std::map<int, std::map<int, std::vector<sf::ConvexShape>>> collisionMap;
 		std::vector<std::unique_ptr<AnimationTile>> animationMap;
 		std::map<std::string, std::unique_ptr<Humanoid>> NPCs;
-		std::map<int, sf::Sprite> imageLayer;
 		std::vector<Tmx::Object> objectList;
+		std::vector<sf::Sprite> imageLayer;
 		std::vector<MapLayer> layerList;
 		State::Context context;
 
