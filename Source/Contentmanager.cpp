@@ -280,7 +280,6 @@
 	{
 		// Search the texture and return it
 		auto found = tilesetsMap.find(key);
-		std::cout << found->first << std::endl;
 		assert(found != tilesetsMap.end());
 		return *found->second;
 	}
