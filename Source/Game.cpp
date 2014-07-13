@@ -220,13 +220,8 @@ void Game::render()
  */
 void Game::renderMenuMap()
 {
-	sf::Vector2f cameraPos {menuCamera.getCenter()};
-	menuCamera.setCenter(sf::Vector2f(sf::Vector2i(cameraPos)));
-
 	// Set the menu camera
 	window.setView(menuCamera);
-
-	menuCamera.setCenter(cameraPos);
 
 	// Render the layers of the map
 	menuMap.render("background");
