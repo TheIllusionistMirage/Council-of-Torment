@@ -60,12 +60,14 @@ class Humanoid
 		virtual void setMana(int mana);
 		virtual void setSpeed(int speed);
 		virtual void setCanMove(bool flag);
+		virtual void setProperty(std::string key, bool value);
 
 		virtual bool cantTrigger() const { return noTrigger; }
 		virtual sf::Vector2f getPosition() const;
 		virtual sf::Vector2f getRelativePosition() const;
 		virtual sf::IntRect getTextureRext() const;
 		virtual sf::FloatRect getCollisionBounds() const { return collisionBounds; }
+		virtual bool getProperty(std::string key);
 
 	protected:
 		State::Context context;
@@ -80,8 +82,6 @@ class Humanoid
 		float defaultFrameTime;
 		float timer;
 		float poisonTimer;
-		bool visible;
-		bool canMove;
 		bool isMoving;
 		bool playOnce;
 		bool noTrigger;

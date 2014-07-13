@@ -326,10 +326,10 @@
  * Description: Returns true if the player can move
  * ----------------------------------------------------------------------
  */
-	bool Player::isAbleToMove() const
+	bool Player::isAbleToMove()
 	{
 		// Return true if the player can move
-		return canMove;
+		return properties["canMove"];
 	}
 
 /* ----------------------------------------------------------------------

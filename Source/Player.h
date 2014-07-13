@@ -43,7 +43,7 @@ class Player : public Humanoid
 		void toggleChangingState();
 		void setDestinationLevelExit(std::string s);
 
-		bool isAbleToMove() const;
+		bool isAbleToMove();
 		bool showCollision() { return collision; }
 		void showCollision(bool show) { collision = show; }
 		std::string getDstinationLevel();

@@ -659,6 +659,17 @@ void Console::newCommand(std::string command, std::string values)
 		else
 			logError("Syntax is: print_time");
 	}
+
+//==========================================================================================================================
+	else if (command == "toggle_gui")											// toggle_gui
+	{
+		if (valueList.size() == 0)
+		{
+			context.player->setProperty("hideGUI", !context.player->getProperty("hideGUI"));
+		}
+		else
+			logError("Syntax is: print_time");
+	}
 //==========================================================================================================================
 	else if(command == "map_load")											// map_load name
 	{

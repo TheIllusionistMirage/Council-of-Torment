@@ -30,8 +30,6 @@
 	, timer(defaultFrameTime)
 	, frameY(currentAnimation)
 	, isMoving(false)
-	, canMove(true)
-	, visible(true)
 	, playOnce(false)
 	, poisonTimer(3.0f)
 	, collisionBounds()
@@ -51,6 +49,8 @@
 		properties["isPoisoned"] = false;
 		properties["invincible"] = false;
 		properties["hasShield"] = false;
+		properties["canMove"] = true;
+		properties["visible"] = true;
 	}
 
 /* ----------------------------------------------------------------------
@@ -61,7 +61,7 @@
  */
 	void Humanoid::update(sf::Time elapsedTime)
 	{
-		if(isMoving && canMove && noTrigger)
+		if(isMoving && properties["canMove"] && noTrigger)
 		{
 			// Move the humanoid depending on the direction
 			switch(directionFacing)
@@ -147,7 +147,7 @@
 			{
 				if(playOnce)
 				{
-					canMove = true;
+					properties["canMove"] = true;
 					playOnce = false;
 					idleAnimation = IDLE_NORMAL;
 				}
@@ -171,6 +171,12 @@
 		}
 	}
 
+/* ----------------------------------------------------------------------
+ * Author: Julian
+ * Date: 19 January 2014
+ * Description: Draw the humanoid
+ * ----------------------------------------------------------------------
+ */
 	void Humanoid::render()
 	{
 		// Save the float position and cast the sprite position to int
@@ -178,6 +184,7 @@
 		bodySprite.setPosition(float(int(position.x + 0.5f)), float(int(position.y + 0.5f)));
 
 		// Render the humanoid
+		if (properties["visible"] == true)
 		context.window->draw(bodySprite);
 
 		// Restore the position
@@ -402,7 +409,7 @@
 	{
 		// Play a certain animation
 		frameX = 0;
-		canMove = false;
+		properties["canMove"] = false;
 		playOnce = true;
 		idleAnimation = animationID;
 	}
@@ -531,7 +538,7 @@
 */
 	void Humanoid::setCanMove(bool flag)
 	{
-		canMove = flag;
+		properties["canMove"] = flag;
 	}
 
 /* ----------------------------------------------------------------------
@@ -543,4 +550,37 @@
 	void Humanoid::setIdleAnimation(int id)
 	{
 		idleAnimation = id;
+	}
+
+/* ----------------------------------------------------------------------
+* Author: Octav
+* Date: 13th July 2014
+* Description: Sets a certain key in the properties list
+* ----------------------------------------------------------------------
+*/
+	void Humanoid::setProperty(std::string key, bool value)
+	{
+		if (properties.find(key) == properties.end()) {
+			context.console->logError("Unable to find humanoid value [" + key + "] for " + name);
+		}
+		else {
+			properties[key] = value;
+		}
+	}
+
+/* ----------------------------------------------------------------------
+* Author: Octav
+* Date: 13th July 2014
+* Description: Returns the value at a given key
+* ----------------------------------------------------------------------
+*/
+	bool Humanoid::getProperty(std::string key)
+	{
+		if (properties.find(key) == properties.end()) {
+			context.console->logError("Unable to find humanoid value [" + key + "] for " + name);
+			return false;
+		}
+		else {
+			return properties[key];
+		}
 	}

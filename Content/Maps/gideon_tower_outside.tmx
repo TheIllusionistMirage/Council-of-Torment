@@ -62,7 +62,7 @@
   <object gid="70" x="768" y="160"/>
   <object gid="62" x="928" y="160"/>
   <object gid="95" x="928" y="160"/>
-  <object gid="29" x="1248" y="640"/>
+  <object gid="29" x="1253" y="639.5"/>
   <object gid="31" x="896" y="672"/>
   <object gid="31" x="768" y="704"/>
   <object gid="31" x="736" y="736"/>
@@ -75,6 +75,7 @@
   <object gid="62" x="1106.5" y="658"/>
   <object gid="68" x="1133" y="441.5"/>
   <object gid="76" x="1133" y="473.5"/>
+  <object gid="77" x="1056" y="608"/>
  </objectgroup>
  <objectgroup name="triggers">
   <object type="player_spawn" gid="324" x="1184" y="352"/>
