@@ -43,7 +43,7 @@ Inventory::Inventory(State::Context context)
 	inventoryBackground = sf::RectangleShape(sf::Vector2f(214.0f, 463.0f));
 	inventoryBackground.setFillColor(sf::Color(20, 20, 20));
 
-	addItem(HEALING_POTION);
+	addItem(HEALING_POTION, 2);
 	addItem(HEALTH_FLASK);
 	addItem(DUSTY_TOME);
 	addItem(SCROLL_OF_FIREBALL);
@@ -311,7 +311,7 @@ void Inventory::addItem(ItemID id, unsigned int number)
 	properties["category"] = "FOOD";					// Category		FOOD
 	properties["name"] = "NoName";						// Name			NoName
 	properties["max_number"] = "1";						// MaxNumber	1
-	properties["weight"] = "0.0f";						// Weight		0.0f
+	properties["weight"] = "0";							// Weight		0
 	properties["value"] = "0.0f";						// Value		0.0f
 	properties["equipable"] = "False";					// Equipable	false
 	properties["consumable"] = "False";					// Consumable	false
@@ -321,11 +321,14 @@ void Inventory::addItem(ItemID id, unsigned int number)
 	{
 		case(HEALING_POTION):
 			properties["name"] = "Potion of Healing";
+			properties["max_number"] = "24";
+			properties["weight"] = "2";
 			rect = sf::IntRect(0, 0, 16, 16);
 			break;
 		case(HEALTH_FLASK):
 			
 			properties["name"] = "Flask of Health";
+			properties["weight"] = "3";
 			rect = sf::IntRect(16, 0, 16, 16);
 			break;
 		case(RUSTY_BLADE):
@@ -333,6 +336,7 @@ void Inventory::addItem(ItemID id, unsigned int number)
 			properties["category"] = "EQUIPMENT";
 			properties["equipable"] = "True";
 			properties["name"] = "Rusty Blade";
+			properties["weight"] = "27";
 			rect = sf::IntRect(0, 48, 16, 16);
 		} break;
 		case(DUSTY_TOME):
@@ -340,6 +344,7 @@ void Inventory::addItem(ItemID id, unsigned int number)
 			properties["category"] = "BOOKS";
 			properties["equipable"] = "True";
 			properties["name"] = "Dusty Tome";
+			properties["weight"] = "18";
 			rect = sf::IntRect(0, 16, 16, 16);
 		} break;
 		case(SCROLL_OF_FIREBALL):
@@ -347,11 +352,13 @@ void Inventory::addItem(ItemID id, unsigned int number)
 			properties["category"] = "BOOKS";
 			properties["equipable"] = "True";
 			properties["name"] = "Scroll of Fireball";
+			properties["weight"] = "18";
 			rect = sf::IntRect(16, 16, 16, 16);
 		} break;
 		case(RAW_SALMON):
 		{
 			properties["name"] = "Raw Salmon";
+			properties["weight"] = "5";
 			rect = sf::IntRect(0, 32, 16, 16);
 		} break;
 		default:
@@ -360,10 +367,21 @@ void Inventory::addItem(ItemID id, unsigned int number)
 
 	if(!unknownID)
 	{
-		std::unique_ptr<Item> item(new Item(context, context.contentManager->getTexture(Textures::ITEMS), rect, itemList[toCategory(properties["category"])].size(), properties));
-		std::unique_ptr<Item> allItem(new Item(context, context.contentManager->getTexture(Textures::ITEMS), rect, itemList[ALL].size(), properties));
-		itemList[toCategory(properties["category"])].push_back(std::move(item));
-		itemList[ALL].push_back(std::move(allItem));
+		int itemWeight {std::stoi(properties["weight"])};
+
+		if(itemWeight + weight <= maxWeight)
+		{
+			std::unique_ptr<Item> item(new Item(context, context.contentManager->getTexture(Textures::ITEMS), rect, itemList[toCategory(properties["category"])].size(), properties));
+			std::unique_ptr<Item> allItem(new Item(context, context.contentManager->getTexture(Textures::ITEMS), rect, itemList[ALL].size(), properties));
+			itemList[toCategory(properties["category"])].push_back(std::move(item));
+			itemList[ALL].push_back(std::move(allItem));
+
+			weight += itemWeight;
+		}
+		else
+		{
+			context.console->logWarning("Inventory weight is too high!");
+		}
 	}
 	else
 	{

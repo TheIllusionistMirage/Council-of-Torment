@@ -26,12 +26,21 @@ void Item::render()
 
 	if(equipped)
 		context.window->draw(equipShape);
+
+	if(std::stoi(properties["number"]) > 1 && std::stoi(properties["number"]) <= std::stoi(properties["max_number"]))
+	{
+		std::stringstream stream;
+		stream << "x" << std::stoi(properties["number"]);
+		sf::Text number {stream.str(), context.contentManager->getFont(Fonts::SEGOEUI), 12};
+		number.setPosition(name.getPosition() + sf::Vector2f(190.0f - number.getLocalBounds().width, 0.0f));
+		context.window->draw(number);
+	}
 }
 
 void Item::setPosition(sf::Vector2f pos)
 {
 	item.setPosition(pos);
-	name.setPosition(pos.x + 18.0f, pos.y + 1.0f);
+	name.setPosition(pos.x + 18.0f, pos.y);
 	equipShape.setPosition(pos.x - 1.0f, pos.y - 1.0f);
 	line[0].position = sf::Vector2f(pos.x - 1.0f, pos.y + 18.0f);
 	line[1].position = sf::Vector2f(pos.x + 213.0f, pos.y + 18.0f);
