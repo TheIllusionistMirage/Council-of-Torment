@@ -12,11 +12,11 @@ class Inventory
 		void update(sf::Time elapsedTime);
 		const bool& isOpen() const {return open;}
 		void handleEvent(const sf::Event& windowEvent);
+		void addItem(ItemID id, unsigned int number = 1, bool recursive = false);
 
 	private:
 		void changeOrder(float yPos);
 		void moveInventory(sf::Time elapsedTime);
-		void addItem(ItemID id, unsigned int number = 1);
 		void equipItem(std::vector<std::unique_ptr<Item>>& itemList);
 
 	private:
@@ -40,6 +40,7 @@ class Inventory
 		int maxWeight;
 		int weight;
 		bool mousePressed;
+		bool rightMouseButton;
 		bool showScroll;
 		bool itemMoved;
 		bool itemDrag;

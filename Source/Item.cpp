@@ -7,6 +7,7 @@ Item::Item(State::Context context, sf::Texture& texture, sf::IntRect rect, int o
 , item(texture, rect)
 , line(sf::Lines, 2)
 , equipped(false)
+, described {false}
 , name(properties["name"], context.contentManager->getFont(Fonts::SEGOEUI), 12)
 {
 	this->properties["equipped"] = "False";
@@ -27,13 +28,19 @@ void Item::render()
 	if(equipped)
 		context.window->draw(equipShape);
 
-	if(std::stoi(properties["number"]) > 1 && std::stoi(properties["number"]) <= std::stoi(properties["max_number"]))
+	if(std::stoi(properties["number"]) > 1)
 	{
 		std::stringstream stream;
 		stream << "x" << std::stoi(properties["number"]);
 		sf::Text number {stream.str(), context.contentManager->getFont(Fonts::SEGOEUI), 12};
 		number.setPosition(name.getPosition() + sf::Vector2f(190.0f - number.getLocalBounds().width, 0.0f));
 		context.window->draw(number);
+	}
+
+	// If the player wants to have more information by right clicking on the item
+	if(described)
+	{
+
 	}
 }
 

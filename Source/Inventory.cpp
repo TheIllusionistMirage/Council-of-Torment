@@ -20,6 +20,7 @@ Inventory::Inventory(State::Context context)
 , weight(0)
 , oldMousePos()
 , itemScrollSpeed(200.0f)
+, rightMouseButton {false}
 , showScroll(false)
 , itemMoved(false)
 , itemDrag(false)
@@ -103,6 +104,10 @@ void Inventory::update(sf::Time elapsedTime)
 				clickedPosition = mousePos.y - dragItem->getPosition().y;
 				itemDrag = true;
 			}
+			else if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && !rightMouseButton)
+			{
+				std::cout << "test" << std::endl;
+			}
 		}
 
 		if(itemDrag)
@@ -173,6 +178,7 @@ void Inventory::update(sf::Time elapsedTime)
 		showScroll = false;
 
 	mousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
+	rightMouseButton = sf::Mouse::isButtonPressed(sf::Mouse::Right);
 	oldMousePos = mousePos;
 }
 
@@ -296,96 +302,172 @@ void Inventory::changeOrder(float yPos)
 	}
 }
 
-void Inventory::addItem(ItemID id, unsigned int number)
+void Inventory::addItem(ItemID id, unsigned int number, bool recursive)
 {
 	std::map<std::string, std::string> properties;
 	std::stringstream stream; stream<<id;
-	bool unknownID = false;
+	bool completely {false};
+	bool unknownID {false};
+	bool warning {false};
+	bool newItem {true};
 
-	// Properties which are fix
-	properties["id"] = stream.str();					// ItemID
-	stream.str(""); stream<<number;
-	properties["number"] = stream.str();				// Number
-
-	// Variable properties
-	properties["category"] = "FOOD";					// Category		FOOD
-	properties["name"] = "NoName";						// Name			NoName
-	properties["max_number"] = "1";						// MaxNumber	1
-	properties["weight"] = "0";							// Weight		0
-	properties["value"] = "0.0f";						// Value		0.0f
-	properties["equipable"] = "False";					// Equipable	false
-	properties["consumable"] = "False";					// Consumable	false
-	sf::IntRect rect;									// CHANGE!!!
-
-	switch(id)
+	for(auto& item : itemList[ALL])
 	{
-		case(HEALING_POTION):
-			properties["name"] = "Potion of Healing";
-			properties["max_number"] = "24";
-			properties["weight"] = "2";
-			rect = sf::IntRect(0, 0, 16, 16);
-			break;
-		case(HEALTH_FLASK):
-			
-			properties["name"] = "Flask of Health";
-			properties["weight"] = "3";
-			rect = sf::IntRect(16, 0, 16, 16);
-			break;
-		case(RUSTY_BLADE):
+		if(std::stoi(item->getProperties()["id"]) == id)
 		{
-			properties["category"] = "EQUIPMENT";
-			properties["equipable"] = "True";
-			properties["name"] = "Rusty Blade";
-			properties["weight"] = "27";
-			rect = sf::IntRect(0, 48, 16, 16);
-		} break;
-		case(DUSTY_TOME):
-		{
-			properties["category"] = "BOOKS";
-			properties["equipable"] = "True";
-			properties["name"] = "Dusty Tome";
-			properties["weight"] = "18";
-			rect = sf::IntRect(0, 16, 16, 16);
-		} break;
-		case(SCROLL_OF_FIREBALL):
-		{
-			properties["category"] = "BOOKS";
-			properties["equipable"] = "True";
-			properties["name"] = "Scroll of Fireball";
-			properties["weight"] = "18";
-			rect = sf::IntRect(16, 16, 16, 16);
-		} break;
-		case(RAW_SALMON):
-		{
-			properties["name"] = "Raw Salmon";
-			properties["weight"] = "5";
-			rect = sf::IntRect(0, 32, 16, 16);
-		} break;
-		default:
-			unknownID = true;
+			if(std::stoi(item->getProperties()["number"]) + int(number) <= std::stoi(item->getProperties()["max_number"]))
+			{
+				int itemWeight {std::stoi(item->getProperties()["weight"])};
+				if(itemWeight * int(number) + weight <= maxWeight)
+				{
+					std::stringstream stream;
+					stream << std::stoi(item->getProperties()["number"]) + number;
+					item->getProperties()["number"] = stream.str();
+					weight += itemWeight * number;
+
+					for(auto& item : itemList[toCategory(item->getProperties()["category"])])
+						if(std::stoi(item->getProperties()["id"]) == id && std::stoi(item->getProperties()["number"]) + int(number) <= std::stoi(item->getProperties()["max_number"]))
+							item->getProperties()["number"] = stream.str();
+				}
+				else
+					warning = true;
+
+				newItem = false;
+			}
+			else if(std::stoi(item->getProperties()["number"]) != std::stoi(item->getProperties()["max_number"]))
+			{
+				int difference = std::stoi(item->getProperties()["max_number"]) - std::stoi(item->getProperties()["number"]);
+				number -= difference;
+
+				int itemWeight {std::stoi(item->getProperties()["weight"])};
+				if(itemWeight * int(difference) + weight <= maxWeight)
+				{
+					std::stringstream stream;
+					stream << std::stoi(item->getProperties()["number"]) + difference;
+					item->getProperties()["number"] = stream.str();
+					weight += itemWeight * difference;
+
+					for(auto& item : itemList[toCategory(item->getProperties()["category"])])
+						if(std::stoi(item->getProperties()["id"]) == id && std::stoi(item->getProperties()["number"]) + int(difference) <= std::stoi(item->getProperties()["max_number"]))
+							item->getProperties()["number"] = stream.str();
+				}
+				else
+				{
+					warning = true;
+					number = 0;
+				}
+
+				// If even a new filled up stack gets full -> recursivly call the function again with a less high number
+				if(int(number) > std::stoi(item->getProperties()["max_number"]))
+				{
+					completely = true;
+					newItem = false;
+				}
+			}
+		}
 	}
 
-	if(!unknownID)
+	if(newItem)
 	{
-		int itemWeight {std::stoi(properties["weight"])};
+		// Properties which are fix
+		properties["id"] = stream.str();					// ItemID
+		stream.str(""); stream << number;
+		properties["number"] = stream.str();				// Number
 
-		if(itemWeight + weight <= maxWeight)
+		// Variable properties
+		properties["category"] = "FOOD";					// Category		FOOD
+		properties["name"] = "NoName";						// Name			NoName
+		properties["max_number"] = "1";						// MaxNumber	1
+		properties["weight"] = "0";							// Weight		0
+		properties["value"] = "0.0f";						// Value		0.0f
+		properties["equipable"] = "False";					// Equipable	false
+		properties["consumable"] = "False";					// Consumable	false
+		sf::IntRect rect;									// CHANGE!!!
+
+		switch(id)
 		{
-			std::unique_ptr<Item> item(new Item(context, context.contentManager->getTexture(Textures::ITEMS), rect, itemList[toCategory(properties["category"])].size(), properties));
-			std::unique_ptr<Item> allItem(new Item(context, context.contentManager->getTexture(Textures::ITEMS), rect, itemList[ALL].size(), properties));
-			itemList[toCategory(properties["category"])].push_back(std::move(item));
-			itemList[ALL].push_back(std::move(allItem));
+			case(HEALING_POTION) :
+				properties["name"] = "Potion of Healing";
+				properties["max_number"] = "24";
+				properties["weight"] = "2";
+				rect = sf::IntRect(0, 0, 16, 16);
+				break;
+			case(HEALTH_FLASK) :
 
-			weight += itemWeight;
+				properties["name"] = "Flask of Health";
+				properties["weight"] = "3";
+				rect = sf::IntRect(16, 0, 16, 16);
+				break;
+			case(RUSTY_BLADE) :
+			{
+				properties["category"] = "EQUIPMENT";
+				properties["equipable"] = "True";
+				properties["name"] = "Rusty Blade";
+				properties["weight"] = "27";
+				rect = sf::IntRect(0, 48, 16, 16);
+			} break;
+			case(DUSTY_TOME) :
+			{
+				properties["category"] = "BOOKS";
+				properties["equipable"] = "True";
+				properties["name"] = "Dusty Tome";
+				properties["weight"] = "18";
+				rect = sf::IntRect(0, 16, 16, 16);
+			} break;
+			case(SCROLL_OF_FIREBALL) :
+			{
+				properties["category"] = "BOOKS";
+				properties["equipable"] = "True";
+				properties["name"] = "Scroll of Fireball";
+				properties["weight"] = "18";
+				rect = sf::IntRect(16, 16, 16, 16);
+			} break;
+			case(RAW_SALMON) :
+			{
+				properties["name"] = "Raw Salmon";
+				properties["weight"] = "5";
+				rect = sf::IntRect(0, 32, 16, 16);
+			} break;
+			default:
+				unknownID = true;
+		}
+
+		if(!unknownID)
+		{
+			int itemWeight {std::stoi(properties["weight"])};
+
+			if(itemWeight * int(number) + weight <= maxWeight)
+			{
+				int maxNumber = std::stoi(properties["max_number"]);
+				if(int(number) > maxNumber)
+				{
+					properties["number"] = properties["max_number"];
+					number -= maxNumber;
+					completely = true;
+				}
+
+				std::unique_ptr<Item> item(new Item(context, context.contentManager->getTexture(Textures::ITEMS), rect, itemList[toCategory(properties["category"])].size(), properties));
+				std::unique_ptr<Item> allItem(new Item(context, context.contentManager->getTexture(Textures::ITEMS), rect, itemList[ALL].size(), properties));
+				itemList[toCategory(properties["category"])].push_back(std::move(item));
+				itemList[ALL].push_back(std::move(allItem));
+
+				weight += itemWeight * maxNumber;
+			}
+			else
+			{
+				context.console->logWarning("Inventory weight is too high!");
+			}
 		}
 		else
 		{
-			context.console->logWarning("Inventory weight is too high!");
+			stream.str(""); stream << "Unknown ItemID! (" << id << ")";
+			context.console->logError(stream.str());
 		}
 	}
-	else
-	{
-		stream.str(""); stream<<"Unknown ItemID! ("<<id<<")";
-		context.console->logError(stream.str());
-	}
+
+	// Recursive part
+	if(completely)
+		addItem(id, number, true);
+	if(warning && !recursive)
+		context.console->logWarning("Inventory weight is too high!");
 }

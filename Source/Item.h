@@ -48,4 +48,5 @@ class Item
 		std::map<std::string, std::string> properties;
 		int order;
 		bool equipped;
+		bool described;
 };

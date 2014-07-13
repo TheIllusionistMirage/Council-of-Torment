@@ -705,14 +705,14 @@ void Console::newCommand(std::string command, std::string values)
 //==========================================================================================================================
 	else if(command == "item_add")										// item_add ID
 	{
-		/*if(valueList.size() == 2)
-			game.getPlayer().getInventory().addItem(stoi(valueList[0]), stoi(valueList[1]));
+		if(valueList.size() == 2)
+			context.player->getInventory().addItem(ItemID(stoi(valueList[0])), stoi(valueList[1]));
 
 		else if(valueList.size() == 1)
-			game.getPlayer().getInventory().addItem(stoi(valueList[0]), 1);
+			context.player->getInventory().addItem(ItemID(stoi(valueList[0])));
 
 		else
-			logError("Syntax is: item_add ID AMMOUNT (amount is optional)");*/
+			logError("Syntax is: item_add ID AMMOUNT (amount is optional)");
 	}
 //==========================================================================================================================
 	// No command is correct
