@@ -237,7 +237,7 @@
 						{
 							std::unique_ptr<Humanoid> h(new Humanoid(context, object->GetProperties().GetList()["file"]));
 
-							h->setPosition(sf::Vector2f(object->GetX(), object->GetY()-32));
+							h->setPosition(sf::Vector2f((float)object->GetX(), (float)object->GetY()-32));
 							h->setDefaultSpeed(stoi(object->GetProperties().GetList()["velocity"]));
 							h->setHealth(std::stoi(object->GetProperties().GetList()["health"]));
 							h->setMana(std::stoi(object->GetProperties().GetList()["mana"]));

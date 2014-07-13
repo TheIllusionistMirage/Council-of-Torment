@@ -590,12 +590,12 @@ void Console::newCommand(std::string command, std::string values)
 			logError("Syntax is: player_set_health value");
 	}
 //==========================================================================================================================
-	else if(command == "show_collision")									// player_set_health value
+	else if(command == "show_collision")									// show_collision value
 	{
 		if(valueList.size() == 1)
-			context.player->showCollision(stoi(valueList[0]));
+			context.player->showCollision(stoi(valueList[0]) !=0); // The !=0 is there in order to prevent a warning, ignore it
 		else
-			logError("Syntax is: show_collision value");
+			logError("Syntax is: show_collision value (1 or 0)");
 	}
 //==========================================================================================================================
 	else if(command == "player_set_mana")									// player_set_mana value
