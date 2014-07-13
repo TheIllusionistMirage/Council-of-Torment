@@ -75,7 +75,7 @@
 
 		// Update the user interface
 		statsLabels["hp"]->setText("Health: " + std::to_string(health));
-		statsLabels["mana"]->setText("Health: " + std::to_string(mana));
+		statsLabels["mana"]->setText("Mana: " + std::to_string(mana));
 	}
 
 /* ----------------------------------------------------------------------
