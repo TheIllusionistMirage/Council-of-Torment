@@ -5,7 +5,7 @@ Item::Item(State::Context context, sf::IntRect rect, sf::IntRect iconRect, int o
 , order(order)
 , properties(properties)
 , line(sf::Lines, 2)
-, scaleFactor {2.0f}
+, scaleFactor {2.5f}
 , equipped(false)
 , described {false}
 , increaseScale {false}
@@ -33,8 +33,11 @@ void Item::update(sf::Time elapsedTime)
 	if(!increaseScale)
 	{
 		itemIcon.setScale(sf::Vector2f(itemIcon.getScale().x - scaleFactor * elapsedTime.asSeconds(), 1.0f));
-		if(itemIcon.getScale().x < 0.5f)
+		if(itemIcon.getScale().x < -1.0f)
+		{
+			itemIcon.setScale(sf::Vector2f(-1.0f, 1.0f));
 			increaseScale = true;
+		}
 	}
 	else
 	{
@@ -49,7 +52,11 @@ void Item::update(sf::Time elapsedTime)
 	description.setPosition(name.getPosition() + sf::Vector2f(-10.0f, 20.0f));
 	descriptionBackground.setPosition(description.getPosition() - sf::Vector2f(8.0f, 0.0f));
 	itemIconShape.setPosition(name.getPosition() + sf::Vector2f(187.0f - itemIconShape.getLocalBounds().width, 28.0f));
-	itemIcon.setPosition(itemIconShape.getPosition().x + itemIconShape.getLocalBounds().width / 2 - itemIcon.getGlobalBounds().width / 2 - 1.0f, itemIconShape.getPosition().y);
+
+	if(itemIcon.getScale().x < 0)
+		itemIcon.setPosition(itemIconShape.getPosition().x + itemIconShape.getLocalBounds().width / 2 + itemIcon.getGlobalBounds().width / 2 - 1.0f, itemIconShape.getPosition().y);
+	else
+		itemIcon.setPosition(itemIconShape.getPosition().x + itemIconShape.getLocalBounds().width / 2 - itemIcon.getGlobalBounds().width / 2 - 1.0f, itemIconShape.getPosition().y);
 }
 
 void Item::render()
