@@ -412,6 +412,9 @@ void Console::handleEvent(const sf::Event& windowEvent)
 					if(iCommand != commandList.begin())
 						--iCommand;
 					consoleTextList[0] = (*iCommand);
+					const float x = consoleWindow.getPosition().x;
+					const float y = consoleWindow.getPosition().y;
+					consoleTextList[0].setPosition(sf::Vector2f(x + 20, y + consoleWindow.getSize().y - characterSize - 6));
 				}
 			}
 			else if(windowEvent.key.code == sf::Keyboard::Down)
@@ -428,6 +431,9 @@ void Console::handleEvent(const sf::Event& windowEvent)
 						consoleTextList[0].setString("");
 						iCommand = commandList.end();
 					}
+					const float x = consoleWindow.getPosition().x;
+					const float y = consoleWindow.getPosition().y;
+					consoleTextList[0].setPosition(sf::Vector2f(x + 20, y + consoleWindow.getSize().y - characterSize - 6));
 				}
 			}
 		break;
@@ -661,6 +667,16 @@ void Console::newCommand(std::string command, std::string values)
 	}
 
 //==========================================================================================================================
+	else if(command == "help")											// help
+	{
+		log(" clean_console\tclear_console\texit\tGFX_add <string>", {230, 200, 120});
+		log(" gfx_add <string>\titem_add <int>\titem_add <int:int>\tmap_load <string>", {230, 200, 120});
+		log(" map_reload\tplayer_get_position\tplayer_play_animation <int>", {230, 200, 120});
+		log(" player_set_health <int>\tplayer_set_mana <int>\tplayer_set_position <float:float>", {230, 200, 120});
+		log(" player_set_speed <int>\tplayer_set_sprite <string>\tprint <string>\tprint_time", {230, 200, 120});
+		log(" show_collision <int>\ttime_set <int:int:int>\ttoggle_gui", {230, 200, 120});
+	}
+//==========================================================================================================================
 	else if (command == "toggle_gui")											// toggle_gui
 	{
 		if (valueList.size() == 0)
@@ -668,7 +684,7 @@ void Console::newCommand(std::string command, std::string values)
 			context.player->setProperty("hideGUI", !context.player->getProperty("hideGUI"));
 		}
 		else
-			logError("Syntax is: print_time");
+			logError("Syntax is: toggle_gui");
 	}
 //==========================================================================================================================
 	else if(command == "map_load")											// map_load name
