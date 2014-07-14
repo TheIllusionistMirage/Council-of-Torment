@@ -9,7 +9,6 @@ Item::Item(State::Context context, sf::IntRect rect, sf::IntRect iconRect, int o
 , equipped(false)
 , described {false}
 , increaseScale {false}
-, descriptionLines {std::stoi(properties["description_lines"])}
 , itemIconShape {{32, 32}}
 , item(context.contentManager->getTexture(Textures::ITEMS), rect)
 , itemIcon(context.contentManager->getTexture(Textures::ICON_ITEMS), iconRect)

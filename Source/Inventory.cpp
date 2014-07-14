@@ -425,9 +425,9 @@ void Inventory::addItem(ItemID id, unsigned int number)
 		properties["equipable"] = "False";					// Equipable	false
 		properties["consumable"] = "False";					// Consumable	false
 		properties["description"] = "No description available.";
-		properties["description_lines"] = "1";
+
 		sf::IntRect rect {0, 0, 16, 16};
-		sf::IntRect iconRect {0, 0, 32, 32};
+		sf::IntRect iconRect {(id % 8) * 32, int(id / 8) * 32, 32, 32};
 
 		switch(id)
 		{

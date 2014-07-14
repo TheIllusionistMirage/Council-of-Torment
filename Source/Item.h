@@ -57,7 +57,6 @@ class Item
 		std::map<std::string, std::string> properties;
 		float scaleFactor;
 		int order;
-		int descriptionLines;
 		bool increaseScale;
 		bool equipped;
 		bool described;
