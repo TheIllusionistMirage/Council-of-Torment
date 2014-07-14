@@ -12,7 +12,7 @@ class Inventory
 		void update(sf::Time elapsedTime);
 		const bool& isOpen() const {return open;}
 		void handleEvent(const sf::Event& windowEvent);
-		void addItem(ItemID id, unsigned int number = 1, bool recursive = false);
+		void addItem(ItemID id, unsigned int number = 1);
 
 	private:
 		void changeOrder(float yPos);

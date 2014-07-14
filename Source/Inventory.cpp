@@ -302,72 +302,48 @@ void Inventory::changeOrder(float yPos)
 	}
 }
 
-void Inventory::addItem(ItemID id, unsigned int number, bool recursive)
+void Inventory::addItem(ItemID id, unsigned int number)
 {
 	std::map<std::string, std::string> properties;
 	std::stringstream stream; stream<<id;
-	bool completely {false};
 	bool unknownID {false};
-	bool warning {false};
-	bool newItem {true};
 
 	for(auto& item : itemList[ALL])
 	{
 		if(std::stoi(item->getProperties()["id"]) == id)
 		{
-			if(std::stoi(item->getProperties()["number"]) + int(number) <= std::stoi(item->getProperties()["max_number"]))
+			// An item stack can be filled until it is full
+			int difference {std::stoi(item->getProperties()["max_number"]) - std::stoi(item->getProperties()["number"])};
+			if(int(number) > difference)
 			{
-				int itemWeight {std::stoi(item->getProperties()["weight"])};
-				if(itemWeight * int(number) + weight <= maxWeight)
-				{
-					std::stringstream stream;
-					stream << std::stoi(item->getProperties()["number"]) + number;
-					item->getProperties()["number"] = stream.str();
-					weight += itemWeight * number;
-
-					for(auto& item : itemList[toCategory(item->getProperties()["category"])])
-						if(std::stoi(item->getProperties()["id"]) == id && std::stoi(item->getProperties()["number"]) + int(number) <= std::stoi(item->getProperties()["max_number"]))
-							item->getProperties()["number"] = stream.str();
-				}
-				else
-					warning = true;
-
-				newItem = false;
-			}
-			else if(std::stoi(item->getProperties()["number"]) != std::stoi(item->getProperties()["max_number"]))
-			{
-				int difference = std::stoi(item->getProperties()["max_number"]) - std::stoi(item->getProperties()["number"]);
 				number -= difference;
+				item->getProperties()["number"] = item->getProperties()["max_number"];
+
+				for(auto& item : itemList[toCategory(item->getProperties()["category"])])
+					if(std::stoi(item->getProperties()["id"]) == id && int(number) > std::stoi(item->getProperties()["max_number"]) - std::stoi(item->getProperties()["number"]))
+						item->getProperties()["number"] = item->getProperties()["max_number"];
 
 				int itemWeight {std::stoi(item->getProperties()["weight"])};
-				if(itemWeight * int(difference) + weight <= maxWeight)
-				{
-					std::stringstream stream;
-					stream << std::stoi(item->getProperties()["number"]) + difference;
-					item->getProperties()["number"] = stream.str();
-					weight += itemWeight * difference;
+				weight += itemWeight * difference;
+			}
+			else	// Or just filled up
+			{
+				std::stringstream stream;
+				stream << std::stoi(item->getProperties()["number"]) + number;
+				item->getProperties()["number"] = stream.str();
 
-					for(auto& item : itemList[toCategory(item->getProperties()["category"])])
-						if(std::stoi(item->getProperties()["id"]) == id && std::stoi(item->getProperties()["number"]) + int(difference) <= std::stoi(item->getProperties()["max_number"]))
-							item->getProperties()["number"] = stream.str();
-				}
-				else
-				{
-					warning = true;
-					number = 0;
-				}
+				for(auto& item : itemList[toCategory(item->getProperties()["category"])])
+					if(std::stoi(item->getProperties()["id"]) == id && int(number) <= std::stoi(item->getProperties()["max_number"]) - std::stoi(item->getProperties()["number"]))
+						item->getProperties()["number"] = stream.str();
 
-				// If even a new filled up stack gets full -> recursivly call the function again with a less high number
-				if(int(number) > std::stoi(item->getProperties()["max_number"]))
-				{
-					completely = true;
-					newItem = false;
-				}
+				int itemWeight {std::stoi(item->getProperties()["weight"])};
+				weight += itemWeight * number;
+				number = 0;
 			}
 		}
 	}
 
-	if(newItem)
+	if(number)
 	{
 		// Properties which are fix
 		properties["id"] = stream.str();					// ItemID
@@ -434,29 +410,23 @@ void Inventory::addItem(ItemID id, unsigned int number, bool recursive)
 
 		if(!unknownID)
 		{
+			if(int(number) > std::stoi(properties["max_number"]))
+				properties["number"] = properties["max_number"];
+
 			int itemWeight {std::stoi(properties["weight"])};
 
-			if(itemWeight * int(number) + weight <= maxWeight)
-			{
-				int maxNumber = std::stoi(properties["max_number"]);
-				if(int(number) > maxNumber)
-				{
-					properties["number"] = properties["max_number"];
-					number -= maxNumber;
-					completely = true;
-				}
+			std::unique_ptr<Item> item(new Item(context, context.contentManager->getTexture(Textures::ITEMS), rect, itemList[toCategory(properties["category"])].size(), properties));
+			std::unique_ptr<Item> allItem(new Item(context, context.contentManager->getTexture(Textures::ITEMS), rect, itemList[ALL].size(), properties));
+			itemList[toCategory(properties["category"])].push_back(std::move(item));
+			itemList[ALL].push_back(std::move(allItem));
 
-				std::unique_ptr<Item> item(new Item(context, context.contentManager->getTexture(Textures::ITEMS), rect, itemList[toCategory(properties["category"])].size(), properties));
-				std::unique_ptr<Item> allItem(new Item(context, context.contentManager->getTexture(Textures::ITEMS), rect, itemList[ALL].size(), properties));
-				itemList[toCategory(properties["category"])].push_back(std::move(item));
-				itemList[ALL].push_back(std::move(allItem));
-
-				weight += itemWeight * maxNumber;
-			}
-			else
+			if(int(number) > std::stoi(properties["max_number"]))
 			{
-				context.console->logWarning("Inventory weight is too high!");
+				number -= std::stoi(properties["max_number"]);
+				addItem(id, number);
 			}
+
+			weight += itemWeight * number;
 		}
 		else
 		{
@@ -465,9 +435,6 @@ void Inventory::addItem(ItemID id, unsigned int number, bool recursive)
 		}
 	}
 
-	// Recursive part
-	if(completely)
-		addItem(id, number, true);
-	if(warning && !recursive)
-		context.console->logWarning("Inventory weight is too high!");
+	if(weight > maxWeight)
+		context.console->logWarning("Inventory is full!");
 }
