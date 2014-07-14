@@ -229,7 +229,7 @@
 			}
 		}
 
-		else if(windowEvent.type == sf::Event::MouseWheelMoved && !inventory.isOpen())
+		else if(windowEvent.type == sf::Event::MouseWheelMoved && (!inventory.isOpen() || (inventory.isOpen() && !inventory.isMouseInside())))
 		{
 			// Zoom in or out
 			if(windowEvent.mouseWheel.delta > 0)

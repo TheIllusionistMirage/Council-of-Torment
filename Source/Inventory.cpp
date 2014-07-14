@@ -208,6 +208,11 @@ void Inventory::render()
 	context.window->setView(camera);
 }
 
+const bool Inventory::isMouseInside() const
+{
+	return inventory.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(*context.window)));
+}
+
 void Inventory::updateInventoryPosition()
 {
 	// Set the position of the inventory
@@ -226,7 +231,7 @@ void Inventory::handleEvent(const sf::Event& windowEvent)
 	}
 	else if(windowEvent.type == sf::Event::MouseWheelMoved)
 	{
-		if(open)
+		if(open && isMouseInside())
 		{
 			if(windowEvent.mouseWheel.delta > 0)
 				scrollValue[category] -= 10.0f;

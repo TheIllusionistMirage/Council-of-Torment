@@ -10,6 +10,7 @@ class Inventory
 		void render();
 		void updateInventoryPosition();
 		void update(sf::Time elapsedTime);
+		const bool isMouseInside() const;
 		const bool& isOpen() const {return open;}
 		void handleEvent(const sf::Event& windowEvent);
 		void addItem(ItemID id, unsigned int number = 1);
