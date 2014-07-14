@@ -19,8 +19,10 @@ Inventory::Inventory(State::Context context)
 , maxWeight(200)
 , weight(0)
 , oldMousePos()
+, describedIndex {0}
 , itemScrollSpeed(200.0f)
 , rightMouseButton {false}
+, itemDescribed {false}
 , showScroll(false)
 , itemMoved(false)
 , itemDrag(false)
@@ -71,7 +73,11 @@ void Inventory::update(sf::Time elapsedTime)
 	weightText.setPosition(inventory.getPosition().x + 208.0f - float(int(weightText.getLocalBounds().width / 2.0f)), inventory.getPosition().y + 1.0f);
 
 	for(auto&& item : itemList[category])
+	{
 		item->setPosition(sf::Vector2f(inventory.getPosition().x + 23.0f, inventory.getPosition().y + 86.0f + item->getOrder() * 20.0f - scrollValue[category]));
+		if(itemDescribed && item->getOrder() > describedIndex)
+			item->setPosition(sf::Vector2f(item->getPosition().x, item->getPosition().y + itemList[category][describedIndex]->getDescriptionText().getLocalBounds().height + 5.0f));
+	}
 
 	if(open && !moving)
 	{
@@ -85,28 +91,74 @@ void Inventory::update(sf::Time elapsedTime)
 				categoryHighlight.setPosition(xPos, yPos);
 
 				if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mousePressed)
+				{
+					if(itemDescribed)
+					{
+						itemList[category][describedIndex]->setDescribed(false);
+						itemDescribed = false;
+					}
 					category = Category(i);
 
-				for(auto&& item : itemList[category])
-					item->setPosition(sf::Vector2f(inventory.getPosition().x + 23.0f, inventory.getPosition().y + 86.0f + item->getOrder() * 20.0f - scrollValue[category]));
+					for(auto& item : itemList[category])
+						item->setPosition(sf::Vector2f(inventory.getPosition().x + 23.0f, inventory.getPosition().y + 86.0f + item->getOrder() * 20.0f - scrollValue[category]));
+				}
 			}
 		}
 
+		float condition {mousePos.y + scrollValue[category]};
+		if(itemDescribed) condition -= (itemList[category][describedIndex]->getDescriptionText().getLocalBounds().height + 5.0f);
+
 		if(!itemDrag && mousePos.x > inventory.getPosition().x + 22.0f && mousePos.x < inventory.getPosition().x + 236.0f &&
-			mousePos.y > inventory.getPosition().y + 86.0f && mousePos.y + scrollValue[category] < inventory.getPosition().y + 86.0f + itemList[category].size() * 20.0f)
+			mousePos.y > inventory.getPosition().y + 86.0f && condition < inventory.getPosition().y + 86.0f + itemList[category].size() * 20.0f)
 		{
 			int order = int((mousePos.y + scrollValue[category] - inventory.getPosition().y - 86.0f) / 20.0f);
+			if(itemDescribed && order >= describedIndex)
+			{
+				int offset = int((mousePos.y + scrollValue[category] - describedIndex * 20.0f - inventory.getPosition().y - 86.0f - (itemList[category][describedIndex]->getDescriptionText().getLocalBounds().height + 5.0f)) / 20.0f);
+				offset = std::max(offset, 0);
+				order = describedIndex + offset;
+			}
+
 			itemHighlight.setPosition(inventory.getPosition().x + 22.0f, inventory.getPosition().y + 85.0f + order * 20.0f - scrollValue[category]);
+
+			if(itemDescribed && order > describedIndex)
+				itemHighlight.setPosition(itemHighlight.getPosition().x, itemHighlight.getPosition().y + itemList[category][describedIndex]->getDescriptionText().getLocalBounds().height + 5.0f);
 
 			if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mousePressed)
 			{
+				if(itemDescribed)
+				{
+					itemList[category][describedIndex]->setDescribed(false);
+					itemDescribed = false;
+				}
 				dragItem = itemList[category][order].get();
 				clickedPosition = mousePos.y - dragItem->getPosition().y;
 				itemDrag = true;
 			}
-			else if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && !rightMouseButton)
+			else if(sf::Mouse::isButtonPressed(sf::Mouse::Right) && !rightMouseButton)
 			{
-				std::cout << "test" << std::endl;
+				if(itemDescribed)
+					itemList[category][describedIndex]->setDescribed(false);
+
+				// Show description
+				if((describedIndex != order && itemDescribed) || !itemDescribed)
+				{
+					describedIndex = order;
+					itemDescribed = true;
+					itemList[category][describedIndex]->setDescribed(true);
+
+					if(itemDescribed)
+						itemList[category][describedIndex]->updateDescriptionText();
+
+					for(auto&& item : itemList[category])
+					{
+						item->setPosition(sf::Vector2f(inventory.getPosition().x + 23.0f, inventory.getPosition().y + 86.0f + item->getOrder() * 20.0f - scrollValue[category]));
+						if(itemDescribed && item->getOrder() > describedIndex)
+							item->setPosition(sf::Vector2f(item->getPosition().x, item->getPosition().y + itemList[category][describedIndex]->getDescriptionText().getLocalBounds().height + 5.0f));
+					}
+				}
+				else
+					itemDescribed = false;
 			}
 		}
 
@@ -177,6 +229,15 @@ void Inventory::update(sf::Time elapsedTime)
 	else
 		showScroll = false;
 
+	if(itemDescribed && itemList[category][describedIndex]->getPosition().y + 20.0f <= inventory.getPosition().y + 86.0f)
+	{
+		itemList[category][describedIndex]->setDescribed(false);
+		itemDescribed = false;
+	}
+
+	if(itemDescribed)
+		itemList[category][describedIndex]->update(elapsedTime);
+
 	mousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
 	rightMouseButton = sf::Mouse::isButtonPressed(sf::Mouse::Right);
 	oldMousePos = mousePos;
@@ -200,7 +261,7 @@ void Inventory::render()
 	context.window->draw(categorySelected);
 	context.window->draw(categoryHighlight);
 	context.window->draw(weightText);
-
+	
 	if(showScroll)
 		context.window->draw(scrollSprite);
 
@@ -231,7 +292,7 @@ void Inventory::handleEvent(const sf::Event& windowEvent)
 	}
 	else if(windowEvent.type == sf::Event::MouseWheelMoved)
 	{
-		if(open && isMouseInside())
+		if(open && isMouseInside() && !itemList[category].empty())
 		{
 			if(windowEvent.mouseWheel.delta > 0)
 				scrollValue[category] -= 10.0f;
@@ -363,7 +424,10 @@ void Inventory::addItem(ItemID id, unsigned int number)
 		properties["value"] = "0.0f";						// Value		0.0f
 		properties["equipable"] = "False";					// Equipable	false
 		properties["consumable"] = "False";					// Consumable	false
-		sf::IntRect rect;									// CHANGE!!!
+		properties["description"] = "No description available.";
+		properties["description_lines"] = "1";
+		sf::IntRect rect {0, 0, 16, 16};
+		sf::IntRect iconRect {0, 0, 32, 32};
 
 		switch(id)
 		{
@@ -371,6 +435,8 @@ void Inventory::addItem(ItemID id, unsigned int number)
 				properties["name"] = "Potion of Healing";
 				properties["max_number"] = "24";
 				properties["weight"] = "2";
+				properties["value"] = "4.2f";
+				properties["description"] = "This potion looks delicious!";
 				rect = sf::IntRect(0, 0, 16, 16);
 				break;
 			case(HEALTH_FLASK) :
@@ -385,6 +451,7 @@ void Inventory::addItem(ItemID id, unsigned int number)
 				properties["equipable"] = "True";
 				properties["name"] = "Rusty Blade";
 				properties["weight"] = "27";
+				properties["description"] = "What a rusty shit :D!";
 				rect = sf::IntRect(0, 48, 16, 16);
 			} break;
 			case(DUSTY_TOME) :
@@ -420,8 +487,8 @@ void Inventory::addItem(ItemID id, unsigned int number)
 
 			int itemWeight {std::stoi(properties["weight"])};
 
-			std::unique_ptr<Item> item(new Item(context, context.contentManager->getTexture(Textures::ITEMS), rect, itemList[toCategory(properties["category"])].size(), properties));
-			std::unique_ptr<Item> allItem(new Item(context, context.contentManager->getTexture(Textures::ITEMS), rect, itemList[ALL].size(), properties));
+			std::unique_ptr<Item> item(new Item(context, rect, iconRect, itemList[toCategory(properties["category"])].size(), properties));
+			std::unique_ptr<Item> allItem(new Item(context, rect, iconRect, itemList[ALL].size(), properties));
 			itemList[toCategory(properties["category"])].push_back(std::move(item));
 			itemList[ALL].push_back(std::move(allItem));
 
@@ -442,4 +509,6 @@ void Inventory::addItem(ItemID id, unsigned int number)
 
 	if(weight > maxWeight)
 		context.console->logWarning("Inventory is full!");
+
+	itemList[category][describedIndex]->updateDescriptionText();
 }

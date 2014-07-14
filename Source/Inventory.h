@@ -40,7 +40,9 @@ class Inventory
 		float speed;
 		int maxWeight;
 		int weight;
+		int describedIndex;
 		bool mousePressed;
+		bool itemDescribed;
 		bool rightMouseButton;
 		bool showScroll;
 		bool itemMoved;
