@@ -132,9 +132,13 @@
 	void Player::renderGUI()
 	{
 		context.window->setView(context.window->getDefaultView());
+
 		if (properties["hideGUI"] == false)
+		{
 			for (auto&& i : statsLabels)
 				context.window->draw(*i.second);
+		}
+
 		context.window->setView(context.player->getCamera());
 	}
 
