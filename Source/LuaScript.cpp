@@ -1,6 +1,7 @@
+#include "State.h"
 #include "LuaScript.h"
 
-LuaScript::LuaScript(const std::string& filename) {
+LuaScript::LuaScript(State::Context context, const std::string& filename) : context(context){
     L = luaL_newstate();
     if (luaL_loadfile(L, filename.c_str()) || lua_pcall(L, 0, 0, 0)) {
         std::cout<<"Error: failed to load ("<<filename<<")"<<std::endl;

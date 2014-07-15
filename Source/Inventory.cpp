@@ -417,7 +417,7 @@ void Inventory::addItem(ItemID id, unsigned int number)
 		properties["number"] = stream.str();				// Number
 
 		stream.str(""); stream << "item_" << id;
-		LuaScript script {"Content/Scripts/items.lua"};
+		LuaScript script {context, "Content/Scripts/items.lua"};
 
 		// Variable properties
 		properties["category"] = script.get<std::string>(stream.str() + ".category");

@@ -15,7 +15,7 @@ extern "C" {
 
 class LuaScript {
 public:
-    LuaScript(const std::string& filename);
+    LuaScript(State::Context context, const std::string& filename);
     ~LuaScript();
     void printError(const std::string& variableName, const std::string& reason);
     std::vector<int> LuaScript::getIntVector(const std::string& name);
@@ -92,6 +92,7 @@ public:
     }
    
 private:
+	State::Context context;
     lua_State* L;
     std::string filename;
     int level;
