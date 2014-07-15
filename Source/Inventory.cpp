@@ -1,6 +1,7 @@
 #include "Inventory.h"
 #include "Player.h"
 #include "Console.h"
+#include "LuaScript.h"
 #include <algorithm>
 
 bool operator < (const std::unique_ptr<Item>& left, const std::unique_ptr<Item>& right)
@@ -76,7 +77,7 @@ void Inventory::update(sf::Time elapsedTime)
 	{
 		item->setPosition(sf::Vector2f(inventory.getPosition().x + 23.0f, inventory.getPosition().y + 86.0f + item->getOrder() * 20.0f - scrollValue[category]));
 		if(itemDescribed && item->getOrder() > describedIndex)
-			item->setPosition(sf::Vector2f(item->getPosition().x, item->getPosition().y + itemList[category][describedIndex]->getDescriptionText().getLocalBounds().height + 5.0f));
+			item->setPosition(sf::Vector2f(item->getPosition().x, item->getPosition().y + itemList[category][describedIndex]->getDescriptionText().getLocalBounds().height + 8.0f));
 	}
 
 	if(open && !moving)
@@ -106,7 +107,7 @@ void Inventory::update(sf::Time elapsedTime)
 		}
 
 		float condition {mousePos.y + scrollValue[category]};
-		if(itemDescribed) condition -= (itemList[category][describedIndex]->getDescriptionText().getLocalBounds().height + 5.0f);
+		if(itemDescribed) condition -= (itemList[category][describedIndex]->getDescriptionText().getLocalBounds().height + 8.0f);
 
 		if(!itemDrag && mousePos.x > inventory.getPosition().x + 22.0f && mousePos.x < inventory.getPosition().x + 236.0f &&
 			mousePos.y > inventory.getPosition().y + 86.0f && condition < inventory.getPosition().y + 86.0f + itemList[category].size() * 20.0f)
@@ -114,7 +115,7 @@ void Inventory::update(sf::Time elapsedTime)
 			int order = int((mousePos.y + scrollValue[category] - inventory.getPosition().y - 86.0f) / 20.0f);
 			if(itemDescribed && order >= describedIndex)
 			{
-				int offset = int((mousePos.y + scrollValue[category] - describedIndex * 20.0f - inventory.getPosition().y - 86.0f - (itemList[category][describedIndex]->getDescriptionText().getLocalBounds().height + 5.0f)) / 20.0f);
+				int offset = int((mousePos.y + scrollValue[category] - describedIndex * 20.0f - inventory.getPosition().y - 86.0f - (itemList[category][describedIndex]->getDescriptionText().getLocalBounds().height + 8.0f)) / 20.0f);
 				offset = std::max(offset, 0);
 				order = describedIndex + offset;
 			}
@@ -122,7 +123,7 @@ void Inventory::update(sf::Time elapsedTime)
 			itemHighlight.setPosition(inventory.getPosition().x + 22.0f, inventory.getPosition().y + 85.0f + order * 20.0f - scrollValue[category]);
 
 			if(itemDescribed && order > describedIndex)
-				itemHighlight.setPosition(itemHighlight.getPosition().x, itemHighlight.getPosition().y + itemList[category][describedIndex]->getDescriptionText().getLocalBounds().height + 5.0f);
+				itemHighlight.setPosition(itemHighlight.getPosition().x, itemHighlight.getPosition().y + itemList[category][describedIndex]->getDescriptionText().getLocalBounds().height + 8.0f);
 
 			if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mousePressed)
 			{
@@ -154,7 +155,7 @@ void Inventory::update(sf::Time elapsedTime)
 					{
 						item->setPosition(sf::Vector2f(inventory.getPosition().x + 23.0f, inventory.getPosition().y + 86.0f + item->getOrder() * 20.0f - scrollValue[category]));
 						if(itemDescribed && item->getOrder() > describedIndex)
-							item->setPosition(sf::Vector2f(item->getPosition().x, item->getPosition().y + itemList[category][describedIndex]->getDescriptionText().getLocalBounds().height + 5.0f));
+							item->setPosition(sf::Vector2f(item->getPosition().x, item->getPosition().y + itemList[category][describedIndex]->getDescriptionText().getLocalBounds().height + 8.0f));
 					}
 				}
 				else
@@ -371,8 +372,7 @@ void Inventory::changeOrder(float yPos)
 void Inventory::addItem(ItemID id, unsigned int number)
 {
 	std::map<std::string, std::string> properties;
-	std::stringstream stream; stream<<id;
-	bool unknownID {false};
+	std::stringstream stream; stream << id;
 
 	for(auto& item : itemList[ALL])
 	{
@@ -389,7 +389,7 @@ void Inventory::addItem(ItemID id, unsigned int number)
 					if(std::stoi(item->getProperties()["id"]) == id && int(number) > std::stoi(item->getProperties()["max_number"]) - std::stoi(item->getProperties()["number"]))
 						item->getProperties()["number"] = item->getProperties()["max_number"];
 
-				int itemWeight {std::stoi(item->getProperties()["weight"])};
+				float itemWeight {std::stof(item->getProperties()["weight"])};
 				weight += itemWeight * difference;
 			}
 			else	// Or just filled up
@@ -402,7 +402,7 @@ void Inventory::addItem(ItemID id, unsigned int number)
 					if(std::stoi(item->getProperties()["id"]) == id && int(number) <= std::stoi(item->getProperties()["max_number"]) - std::stoi(item->getProperties()["number"]))
 						item->getProperties()["number"] = stream.str();
 
-				int itemWeight {std::stoi(item->getProperties()["weight"])};
+				float itemWeight {std::stof(item->getProperties()["weight"])};
 				weight += itemWeight * number;
 				number = 0;
 			}
@@ -416,95 +416,41 @@ void Inventory::addItem(ItemID id, unsigned int number)
 		stream.str(""); stream << number;
 		properties["number"] = stream.str();				// Number
 
-		// Variable properties
-		properties["category"] = "FOOD";					// Category		FOOD
-		properties["name"] = "NoName";						// Name			NoName
-		properties["max_number"] = "1";						// MaxNumber	1
-		properties["weight"] = "0";							// Weight		0
-		properties["value"] = "0.0f";						// Value		0.0f
-		properties["equipable"] = "False";					// Equipable	false
-		properties["consumable"] = "False";					// Consumable	false
-		properties["description"] = "No description available.";
+		stream.str(""); stream << "item_" << id;
+		LuaScript script {"Content/Scripts/items.lua"};
 
-		sf::IntRect rect {0, 0, 16, 16};
+		// Variable properties
+		properties["category"] = script.get<std::string>(stream.str() + ".category");
+		properties["name"] = script.get<std::string>(stream.str() + ".name");
+		properties["max_number"] = script.get<std::string>(stream.str() + ".max_number");
+		properties["weight"] = script.get<std::string>(stream.str() + ".weight");
+		properties["value"] = script.get<std::string>(stream.str() + ".value");
+		properties["equipable"] = script.get<std::string>(stream.str() + ".equipable");
+		properties["craftable"] = script.get<std::string>(stream.str() + ".craftable");
+		properties["consumable"] = script.get<std::string>(stream.str() + ".consumable");
+		properties["description"] = script.get<std::string>(stream.str() + ".description");
+
+		int iconID = std::stoi(script.get<std::string>(stream.str() + ".iconID"));
+		sf::IntRect rect {(iconID % 8) * 16, int(iconID / 8) * 16, 16, 16};
 		sf::IntRect iconRect {(id % 8) * 32, int(id / 8) * 32, 32, 32};
 
-		switch(id)
-		{
-			case(HEALING_POTION) :
-				properties["name"] = "Potion of Healing";
-				properties["max_number"] = "24";
-				properties["weight"] = "2";
-				properties["value"] = "4.2f";
-				properties["description"] = "This potion looks delicious!";
-				rect = sf::IntRect(0, 0, 16, 16);
-				break;
-			case(HEALTH_FLASK) :
+		if(int(number) > std::stoi(properties["max_number"]))
+			properties["number"] = properties["max_number"];
 
-				properties["name"] = "Flask of Health";
-				properties["weight"] = "3";
-				rect = sf::IntRect(16, 0, 16, 16);
-				break;
-			case(RUSTY_BLADE) :
-			{
-				properties["category"] = "EQUIPMENT";
-				properties["equipable"] = "True";
-				properties["name"] = "Rusty Blade";
-				properties["weight"] = "27";
-				properties["description"] = "What a rusty shit :D!";
-				rect = sf::IntRect(0, 48, 16, 16);
-			} break;
-			case(DUSTY_TOME) :
-			{
-				properties["category"] = "BOOKS";
-				properties["equipable"] = "True";
-				properties["name"] = "Dusty Tome";
-				properties["weight"] = "18";
-				rect = sf::IntRect(0, 16, 16, 16);
-			} break;
-			case(SCROLL_OF_FIREBALL) :
-			{
-				properties["category"] = "BOOKS";
-				properties["equipable"] = "True";
-				properties["name"] = "Scroll of Fireball";
-				properties["weight"] = "18";
-				rect = sf::IntRect(16, 16, 16, 16);
-			} break;
-			case(RAW_SALMON) :
-			{
-				properties["name"] = "Raw Salmon";
-				properties["weight"] = "5";
-				rect = sf::IntRect(0, 32, 16, 16);
-			} break;
-			default:
-				unknownID = true;
+		float itemWeight {std::stof(properties["weight"])};
+
+		std::unique_ptr<Item> item(new Item(context, rect, iconRect, itemList[toCategory(properties["category"])].size(), properties));
+		std::unique_ptr<Item> allItem(new Item(context, rect, iconRect, itemList[ALL].size(), properties));
+		itemList[toCategory(properties["category"])].push_back(std::move(item));
+		itemList[ALL].push_back(std::move(allItem));
+
+		if(int(number) > std::stoi(properties["max_number"]))
+		{
+			number -= std::stoi(properties["max_number"]);
+			addItem(id, number);
 		}
 
-		if(!unknownID)
-		{
-			if(int(number) > std::stoi(properties["max_number"]))
-				properties["number"] = properties["max_number"];
-
-			int itemWeight {std::stoi(properties["weight"])};
-
-			std::unique_ptr<Item> item(new Item(context, rect, iconRect, itemList[toCategory(properties["category"])].size(), properties));
-			std::unique_ptr<Item> allItem(new Item(context, rect, iconRect, itemList[ALL].size(), properties));
-			itemList[toCategory(properties["category"])].push_back(std::move(item));
-			itemList[ALL].push_back(std::move(allItem));
-
-			if(int(number) > std::stoi(properties["max_number"]))
-			{
-				number -= std::stoi(properties["max_number"]);
-				addItem(id, number);
-			}
-
-			weight += itemWeight * number;
-		}
-		else
-		{
-			stream.str(""); stream << "Unknown ItemID! (" << id << ")";
-			context.console->logError(stream.str());
-		}
+		weight += itemWeight * number;
 	}
 
 	if(weight > maxWeight)

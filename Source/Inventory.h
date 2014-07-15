@@ -38,8 +38,8 @@ class Inventory
 		float scrollValue[CATEGORY_COUNT];
 		float itemScrollSpeed;
 		float speed;
-		int maxWeight;
-		int weight;
+		float maxWeight;
+		float weight;
 		int describedIndex;
 		bool mousePressed;
 		bool itemDescribed;

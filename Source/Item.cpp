@@ -26,6 +26,8 @@ Item::Item(State::Context context, sf::IntRect rect, sf::IntRect iconRect, int o
 	itemIconShape.setOutlineThickness(1);
 	itemIconShape.setOutlineColor(sf::Color(100, 100, 100));
 	itemIconShape.setFillColor(sf::Color::Transparent);
+
+	context.contentManager->getTexture(Textures::ICON_ITEMS).setSmooth(true);
 }
 
 void Item::update(sf::Time elapsedTime)
@@ -91,17 +93,17 @@ void Item::updateDescriptionText()
 {
 	std::stringstream stream;
 	stream << "Value: " << std::stof(properties["value"]) << "g";
-	if(std::stoi(properties["number"]) > 1) stream << "\t(" << std::stoi(properties["number"]) * std::stof(properties["value"]) << "g total)\n";
+	if(std::stoi(properties["number"]) > 1) stream << "\t(" << std::stoi(properties["number"]) * std::stof(properties["value"]) << "g in total)\n";
 	else stream << "\n";
 
 	stream << "Weight: " << std::stof(properties["weight"]);
-	if(std::stoi(properties["number"]) > 1) stream << "\t(" << std::stoi(properties["number"]) * std::stof(properties["weight"]) << " total)\n";
+	if(std::stoi(properties["number"]) > 1) stream << "\t(" << std::stoi(properties["number"]) * std::stof(properties["weight"]) << " in total)\n";
 	else stream << "\n";
 
 	stream << "\n\"" << properties["description"] << "\"";
 	description.setString(stream.str());
 
-	descriptionBackground = sf::RectangleShape {{212, description.getLocalBounds().height + 3.0f}};
+	descriptionBackground = sf::RectangleShape {{212, description.getLocalBounds().height + 6.0f}};
 	descriptionBackground.setOutlineThickness(1);
 	descriptionBackground.setOutlineColor(sf::Color(100, 100, 100));
 	descriptionBackground.setFillColor(sf::Color(10, 10, 10));
