@@ -1,0 +1,89 @@
+----------------------------
+-- POTION OF HEALTH
+----------------------------
+item_0 = {
+	name = "Potion of Healing",
+	description = "The potion is releasing\na bright red glow!",
+	max_number = 5,
+	weight = 0.5,
+	value = 25,
+	category = "FOOD",
+	equipable = false,
+	craftable = true,
+	iconID = 
+}
+
+----------------------------
+-- HEALTH FLASK
+----------------------------
+item_1 = {
+	name = "Health Flask",
+	description = "This container holdsg \n more than a bottle.",
+	max_number = 24,
+	weight = 0.5,
+	value = 25,
+	category = "FOOD",
+	equipable = false,
+	craftable = true,
+	iconID = 
+}
+
+----------------------------
+-- RUSTY BLADE
+----------------------------
+item_2 = {
+	name = "Potion of Healing",
+	description = "The potion is releasing \n a bright red glow!",
+	max_number = 24,
+	weight = 0.5,
+	value = 25,
+	category = "FOOD",
+	equipable = false,
+	craftable = true,
+	iconID = 
+}
+
+----------------------------
+-- DUSTY TOME
+----------------------------
+item_3 = {
+	name = "Potion of Healing",
+	description = "The potion is releasing \n a bright red glow!",
+	max_number = 24,
+	weight = 0.5,
+	value = 25,
+	category = "FOOD",
+	equipable = false,
+	craftable = true,
+	iconID = 
+}
+
+----------------------------
+-- SCROLL OF FIREBALL
+----------------------------
+item_4 = {
+	name = "Potion of Healing",
+	description = "The potion is releasing \n a bright red glow!",
+	max_number = 24,
+	weight = 0.5,
+	value = 25,
+	category = "FOOD",
+	equipable = false,
+	craftable = true,
+	iconID = 
+}
+
+----------------------------
+-- RAW SALMON
+----------------------------
+item_5 = {
+	name = "Potion of Healing",
+	description = "The potion is releasing \n a bright red glow!",
+	max_number = 24,
+	weight = 0.5,
+	value = 25,
+	category = "FOOD",
+	equipable = false,
+	craftable = true,
+	iconID = 
+}
