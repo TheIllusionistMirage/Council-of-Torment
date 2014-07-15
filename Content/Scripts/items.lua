@@ -3,7 +3,7 @@
 ----------------------------
 item_0 = {
 	name = "Potion of Healing",
-	description = "The potion is releasing a bright red glow!",
+	description = "The potion is releasing a bright red glow! It's warm on touch.",
 	max_number = "5",
 	weight = "0.5",
 	value = "25",

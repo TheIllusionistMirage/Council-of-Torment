@@ -246,7 +246,7 @@
 		}
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
-			setSpeed(defaultVelocity*2);
+			setSpeed(40);
 		else
 			setSpeed(defaultVelocity);
 
