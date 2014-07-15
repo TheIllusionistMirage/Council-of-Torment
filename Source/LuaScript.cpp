@@ -1,10 +1,11 @@
 #include "State.h"
 #include "LuaScript.h"
+#include "Console.h"
 
 LuaScript::LuaScript(State::Context context, const std::string& filename) : context(context){
     L = luaL_newstate();
     if (luaL_loadfile(L, filename.c_str()) || lua_pcall(L, 0, 0, 0)) {
-        std::cout<<"Error: failed to load ("<<filename<<")"<<std::endl;
+		context.console->logError("[LUA] Error: failed to load (" + filename + ")");
 		L = 0;
     }
 
@@ -16,7 +17,7 @@ LuaScript::~LuaScript() {
 }
 
 void LuaScript::printError(const std::string& variableName, const std::string& reason) {
-	std::cout<<"Error: can't get ["<<variableName<<"]. "<<reason<<std::endl;
+	context.console->logError("[LUA] Error: can't get [" + variableName + "]. " + reason);
 }
 
 std::vector<int> LuaScript::getIntVector(const std::string& name) {
