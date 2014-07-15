@@ -31,12 +31,12 @@
  </layer>
  <layer name="roof" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt1jEKgDAMBdBewcHJgo6OnsD7H0sL6mKLk63ge5CldPhQkjQEAAAAAAAAAAAAAAAAAAAAAABoq28dgJtxr6l1CPigGPQH/zQH+/pL1sJ5mlFDzSBk6ZW2cj2wFO7GN4NwKc2ltFvOf5W3qKt/qKQ7CgAAAAAAAAAAAAAAAAAAAADgzzZAEANG
+   eJzt1kEKgzAQBdBcoQtXFezSpSfo/Y/VDlhXCTaF0YLvwaySQPjDaEoBAAAAAAAAAAAAAAAAAAAAAIBzDWdf4CJ6cp7e9eg8Q59fstWPPN9mOxbzcQTz8V8i27n0ZawfeSLbZ2MtvlH3xhly1LLdy1s/ctVmYGnsHTMvwqbWkxD/ls+7Si+ONexUuK0FAAAAAAAAAAAAAAAAAAAAAHBlLwGxBGw=
   </data>
  </layer>
  <layer name="roof-shadow" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt1DsOgCAQQEEaiXew8RSW3v9Yln4aUJQtnEkIW74AISUAAAAAAAAAAAAAAAAAAAAAAIA2OToAOpqiA2jiv3pmiQ7gZI0O4BW5cuee0rnNh3n4sINdzVt2F32NhZUuMwAAAAAAAAAAAAAAAAAAAADAX21klwFA
+   eJzt1EEKwyAQBVA3kaRX6KanyLL3P1YQAi3dxEmZEPA9EF04In61FAAAAAAAAAAAAAAAAAAAAAAAYASPEzVL57x6Yu3RZeZBXCSP597LI4//6l5aHmuwxvvI0/J4B2vkkeef/6p29sQcndvrazwl7oOPnrssi2vNB638jAEAAAAAAAAAAAAAAAAAAAAARrUBc74BxQ==
   </data>
  </layer>
  <objectgroup name="images">
