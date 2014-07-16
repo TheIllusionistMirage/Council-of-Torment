@@ -101,8 +101,8 @@ item_5 = {
 	equipable = "False",
 	craftable = "False",
 	consumable = "False",
-	can_sell = "False"
-	can_drop = "True"
+	can_sell = "False",
+	can_drop = "True",
 	iconID = "2"
 }
 
@@ -141,3 +141,22 @@ item_7 = {
 	can_drop = "True",
 	iconID = "4"
 }
+
+----------------------------
+-- HANDFUL OF MUSHROOMS
+----------------------------
+item_8 = {
+	name = "Handful of Mushrooms",
+	description = "I found these shrooms right outside Gideon's tower. The old man once taught me that the most beautiful mushrooms are the most poisonous. If that's true, these are absolutely deadly.",
+	max_number = "25",
+	weight = "0.1",
+	value = "1",
+	category = "FOOD",
+	equipable = "False",
+	craftable = "False",
+	consumable = "False",
+	can_sell = "True",
+	can_drop = "True",
+	iconID = "10"
+}
+
