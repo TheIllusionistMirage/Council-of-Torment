@@ -429,6 +429,8 @@ void Inventory::addItem(ItemID id, unsigned int number)
 		properties["craftable"] = script.get<std::string>(stream.str() + ".craftable");
 		properties["consumable"] = script.get<std::string>(stream.str() + ".consumable");
 		properties["description"] = script.get<std::string>(stream.str() + ".description");
+		properties["can_sell"] = script.get<std::string>(stream.str() + ".description");
+		properties["can_drop"] = script.get<std::string>(stream.str() + ".description");
 
 		int iconID = std::stoi(script.get<std::string>(stream.str() + ".iconID"));
 		sf::IntRect rect {(iconID % 8) * 16, int(iconID / 8) * 16, 16, 16};
