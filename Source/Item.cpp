@@ -1,4 +1,5 @@
 #include "Item.h"
+#include "Console.h"
 
 Item::Item(State::Context context, sf::IntRect rect, sf::IntRect iconRect, int order, std::map<std::string, std::string> properties)
 : context(context)
@@ -100,7 +101,25 @@ void Item::updateDescriptionText()
 	if(std::stoi(properties["number"]) > 1) stream << "\t(" << std::stoi(properties["number"]) * std::stof(properties["weight"]) << " in total)\n";
 	else stream << "\n";
 
-	stream << "\n\"" << properties["description"] << "\"";
+	std::string desc = properties["description"];
+
+	for (int i = 0; i < desc.size(); i+= 36)
+	{
+		if (i == 0)
+			desc.insert(i, "\n ");
+		else
+			for (unsigned int start = i; start > 0; start--)
+			{
+				if (desc[start] == ' ')
+				{
+					desc.insert(start, "\n");
+					break;
+				}
+			}
+	}
+
+	stream << desc;
+
 	description.setString(stream.str());
 
 	descriptionBackground = sf::RectangleShape {{212, description.getLocalBounds().height + 6.0f}};

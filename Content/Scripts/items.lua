@@ -3,7 +3,7 @@
 ----------------------------
 item_0 = {
 	name = "Potion of Healing",
-	description = "The potion is releasing a bright red glow! It's warm on touch.",
+	description = "The potion is releasing a bright red glow! It's warm on touch. Made by scholars, this liquid is meant to temporarily replace the missing body fluids as my body recovers. ",
 	max_number = "5",
 	weight = "0.5",
 	value = "25",
@@ -19,7 +19,7 @@ item_0 = {
 ----------------------------
 item_1 = {
 	name = "Health Flask",
-	description = "This container holds more than a bottle.",
+	description = "This container holds more than a bottle; advanced alchemists have designed this sturdy bottle which packs light and allows more sips to be taken before it's depleted.",
 	max_number = "1",
 	weight = "1",
 	value = "50",
@@ -51,7 +51,7 @@ item_2 = {
 ----------------------------
 item_3 = {
 	name = "Dusty Tome",
-	description = "The letters on the title are all scratched. I can't read them",
+	description = "The letters on the title are all scratched. I can't read them...",
 	max_number = "1",
 	weight = "1",
 	value = "15",
@@ -67,7 +67,7 @@ item_3 = {
 ----------------------------
 item_4 = {
 	name = "Scroll of Fireball",
-	description = "This ragged old scroll can burn everything to fine crisp!",
+	description = "This ragged old scroll has some words written on it. If I chant these words and make the proper gesture, I'll be able to cast a fiery spell that will burn everything to a fine crisp!",
 	max_number = "25",
 	weight = "0.2",
 	value = "25",
@@ -83,7 +83,7 @@ item_4 = {
 ----------------------------
 item_5 = {
 	name = "Raw Salmon",
-	description = "The fish smells like the river. I could eat it raw!",
+	description = "It's not cooked, and it's starting to smell pretty bad as the scales are rubbing against my bag. I'd better cook it soon or it will go stale.",
 	max_number = "1",
 	weight = "1.5",
 	value = "5",
