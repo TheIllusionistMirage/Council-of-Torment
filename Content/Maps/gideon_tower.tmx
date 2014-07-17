@@ -21,22 +21,12 @@
  </layer>
  <layer name="object" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt1j0KwkAQBtC5QmqFWBlt/MGIFoKFF/PorkQxVibCmiDvwZAphmXYr8hGAAAAAAAAAAAAAAAAAAAAAABAXttU+w8z618sQiw7zh1SzTLuQWPXY3aRbQv6KkMeY3Bp9fLIr8sdnyKup+yb8HROVac7H3oPIlaRP4si5+F/Zt7q68d3E83btoz3N+70i/OLkEdfk1Z/z+cYzX+lilcmshiHaugFAAAAAAAAAAAAAAAAAAAAAABG5gY5UQe8
+   eJzt0TEKAkEMBdBcYWstrEQbRVyxWbDwYh7dARG221GI4+p7EEgRwieJAAAAAAAAAAAAAAAAAAAAAACAXIdSp4mZ/SeCENvKuXOpVWIOHo6tA8CMXUf9plmK/1Fz4yHiNqQn4elSqi83b52DiF3k/6LLXP5j1qO+n5hdvrG/C/941aJixi8AAAAAAAAAAAAAAAAAAAAAAPhGdy/BBas=
   </data>
  </layer>
  <layer name="shadow" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt09FqwkAQBdAhoFXB1jf9CF/FJ8FP76fVxYqrRNzdVgjmHBg2hBkS5rIRAAAAAAAAAAAAAAAAAAAAAMB/+DrVx5NaFfT0zVAnZfF59273e3ZZLaN+vy0zY5ZnsY1zDoeI7zifx11cs0lk8lqLwr4ue543fEcmZUrzyO9ISx5/mRuT0jxy8ngdeQyLPIZFHsNyyWNfMXPZ67TwTCan2lT/3fis43ZvSdfXmGnZqyzK9WXySO1e3Ys2KZPZk9oU9PTNAAAAAAAAAAAAAAAAAAAAAAC8mx8f0Abq
-  </data>
- </layer>
- <layer name="roof" width="100" height="100">
-  <data encoding="base64" compression="zlib">
-   eJzt1kEKgzAQBdBcoQtXFezSpSfo/Y/VDlhXCTaF0YLvwaySQPjDaEoBAAAAAAAAAAAAAAAAAAAAAIBzDWdf4CJ6cp7e9eg8Q59fstWPPN9mOxbzcQTz8V8i27n0ZawfeSLbZ2MtvlH3xhly1LLdy1s/ctVmYGnsHTMvwqbWkxD/ls+7Si+ONexUuK0FAAAAAAAAAAAAAAAAAAAAAHBlLwGxBGw=
-  </data>
- </layer>
- <layer name="roof-shadow" width="100" height="100">
-  <data encoding="base64" compression="zlib">
-   eJzt1EEKwyAQBVA3kaRX6KanyLL3P1YQAi3dxEmZEPA9EF04In61FAAAAAAAAAAAAAAAAAAAAAAAYASPEzVL57x6Yu3RZeZBXCSP597LI4//6l5aHmuwxvvI0/J4B2vkkeef/6p29sQcndvrazwl7oOPnrssi2vNB638jAEAAAAAAAAAAAAAAAAAAAAARrUBc74BxQ==
+   eJzt19FqwjAUBuCD4KaCbnf6EN6KNwp7dB9tBi1GKZhkE4r9PjiklBxazk+gjQAAAAAAAAAAAAAAAAAAAAAA/sPXuT6f1HfBnr4e6qQsVg/3dtd1ktUy6ufb0jNmeRbbuORwjDjFZf3ZxS2bRCavtSjcN8mu5w3PkUmZ0jzyM9KSx1/6xqQ0j5w8XkcewyKPYZHHsHR57Ct6url+FK7J9Fyb6rcbn3Xczy3Jv20PPT0tc5VFub5MkvQ/2P0bdmrn6ly0SZnMntSmYE9fDwAAAAAAAAAAAAAAAAAAAADAu/kFSPIIoA==
   </data>
  </layer>
  <objectgroup name="images">
@@ -49,7 +39,23 @@
   <object gid="29" x="1344" y="1728"/>
   <object gid="2" x="1344" y="1728"/>
   <object gid="46" x="1536" y="1536"/>
+  <object gid="38" x="1343.5" y="1743"/>
+  <object gid="62" x="1376" y="1728"/>
+  <object gid="31" x="1536" y="1568"/>
+  <object gid="47" x="1568" y="1536"/>
+  <object gid="55" x="1568" y="1568"/>
+  <object gid="38" x="1568.5" y="1517"/>
  </objectgroup>
+ <layer name="roof" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt1EEKgzAQBdBcwYWrCu3SE7js/Y9VBlwazIipgu9BCCQZCH9ISgEAAAAAAAAAAAAAAAAAAAAAgGuNV1/gITI5vw/UkHMkW/3opzXbaZ0/iRryvI97iWznkstYP/qJbL+VvfijXpUa+tjKNtaWZA3n2XoDNdP+EU7Q0hO9+J+xYYRhHQAAAAAAAAAAAAAAAAAAAAAAT/YD678D4Q==
+  </data>
+ </layer>
+ <layer name="roof-shadow" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt1DEKhDAQBdA0K7tewMJ7bOn9j6WChdiYUUaEvAdDUmRCyCcpBQAAAAAAAAAAAAAAAAAAAAAAaEF/oedXua67sHfrMvMgLpLHuI3yyOO/epc1j3+wx/vIs+YxBXvkkefOf9VVjsRE7u2Tdgr2ajKRxXOGpb4nVQ5zAAAAAAAAAAAAAAAAAAAAAIBWzZ+9Abw=
+  </data>
+ </layer>
  <objectgroup name="triggers">
   <object name="Baldric" type="player_spawn" gid="324" x="1376" y="1440">
    <properties>
@@ -162,6 +168,60 @@
    <polygon points="0,0 32,0 32,32 0,32"/>
   </object>
   <object x="1216" y="1632">
+   <polygon points="0,0 32,0 32,32 0,32"/>
+  </object>
+  <object x="1216" y="1664">
+   <polygon points="0,0 32,0 32,64 0,32"/>
+  </object>
+  <object x="1344" y="1728">
+   <polygon points="0,0 32,0 32,16 0,16"/>
+  </object>
+  <object x="1376" y="1712">
+   <polygon points="0,0 32,0 32,16 0,16"/>
+  </object>
+  <object x="1480" y="1488">
+   <polygon points="0,0 16,0 8,16 0,16"/>
+  </object>
+  <object x="1488" y="1480">
+   <polygon points="0,0 8,0 8,8 0,8"/>
+  </object>
+  <object x="1568" y="1616">
+   <polygon points="0,0 8,0 8,8 0,8"/>
+  </object>
+  <object x="1576" y="1608">
+   <polygon points="0,0 16,16 8,24 0,16"/>
+  </object>
+  <object x="1536" y="1504">
+   <polygon points="0,0 32,0 32,64 0,64"/>
+  </object>
+  <object x="1568" y="1568">
+   <polygon points="0,0 32,0 32,32 0,32"/>
+  </object>
+  <object x="1536" y="1440">
+   <polygon points="0,0 32,32 32,64 0,64"/>
+  </object>
+  <object x="1280" y="1408">
+   <polygon points="0,0 32,0 32,32 0,32"/>
+  </object>
+  <object x="1184" y="1504">
+   <polygon points="0,0 32,0 32,32 0,32"/>
+  </object>
+  <object x="1184" y="1696">
+   <polygon points="0,0 32,0 32,32 0,32"/>
+  </object>
+  <object x="1248" y="1760">
+   <polygon points="0,0 32,0 32,32 0,32"/>
+  </object>
+  <object x="1536" y="1760">
+   <polygon points="0,0 32,0 32,32 0,32"/>
+  </object>
+  <object x="1600" y="1696">
+   <polygon points="0,0 32,0 32,32 0,32"/>
+  </object>
+  <object x="1600" y="1472">
+   <polygon points="0,0 32,0 32,32 0,32"/>
+  </object>
+  <object x="1536" y="1408">
    <polygon points="0,0 32,0 32,32 0,32"/>
   </object>
  </objectgroup>
