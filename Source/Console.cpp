@@ -2,6 +2,9 @@
 #include "Game.h"
 #include "Humanoid.h"
 
+#include <algorithm>
+#include <string>
+
 /* ----------------------------------------------------------------------
  * Author: Julian
  * Date: 27 January 2014
@@ -540,6 +543,7 @@ void Console::logError(std::string text)
  */
 void Console::newCommand(std::string command, std::string values)
 {
+	std::transform(command.begin(), command.end(), command.begin(), ::tolower);
 	std::vector<std::string> valueList;
 	getValues(valueList, values, command);
 
