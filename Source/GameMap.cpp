@@ -1,7 +1,8 @@
-#include "GameMap.h"
-#include "Player.h"
-#include "Console.h"
 #include "LightManager.h"
+#include "LuaScript.h"
+#include "GameMap.h"
+#include "Console.h"
+#include "Player.h"
 
 #include <time.h>
 #include <stdlib.h>
@@ -235,26 +236,21 @@
 						}
 						else if (object->GetType() == "npc")
 						{
-							std::unique_ptr<Humanoid> h(new Humanoid(context, object->GetProperties().GetList()["file"]));
+							LuaScript script{ context, "Content/Scripts/npcs.lua" };
+							std::string luaKey = "npc_" + object->GetProperties().GetList()["id"];
 
-							h->setPosition(sf::Vector2f((float)object->GetX(), (float)object->GetY()-32));
-							h->setDefaultSpeed(stoi(object->GetProperties().GetList()["velocity"]));
-							h->setHealth(std::stoi(object->GetProperties().GetList()["health"]));
-							h->setMana(std::stoi(object->GetProperties().GetList()["mana"]));
-							
-							if (object->GetProperties().GetList().find("can_move") != object->GetProperties().GetList().end())
-							{
-								if (object->GetProperties().GetList()["can_move"] == "True")
-									h->setCanMove(true);
-								else
-									h->setCanMove(false);
-							}
+							std::unique_ptr<Humanoid> h(new Humanoid(context, script.get<std::string>(luaKey+".file")));
 
-							if (object->GetProperties().GetList().find("idle_animation") != object->GetProperties().GetList().end())
-								h->setIdleAnimation(std::stoi(object->GetProperties().GetList()["idle_animation"]));
+							h -> setPosition(sf::Vector2f((float)object->GetX(), (float)object->GetY() - 32));
+							h -> setDefaultSpeed(script.get<float>(luaKey+".velocity"));
+							h -> setName(script.get<std::string>(luaKey+".name"));
+							h -> setHealth(script.get<int>(luaKey+".health"));
+							h -> setMana(script.get<int>(luaKey + ".mana"));
+							h -> setIdleAnimation(script.get<int>(luaKey + ".idle_animation"));
+							h -> setCanMove(script.get<bool>(luaKey+".can_move"));
 
 							NPCs.insert(std::pair<std::string, std::unique_ptr<Humanoid>>(object->GetName(), std::move(h)));
-							context.console->logWarning("Inserted " + object->GetName() + " at " + std::to_string(object->GetX() / TILE_SIZE) + ":" + std::to_string((object->GetY()-32) / TILE_SIZE));
+							context.console->logWarning("Inserted NPC '" + script.get<std::string>(luaKey + ".name") + "' at " + std::to_string(object->GetX() / TILE_SIZE) + ":" + std::to_string((object->GetY() - 32) / TILE_SIZE));
 						}
 						else if(!object->GetType().empty())
 						{

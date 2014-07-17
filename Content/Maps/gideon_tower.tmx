@@ -99,6 +99,11 @@
     <property name="red" value="255"/>
    </properties>
   </object>
+  <object name="gideon" type="npc" gid="327" x="1280" y="1536">
+   <properties>
+    <property name="id" value="0"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="collision" visible="0">
   <object x="1408" y="1408">

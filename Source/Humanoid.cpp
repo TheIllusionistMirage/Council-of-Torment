@@ -35,7 +35,7 @@
 	, collisionBounds()
 	{
 		// Load the texture and set it to the sprite
-		bodyTexture = context.contentManager->loadTexture("Content/Textures/Humanoids/" + name + ".png");
+		bodyTexture = context.contentManager->loadTexture("Content/Textures/Humanoids/" + name);
 		bodySprite.setTexture(bodyTexture);
 		bodySprite.setPosition(xPos * TILE_SIZE, yPos * TILE_SIZE / 2);
 		bodySprite.setTextureRect(sf::IntRect(frameX * TILE_SIZE, frameY * TILE_SIZE, TILE_SIZE, TILE_SIZE));
@@ -583,4 +583,26 @@
 		else {
 			return properties[key];
 		}
+	}
+
+/* ----------------------------------------------------------------------
+* Author: Octav
+* Date: 17th July 2014
+* Description: Sets the name of the humanoid entity
+* ----------------------------------------------------------------------
+*/
+	void Humanoid::setName(std::string n)
+	{
+		name = n;
+	}
+
+/* ----------------------------------------------------------------------
+* Author: Octav
+* Date: 17th July 2014
+* Description: Gets the name of the humanoid entity
+* ----------------------------------------------------------------------
+*/
+	std::string Humanoid::getName()
+	{
+		return name;
 	}

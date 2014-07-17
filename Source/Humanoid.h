@@ -57,12 +57,14 @@ class Humanoid
 		virtual void setPosition(sf::Vector2f position);
 		virtual void setHealth(int health);
 		virtual void setDefaultSpeed(int speed);
+		virtual void setName(std::string n);
 		virtual void setMana(int mana);
 		virtual void setSpeed(int speed);
 		virtual void setCanMove(bool flag);
 		virtual void setProperty(std::string key, bool value);
 
 		virtual bool cantTrigger() const { return noTrigger; }
+		virtual std::string getName();
 		virtual sf::Vector2f getPosition() const;
 		virtual sf::Vector2f getRelativePosition() const;
 		virtual sf::IntRect getTextureRext() const;
