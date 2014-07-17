@@ -21,7 +21,7 @@
  </layer>
  <layer name="object" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt1r0KwjAUBtD7Cp0V6mR18QcrOggOvpiPbqSKdbIVYoucA5fcIYRLviGJAAAAAAAAAAAAAAAAAAAAAACAvLap9h/2rH8xCLHsuO+QapZxDhq7jvtWqRY5B6GXMuQxBpdWL4/8utzxKeJ6yj4JT+dUdbrzoeegeadzZ1HkPPzPzFt9/Vg30fxty3j/406/OL8IefQ1afX3fI7RvCtVvDKRxThUQw8AAAAAAAAAAAAAAAAAAAAAADAyN/kDB+o=
+   eJzt1j0KwkAQBtC5QmqFWBlt/MGIFoKFF/PorkQxVibCmiDvwZAphmXYr8hGAAAAAAAAAAAAAAAAAAAAAABAXttU+w8z618sQiw7zh1SzTLuQWPXY3aRbQv6KkMeY3Bp9fLIr8sdnyKup+yb8HROVac7H3oPIlaRP4si5+F/Zt7q68d3E83btoz3N+70i/OLkEdfk1Z/z+cYzX+lilcmshiHaugFAAAAAAAAAAAAAAAAAAAAAABG5gY5UQe8
   </data>
  </layer>
  <layer name="shadow" width="100" height="100">
@@ -48,6 +48,7 @@
   <object gid="2" x="1504" y="1504"/>
   <object gid="29" x="1344" y="1728"/>
   <object gid="2" x="1344" y="1728"/>
+  <object gid="46" x="1536" y="1536"/>
  </objectgroup>
  <objectgroup name="triggers">
   <object name="Baldric" type="player_spawn" gid="324" x="1376" y="1440">
@@ -93,7 +94,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="collision" visible="0">
+ <objectgroup name="collision">
   <object x="1408" y="1408">
    <polygon points="0,0 32,0 32,32"/>
   </object>
@@ -158,6 +159,9 @@
    <polygon points="0,0 32,0 32,32 0,32"/>
   </object>
   <object x="1248" y="1632">
+   <polygon points="0,0 32,0 32,32 0,32"/>
+  </object>
+  <object x="1216" y="1632">
    <polygon points="0,0 32,0 32,32 0,32"/>
   </object>
  </objectgroup>

@@ -157,6 +157,6 @@ item_8 = {
 	consumable = "False",
 	can_sell = "True",
 	can_drop = "True",
-	iconID = "10"
+	iconID = "9"
 }
 
