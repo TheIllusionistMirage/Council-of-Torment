@@ -242,7 +242,7 @@
 							std::unique_ptr<Humanoid> h(new Humanoid(context, script.get<std::string>(luaKey+".file")));
 
 							h -> setPosition(sf::Vector2f((float)object->GetX(), (float)object->GetY() - 32));
-							h -> setDefaultSpeed(script.get<float>(luaKey+".velocity"));
+							h -> setDefaultSpeed(script.get<int>(luaKey+".velocity"));
 							h -> setName(script.get<std::string>(luaKey+".name"));
 							h -> setHealth(script.get<int>(luaKey+".health"));
 							h -> setMana(script.get<int>(luaKey + ".mana"));
