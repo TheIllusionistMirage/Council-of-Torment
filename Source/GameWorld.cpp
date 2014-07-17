@@ -76,7 +76,8 @@ void GameWorld::render()
 	for (auto&& x : imageLayerReference)
 	{
 		if (x.getPosition().y <= context.player->getPosition().y)
-			context.window->draw(x);
+			if (isOnScreen(x, context.player->getCamera()))
+				context.window->draw(x);
 	}
 
 	// Render the player
@@ -86,7 +87,8 @@ void GameWorld::render()
 	for (auto&& x : imageLayerReference)
 	{
 		if (x.getPosition().y > context.player->getPosition().y)
-			context.window->draw(x);
+			if (isOnScreen(x, context.player->getCamera()))
+				context.window->draw(x);
 	}
 
 	// Render the humanoids
