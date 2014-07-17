@@ -74,25 +74,29 @@ void GameWorld::render()
 	std::vector<sf::Sprite>& imageLayerReference = context.gameMap -> getImageLayer();
 
 	for (auto&& x : imageLayerReference)
-	{
 		if (x.getPosition().y <= context.player->getPosition().y)
 			if (isOnScreen(x, context.player->getCamera()))
 				context.window->draw(x);
-	}
 
-	// Render the player
+	for (auto&& npc : context.gameMap->getNPCs())
+		if (npc.second->getSprite().getPosition().y <= context.player->getPosition().y)
+			if (isOnScreen(npc.second->getSprite(), context.player->getCamera()))
+				npc.second->render();
+
+	// Render the player ---------------------------------------
 	if(Game::currentState == States::GAME)
 		context.player->render();
+	// Render the player ---------------------------------------
+
+	for (auto&& npc : context.gameMap->getNPCs())
+		if (npc.second->getSprite().getPosition().y > context.player->getPosition().y)
+			if (isOnScreen(npc.second->getSprite(), context.player->getCamera()))
+				npc.second->render();
 
 	for (auto&& x : imageLayerReference)
-	{
 		if (x.getPosition().y > context.player->getPosition().y)
 			if (isOnScreen(x, context.player->getCamera()))
 				context.window->draw(x);
-	}
-
-	// Render the humanoids
-	context.gameMap->renderNPCs();
 
 	context.gameMap->render("roof");
 	context.gameMap->render("roof2");

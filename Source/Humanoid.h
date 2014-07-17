@@ -68,6 +68,7 @@ class Humanoid
 		virtual sf::Vector2f getPosition() const;
 		virtual sf::Vector2f getRelativePosition() const;
 		virtual sf::IntRect getTextureRext() const;
+		virtual sf::Sprite& getSprite();
 		virtual sf::FloatRect getCollisionBounds() const { return collisionBounds; }
 		virtual bool getProperty(std::string key);
 

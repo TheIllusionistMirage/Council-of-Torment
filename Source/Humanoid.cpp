@@ -606,3 +606,14 @@
 	{
 		return name;
 	}
+
+/* ----------------------------------------------------------------------
+* Author: Octav
+* Date: 17th July 2014
+* Description: Gets the sprite of the humanoid entity
+* ----------------------------------------------------------------------
+*/
+	sf::Sprite& Humanoid::getSprite()
+	{
+		return bodySprite;
+	}
