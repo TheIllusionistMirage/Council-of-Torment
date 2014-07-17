@@ -100,7 +100,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="collision">
+ <objectgroup name="collision" visible="0">
   <object x="1408" y="1408">
    <polygon points="0,0 32,0 32,32"/>
   </object>
