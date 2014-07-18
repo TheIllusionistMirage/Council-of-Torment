@@ -48,12 +48,8 @@ Inventory::Inventory(State::Context context)
 	inventoryBackground = sf::RectangleShape(sf::Vector2f(214.0f, 463.0f));
 	inventoryBackground.setFillColor(sf::Color(20, 20, 20));
 
-	addItem(HEALTH_POTION, 2);
-	addItem(HEALTH_FLASK, 2);
-	addItem(DUSTY_TOME);
-	addItem(SCROLL_OF_FIREBALL);
-	addItem(RAW_SALMON);
-	addItem(RUSTY_BLADE);
+	for(int i = 0; i != ITEM_ID_COUNT; ++i)
+		addItem(static_cast<ItemID>(i));
 }
 
 void Inventory::update(sf::Time elapsedTime)
