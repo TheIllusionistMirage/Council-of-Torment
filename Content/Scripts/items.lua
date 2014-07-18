@@ -13,7 +13,7 @@ item_0 = {
 	consumable = "True",
 	can_sell = "True",
 	can_drop = "True",
-	recipe = {1, 1, 2, 1, 8, 7, 1, 4},
+	recipe = {},
 	result_count = "1",
 	iconID = "0"
 }

@@ -15,12 +15,15 @@ enum Category
 
 enum ItemID
 {
-	HEALING_POTION,
+	HEALTH_POTION,
+	MANA_POTION,
 	HEALTH_FLASK,
+	MANA_FLASK,
 	RUSTY_BLADE,
 	DUSTY_TOME,
 	SCROLL_OF_FIREBALL,
 	RAW_SALMON,
+	HANDFUL_MUSHROOMS,
 	ITEM_ID_COUNT
 };
 
@@ -35,7 +38,7 @@ class Item
 		void setPosition(sf::Vector2f pos);
 		void setDescribed(bool newDescribed) { described = newDescribed; }
 		void setOrder(int newOrder) {order = newOrder;}
-		void setColor(const sf::Color& newColor);
+		void setColor(const sf::Color& newColor, bool craft);
 		void updateDescriptionText();
 
 		const int& getOrder() const {return order;}
@@ -61,5 +64,6 @@ class Item
 		int order;
 		bool increaseScale;
 		bool equipped;
+		bool craftItem;
 		bool described;
 };

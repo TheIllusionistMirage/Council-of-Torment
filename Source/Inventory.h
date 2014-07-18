@@ -14,14 +14,16 @@ class Inventory
 		const bool& isOpen() const {return open;}
 		void handleEvent(const sf::Event& windowEvent);
 		void addItem(ItemID id, unsigned int number = 1);
+		void craft(std::vector<Item> ingredients, ItemID id, unsigned int number = 1);
 
-		bool checkIfIngredientAvailable(const std::pair<int, int>& ingredient);
+		bool checkIfIngredientAvailable(std::pair<int, int> ingredient);
 		bool checkIfRecipeComplete(const std::vector<int>& ingredients);
 
 	private:
 		void changeOrder(float yPos);
 		void moveInventory(sf::Time elapsedTime);
 		void equipItem(std::vector<std::unique_ptr<Item>>& itemList);
+		void updateOrder(std::vector<std::unique_ptr<Item>>& itemList, int order);
 
 	private:
 		State::Context context;

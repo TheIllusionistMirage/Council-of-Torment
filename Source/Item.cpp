@@ -9,6 +9,7 @@ Item::Item(State::Context context, sf::IntRect rect, sf::IntRect iconRect, int o
 , scaleFactor {2.5f}
 , equipped(false)
 , described {false}
+, craftItem {false}
 , increaseScale {false}
 , itemIconShape {{32, 32}}
 , item(context.contentManager->getTexture(Textures::ITEMS), rect)
@@ -66,13 +67,14 @@ void Item::update(sf::Time elapsedTime)
 void Item::render()
 {
 	context.window->draw(item);
-	context.window->draw(line);
 	context.window->draw(name);
+	if(!craftItem)
+		context.window->draw(line);
 
 	if(equipped)
 		context.window->draw(equipShape);
 
-	if(std::stoi(properties["number"]) > 1)
+	if((!craftItem && std::stoi(properties["number"]) > 1) || craftItem)
 	{
 		std::stringstream stream;
 		stream << "x" << std::stoi(properties["number"]);
@@ -147,8 +149,9 @@ void Item::equip()
 		this->properties["equipped"] = "False";
 }
 
-void Item::setColor(const sf::Color& newColor)
+void Item::setColor(const sf::Color& newColor, bool craft)
 {
+	craftItem = craft;
 	color = newColor;
 	item.setColor(color);
 	name.setColor(color);

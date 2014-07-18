@@ -48,18 +48,19 @@ Inventory::Inventory(State::Context context)
 	inventoryBackground = sf::RectangleShape(sf::Vector2f(214.0f, 463.0f));
 	inventoryBackground.setFillColor(sf::Color(20, 20, 20));
 
-	addItem(HEALING_POTION, 2);
+	addItem(HEALTH_POTION, 2);
 	addItem(HEALTH_FLASK, 2);
 	addItem(DUSTY_TOME);
 	addItem(SCROLL_OF_FIREBALL);
 	addItem(RAW_SALMON);
 	addItem(RUSTY_BLADE);
-
-	context.crafting->openCrafting(true);
 }
 
 void Inventory::update(sf::Time elapsedTime)
 {
+	// Update the crafting menu
+	context.crafting->update(elapsedTime);
+
 	sf::Vector2f mousePos(sf::Mouse::getPosition(*context.window));
 
 	if(moving)
@@ -245,9 +246,6 @@ void Inventory::update(sf::Time elapsedTime)
 	mousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
 	rightMouseButton = sf::Mouse::isButtonPressed(sf::Mouse::Right);
 	oldMousePos = mousePos;
-
-	// TEST
-	context.crafting->update(elapsedTime);
 }
 
 void Inventory::render()
@@ -256,7 +254,7 @@ void Inventory::render()
 	sf::View camera = context.window->getView();
 	context.window->setView(context.window->getDefaultView());
 
-	// TEST
+	// Render the crafting menu
 	context.crafting->render();
 
 	// Render the inventory
@@ -281,7 +279,8 @@ void Inventory::render()
 
 const bool Inventory::isMouseInside() const
 {
-	return inventory.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(*context.window)));
+	sf::FloatRect rect {inventory.getPosition().x + 10.0f, inventory.getPosition().y, inventory.getLocalBounds().width, inventory.getLocalBounds().height};
+	return rect.contains(sf::Vector2f(sf::Mouse::getPosition(*context.window)));
 }
 
 void Inventory::updateInventoryPosition()
@@ -378,16 +377,21 @@ void Inventory::changeOrder(float yPos)
 	}
 }
 
-bool Inventory::checkIfIngredientAvailable(const std::pair<int, int>& ingredient)
+bool Inventory::checkIfIngredientAvailable(std::pair<int, int> ingredient)
 {
 	bool available {false};
 
 	for(auto& item : itemList[ALL])
 	{
-		if(std::stoi(item->getProperties()["id"]) == ingredient.first && std::stoi(item->getProperties()["number"]) >= ingredient.second)
+		if(std::stoi(item->getProperties()["id"]) == ingredient.first)
 		{
-			available = true;
-			break;
+			ingredient.second -= std::stoi(item->getProperties()["number"]);
+
+			if(ingredient.second <= 0)
+			{
+				available = true;
+				break;
+			}
 		}
 	}
 
@@ -426,6 +430,81 @@ bool Inventory::checkIfRecipeComplete(const std::vector<int>& ingredients)
 		if(!i) complete = false;
 
 	return complete;
+}
+
+void Inventory::craft(std::vector<Item> ingredients, ItemID id, unsigned int number)
+{
+	// Remove the ingredients from the inventory
+	for(auto& ingredient : ingredients)
+	{
+		int ingredientAmount {std::stoi(ingredient.getProperties()["number"])};
+		while(ingredientAmount > 0)
+		{
+			for(auto iter = std::begin(itemList[ALL]); iter != std::end(itemList[ALL]);)
+			{
+				//std::cout << (*iter)->getProperties()["category"] << std::endl;
+				if(std::stoi((*iter)->getProperties()["id"]) == std::stoi(ingredient.getProperties()["id"]))
+				{
+					int amount = std::stoi((*iter)->getProperties()["number"]);
+					float itemWeight = std::stof((*iter)->getProperties()["weight"]);
+
+					if(amount - ingredientAmount <= 0)
+					{
+						for(auto iter2 = std::begin(itemList[toCategory((*iter)->getProperties()["category"])]); iter2 != std::end(itemList[toCategory((*iter)->getProperties()["category"])]);)
+						{
+							if(std::stoi((*iter2)->getProperties()["id"]) == std::stoi(ingredient.getProperties()["id"]))
+							{
+								updateOrder(itemList[toCategory((*iter)->getProperties()["category"])], (*iter2)->getOrder());
+								iter2 = itemList[toCategory((*iter)->getProperties()["category"])].erase(iter2);
+								break;
+							}
+							else
+								++iter2;
+						}
+
+						updateOrder(itemList[ALL], (*iter)->getOrder());
+						iter = itemList[ALL].erase(iter);
+					}
+					else
+					{
+						std::stringstream stream;
+						stream << std::stoi((*iter)->getProperties()["number"]) - ingredientAmount;
+						(*iter)->getProperties()["number"] = stream.str();
+						for(auto iter2 = std::begin(itemList[toCategory((*iter)->getProperties()["category"])]); iter2 != std::end(itemList[toCategory((*iter)->getProperties()["category"])]);)
+						{
+							if(std::stoi((*iter2)->getProperties()["id"]) == std::stoi(ingredient.getProperties()["id"]))
+							{
+								(*iter2)->getProperties()["number"] = stream.str();
+								break;
+							}
+							else
+								++iter2;
+						}
+						++iter;
+					}
+
+					// Decrease the ammount and weight
+					ingredientAmount -= amount;
+					weight -= itemWeight * amount;
+
+					if(ingredientAmount <= 0)
+						break;
+				}
+				else
+					++iter;
+			}
+		}
+	}
+
+	// Add the crafted item to the inventory
+	addItem(id, number);
+}
+
+void Inventory::updateOrder(std::vector<std::unique_ptr<Item>>& itemList, int order)
+{
+	for(auto& item : itemList)
+		if(item->getOrder() > order)
+			item->setOrder(item->getOrder() - 1);
 }
 
 void Inventory::addItem(ItemID id, unsigned int number)
@@ -491,7 +570,7 @@ void Inventory::addItem(ItemID id, unsigned int number)
 		properties["can_sell"] = script.get<std::string>(stream.str() + ".description");
 		properties["can_drop"] = script.get<std::string>(stream.str() + ".description");
 
-		if(properties["craftable"] == "True")
+		if(!context.crafting->hasRecipe(std::stoi(properties["id"])) && properties["craftable"] == "True")
 			context.crafting->addRecipe(stream.str(), id);
 
 		int iconID = std::stoi(script.get<std::string>(stream.str() + ".iconID"));
@@ -521,4 +600,5 @@ void Inventory::addItem(ItemID id, unsigned int number)
 		context.console->logWarning("Inventory is full!");
 
 	itemList[category][describedIndex]->updateDescriptionText();
+	context.crafting->updateRecipes();
 }
