@@ -13,6 +13,8 @@ item_0 = {
 	consumable = "True",
 	can_sell = "True",
 	can_drop = "True",
+	recipe = {1, 1, 2, 1, 8, 7, 1, 4},
+	result_count = "1",
 	iconID = "0"
 }
 
@@ -31,6 +33,8 @@ item_1 = {
 	consumable = "True",
 	can_sell = "True",
 	can_drop = "True",
+	recipe = {},
+	result_count = "1",
 	iconID = "0"
 }
 
@@ -49,6 +53,8 @@ item_2 = {
 	consumable = "True",
 	can_sell = "True",
 	can_drop = "True",
+	recipe = {},
+	result_count = "1",
 	iconID = "1"
 }
 
@@ -67,6 +73,8 @@ item_3 = {
 	consumable = "True",
 	can_sell = "True",
 	can_drop = "True",
+	recipe = {},
+	result_count = "1",
 	iconID = "1"
 }
 
@@ -85,6 +93,8 @@ item_4 = {
 	consumable = "False",
 	can_sell = "True",
 	can_drop = "True",
+	recipe = {},
+	result_count = "1",
 	iconID = "7"
 }
 
@@ -121,6 +131,8 @@ item_6 = {
 	consumable = "False",
 	can_sell = "True",
 	can_drop = "True",
+	recipe = {},
+	result_count = "1",
 	iconID = "3"
 }
 

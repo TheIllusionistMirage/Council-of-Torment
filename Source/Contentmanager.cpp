@@ -29,6 +29,7 @@
 		loadTexture(Textures::SCROLL_UP, "Content/Textures/GUI/scroll_up.png");
 		loadTexture(Textures::SCROLL_DOWN, "Content/Textures/GUI/scroll_down.png");
 		loadTexture(Textures::ICON_ITEMS, "Content/Textures/GUI/icon_items.png");
+		loadTexture(Textures::CRAFTING_WINDOW, "Content/Textures/GUI/crafting_window.png");
 
 		// Load the tilesets
 		std::string name;

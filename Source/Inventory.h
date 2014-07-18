@@ -15,6 +15,9 @@ class Inventory
 		void handleEvent(const sf::Event& windowEvent);
 		void addItem(ItemID id, unsigned int number = 1);
 
+		bool checkIfIngredientAvailable(const std::pair<int, int>& ingredient);
+		bool checkIfRecipeComplete(const std::vector<int>& ingredients);
+
 	private:
 		void changeOrder(float yPos);
 		void moveInventory(sf::Time elapsedTime);

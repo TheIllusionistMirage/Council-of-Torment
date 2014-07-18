@@ -11,6 +11,7 @@ class EffectManager;
 class LightManager;
 class StateStack;
 class GlobalTime;
+class Crafting;
 class GameMap;
 class Console;
 class Player;
@@ -26,12 +27,13 @@ class State
 		struct Context
 		{
 			Context(sf::RenderWindow& window, ContentManager& contentManager, EffectManager& effectManager, LightManager& lightManager,
-					Player& player, GameMap& gameMap, Console& console, GlobalTime& globalTime);
+					Player& player, GameMap& gameMap, Console& console, Crafting& crafting, GlobalTime& globalTime);
 			sf::RenderWindow* window;
 			LightManager* lightManager;
 			EffectManager* effectManager;
 			ContentManager* contentManager;
 			GlobalTime* globalTime;
+			Crafting* crafting;
 			GameMap* gameMap;
 			Console* console;
 			Player* player;

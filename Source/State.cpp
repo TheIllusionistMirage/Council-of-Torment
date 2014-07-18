@@ -8,11 +8,12 @@
  * ----------------------------------------------------------------------
  */
 State::Context::Context(sf::RenderWindow& window, ContentManager& contentManager, EffectManager& effectManager, LightManager& lightManager,
-						Player& player, GameMap& gameMap, Console& console, GlobalTime& globalTime)
+						Player& player, GameMap& gameMap, Console& console, Crafting& crafting, GlobalTime& globalTime)
 : window(&window)
 , player(&player)
 , gameMap(&gameMap)
 , console(&console)
+, crafting(&crafting)
 , globalTime(&globalTime)
 , lightManager(&lightManager)
 , effectManager(&effectManager)

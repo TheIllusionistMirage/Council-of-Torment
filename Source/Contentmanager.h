@@ -26,7 +26,8 @@ namespace Textures
 		FISHERMAN,
 		SCROLL_UP,
 		SCROLL_DOWN,
-		ICON_ITEMS
+		ICON_ITEMS,
+		CRAFTING_WINDOW
 	};
 }
 

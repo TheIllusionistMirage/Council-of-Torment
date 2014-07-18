@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "GameMap.h"
 #include "Console.h"
+#include "Crafting.h"
 #include "GlobalTime.h"
 #include "StateStack.h"
 #include "LightManager.h"
@@ -48,6 +49,7 @@ class Game
 		EffectManager effectManager;
 		ContentManager contentManager;
 		GlobalTime globalTime;
+		Crafting crafting;
 		Console console;
 		GameMap gameMap;
 		GameMap menuMap;

@@ -35,6 +35,7 @@ class Item
 		void setPosition(sf::Vector2f pos);
 		void setDescribed(bool newDescribed) { described = newDescribed; }
 		void setOrder(int newOrder) {order = newOrder;}
+		void setColor(const sf::Color& newColor);
 		void updateDescriptionText();
 
 		const int& getOrder() const {return order;}
@@ -50,6 +51,7 @@ class Item
 		sf::Sprite itemIcon;
 		sf::Sprite item;
 		sf::Text name;
+		sf::Color color;
 		sf::Text description;
 		sf::RectangleShape equipShape;
 		sf::RectangleShape itemIconShape;

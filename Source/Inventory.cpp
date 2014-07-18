@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Console.h"
 #include "LuaScript.h"
+#include "Crafting.h"
 #include <algorithm>
 
 bool operator < (const std::unique_ptr<Item>& left, const std::unique_ptr<Item>& right)
@@ -48,11 +49,13 @@ Inventory::Inventory(State::Context context)
 	inventoryBackground.setFillColor(sf::Color(20, 20, 20));
 
 	addItem(HEALING_POTION, 2);
-	addItem(HEALTH_FLASK);
+	addItem(HEALTH_FLASK, 2);
 	addItem(DUSTY_TOME);
 	addItem(SCROLL_OF_FIREBALL);
 	addItem(RAW_SALMON);
 	addItem(RUSTY_BLADE);
+
+	context.crafting->openCrafting(true);
 }
 
 void Inventory::update(sf::Time elapsedTime)
@@ -242,6 +245,9 @@ void Inventory::update(sf::Time elapsedTime)
 	mousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
 	rightMouseButton = sf::Mouse::isButtonPressed(sf::Mouse::Right);
 	oldMousePos = mousePos;
+
+	// TEST
+	context.crafting->update(elapsedTime);
 }
 
 void Inventory::render()
@@ -249,6 +255,9 @@ void Inventory::render()
 	// Save the camera and set the default view
 	sf::View camera = context.window->getView();
 	context.window->setView(context.window->getDefaultView());
+
+	// TEST
+	context.crafting->render();
 
 	// Render the inventory
 	context.window->draw(inventoryBackground);
@@ -369,6 +378,56 @@ void Inventory::changeOrder(float yPos)
 	}
 }
 
+bool Inventory::checkIfIngredientAvailable(const std::pair<int, int>& ingredient)
+{
+	bool available {false};
+
+	for(auto& item : itemList[ALL])
+	{
+		if(std::stoi(item->getProperties()["id"]) == ingredient.first && std::stoi(item->getProperties()["number"]) >= ingredient.second)
+		{
+			available = true;
+			break;
+		}
+	}
+
+	return available;
+}
+
+bool Inventory::checkIfRecipeComplete(const std::vector<int>& ingredients)
+{
+	bool complete {true};
+	
+	std::vector<bool> available(ingredients.size());
+	for(auto& i : available)
+		i = false;
+
+	// Create temp properties, to be able to change values without restoring them
+	std::vector<std::map<std::string, std::string>> tempProperties;
+	for(auto& item : itemList[ALL])
+		tempProperties.push_back(item->getProperties());
+
+	for(size_t i {0}; i != ingredients.size(); ++i)
+	{
+		for(auto& item : tempProperties)
+		{
+			if(std::stoi(item["id"]) == ingredients[i] && std::stoi(item["number"]) != 0)
+			{
+				available[i] = true;
+				std::stringstream stream;
+				stream << std::stoi(item["number"]) - 1;
+				item["number"] = stream.str();
+				break;
+			}
+		}
+	}
+
+	for(auto& i : available)
+		if(!i) complete = false;
+
+	return complete;
+}
+
 void Inventory::addItem(ItemID id, unsigned int number)
 {
 	std::map<std::string, std::string> properties;
@@ -431,6 +490,9 @@ void Inventory::addItem(ItemID id, unsigned int number)
 		properties["description"] = script.get<std::string>(stream.str() + ".description");
 		properties["can_sell"] = script.get<std::string>(stream.str() + ".description");
 		properties["can_drop"] = script.get<std::string>(stream.str() + ".description");
+
+		if(properties["craftable"] == "True")
+			context.crafting->addRecipe(stream.str(), id);
 
 		int iconID = std::stoi(script.get<std::string>(stream.str() + ".iconID"));
 		sf::IntRect rect {(iconID % 8) * 16, int(iconID / 8) * 16, 16, 16};

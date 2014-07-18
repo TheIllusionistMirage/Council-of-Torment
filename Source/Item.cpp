@@ -15,6 +15,7 @@ Item::Item(State::Context context, sf::IntRect rect, sf::IntRect iconRect, int o
 , itemIcon(context.contentManager->getTexture(Textures::ICON_ITEMS), iconRect)
 , description {properties["description"], context.contentManager->getFont(Fonts::SEGOEUI), 12}
 , name(properties["name"], context.contentManager->getFont(Fonts::SEGOEUI), 12)
+, color {sf::Color::White}
 {
 	this->properties["equipped"] = "False";
 
@@ -77,6 +78,7 @@ void Item::render()
 		stream << "x" << std::stoi(properties["number"]);
 		sf::Text number {stream.str(), context.contentManager->getFont(Fonts::SEGOEUI), 12};
 		number.setPosition(name.getPosition() + sf::Vector2f(190.0f - number.getLocalBounds().width, 0.0f));
+		number.setColor(color);
 		context.window->draw(number);
 	}
 
@@ -143,4 +145,14 @@ void Item::equip()
 		this->properties["equipped"] = "True";
 	else
 		this->properties["equipped"] = "False";
+}
+
+void Item::setColor(const sf::Color& newColor)
+{
+	color = newColor;
+	item.setColor(color);
+	name.setColor(color);
+
+	line[0].color = sf::Color(150, 150, 150);
+	line[1].color = sf::Color(150, 150, 150);
 }
