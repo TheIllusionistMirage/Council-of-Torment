@@ -1,5 +1,6 @@
 #pragma once
 
+#include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/CircleShape.hpp>
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/Graphics/Sprite.hpp>
@@ -59,6 +60,7 @@ namespace EffectTrigger
 std::string toString(sf::Keyboard::Key key);
 
 void centerOrigin(sf::CircleShape& circleShape);
+void centerOrigin(sf::RectangleShape& rectangleShape);
 void centerOrigin(sf::Sprite& sprite);
 void centerOrigin(sf::Text& text);
 

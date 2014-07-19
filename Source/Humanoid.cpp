@@ -1,7 +1,10 @@
 #include "Humanoid.h"
-#include "GameMap.h"
+#include "LuaScript.h"
 #include "MapLayer.h"
+#include "GameMap.h"
 #include "Console.h"
+#include "Player.h"
+
 #include <string>
 #include <map>
 
@@ -31,8 +34,10 @@
 	, frameY(currentAnimation)
 	, isMoving(false)
 	, playOnce(false)
+	, dialogueMode(false)
 	, poisonTimer(3.0f)
 	, collisionBounds()
+	, currentLine("line_1")
 	{
 		// Load the texture and set it to the sprite
 		bodyTexture = context.contentManager->loadTexture("Content/Textures/Humanoids/" + name);
@@ -156,6 +161,11 @@
 			}
 		}
 
+		overheadText.setPosition(sf::Vector2f(bodySprite.getPosition().x, bodySprite.getPosition().y));
+
+		if (collisionBounds.intersects(context.player->getCollisionBounds()))
+			startDialogue();
+
 		// Update the texture rect
 		bodySprite.setTextureRect(sf::IntRect(frameX * TILE_SIZE, frameY * TILE_SIZE, TILE_SIZE, TILE_SIZE));
 
@@ -189,6 +199,12 @@
 
 		// Restore the position
 		bodySprite.setPosition(position);
+
+		if (dialogueMode == true)
+		{
+			context.window->draw(overheadText.getRect());
+			context.window->draw(overheadText.getText());
+		}
 	}
 
 /* ----------------------------------------------------------------------
@@ -616,4 +632,30 @@
 	sf::Sprite& Humanoid::getSprite()
 	{
 		return bodySprite;
+	}
+
+/* ----------------------------------------------------------------------
+* Author: Octav
+* Date: 18th July 2014
+* Description: Starts the dialogue mode
+* ----------------------------------------------------------------------
+*/
+	void Humanoid::setDialogueFile(std::string filename)
+	{
+		dialogueFile = filename;
+	}
+
+/* ----------------------------------------------------------------------
+* Author: Octav
+* Date: 18th July 2014
+* Description: Starts the dialogue mode
+* ----------------------------------------------------------------------
+*/
+	void Humanoid::startDialogue()
+	{
+		LuaScript script(context, "Content/Dialogues/gideon_initial.lua");
+		overheadText.setText(script.get<std::string>(currentLine+".words"));
+
+		dialogueMode = true;
+		context.player->setCanMove(false);
 	}

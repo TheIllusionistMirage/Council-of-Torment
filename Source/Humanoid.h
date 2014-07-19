@@ -1,10 +1,14 @@
 #pragma once
 
+#include "DialogueBox.h"
 #include "State.h"
+
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Text.hpp>
+#include <SFML/Graphics/Font.hpp>
 #include <SFML/Window/Event.hpp>
 #include <map>
 
@@ -62,6 +66,8 @@ class Humanoid
 		virtual void setSpeed(int speed);
 		virtual void setCanMove(bool flag);
 		virtual void setProperty(std::string key, bool value);
+		virtual void setDialogueFile(std::string filename);
+		virtual void startDialogue();
 
 		virtual bool cantTrigger() const { return noTrigger; }
 		virtual std::string getName();
@@ -73,6 +79,7 @@ class Humanoid
 		virtual bool getProperty(std::string key);
 
 	protected:
+		DialogueBox overheadText;
 		State::Context context;
 		sf::Sprite bodySprite;
 		sf::Texture bodyTexture;
@@ -81,6 +88,8 @@ class Humanoid
 		sf::FloatRect collisionBounds;
 		sf::Vector2f targetPos;
 		std::string name;
+		std::string dialogueFile;
+		std::string currentLine;
 
 		float defaultFrameTime;
 		float timer;
@@ -88,6 +97,7 @@ class Humanoid
 		bool isMoving;
 		bool playOnce;
 		bool noTrigger;
+		bool dialogueMode;
 		int velocity;
 		int health;
 		int mana;

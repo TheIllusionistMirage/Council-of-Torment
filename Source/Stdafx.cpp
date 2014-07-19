@@ -148,6 +148,13 @@ void centerOrigin(sf::CircleShape& circleShape)
 	circleShape.setOrigin(float(int(bounds.width / 2.0f)), float(int(bounds.height / 2.0f)));
 }
 
+void centerOrigin(sf::RectangleShape& rectangleShape)
+{
+	// Center the origin of a circle shape
+	sf::FloatRect bounds = rectangleShape.getLocalBounds();
+	rectangleShape.setOrigin(float(int(bounds.width / 2.0f)), float(int(bounds.height / 2.0f)));
+}
+
 /* ----------------------------------------------------------------------
  * Author: Julian
  * Date: 19 January 2014

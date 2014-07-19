@@ -248,6 +248,7 @@
 							h -> setMana(script.get<int>(luaKey + ".mana"));
 							h -> setIdleAnimation(script.get<int>(luaKey + ".idle_animation"));
 							h -> setCanMove(script.get<bool>(luaKey+".can_move"));
+							h -> setDialogueFile(object->GetProperties().GetList()["dialogue"]);
 
 							NPCs.insert(std::pair<std::string, std::unique_ptr<Humanoid>>(object->GetName(), std::move(h)));
 							context.console->logWarning("Inserted NPC '" + script.get<std::string>(luaKey + ".name") + "' at " + std::to_string(object->GetX() / TILE_SIZE) + ":" + std::to_string((object->GetY() - 32) / TILE_SIZE));
