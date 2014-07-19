@@ -1,10 +1,14 @@
 #pragma once
 
-#include "Inventory.h"
 #include "ArmorManager.h"
+#include "DialogueBox.h"
+#include "Inventory.h"
 #include "GUI/Label.h"
+
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Text.hpp>
+#include <SFML/Graphics/Font.hpp>
 #include <SFML/Window/Event.hpp>
 #include <map>
 
@@ -61,6 +65,7 @@ class Player : public Humanoid
 		sf::View camera;
 		std::map<sf::Keyboard::Key, Action> keyBindings;
 		std::map<sf::String, std::unique_ptr<GUI::Label>> statsLabels;
+		std::map<sf::String, DialogueBox> dialogueReplies;
 
 		int hunger;
 		int thirst;
