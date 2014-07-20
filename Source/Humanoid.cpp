@@ -48,9 +48,10 @@
 		bodySprite.setTextureRect(sf::IntRect(frameX * TILE_SIZE, frameY * TILE_SIZE, TILE_SIZE, TILE_SIZE));
 		targetPos = bodySprite.getPosition();
 
-		overheadText.setFontSize(5);
+		overheadText.setFontSize(12);
 		overheadText.setSidePadding(1);
 		overheadText.setTopPadding(1);
+		//overheadText.getText().scale(0.2f, 0.2f);
 
 		// Set some default properties
 		properties["hasOneHandedWeapon"] = false;
@@ -79,7 +80,14 @@
 		collisionBounds = sf::FloatRect(targetPos.x + xDistance, targetPos.y + yDistance, TILE_SIZE - 2 * xDistance, TILE_SIZE - yDistance);
 
 		// Update Dialogues
-		overheadText.setPosition(sf::Vector2f(bodySprite.getPosition().x+16, bodySprite.getPosition().y - 5));
+		sf::Vector2f p(bodySprite.getPosition().x - (context.player->getCamera().getCenter().x - context.window->getDefaultView().getSize().x / 2),
+			bodySprite.getPosition().y - (context.player->getCamera().getCenter().y - context.window->getDefaultView().getSize().y / 2));
+		
+
+		overheadText.setPosition(p);
+		//std::cout << overheadText.getPosition().x << std::endl;
+		//context.console->logWarning(std::to_string(bodySprite.getPosition().x));
+		context.console->logWarning(std::to_string(p.x));
 
 		if (context.player->getCollisionBounds().intersects(collisionBounds) && 
 			dialogueMode == false && 
@@ -98,9 +106,9 @@
 		// Check if player is out of range
 		float x = bodySprite.getPosition().x - context.player->getPosition().x;
 		float y = bodySprite.getPosition().y - context.player->getPosition().y;
-		int maximumDistance = 100;
+		int maximumDistance = 50;
 
-		if(dialogueMode && sqrt(x*x + y*y) > maximumDistance)
+		if(dialogueMode && sqrt(x*x + y*y) > maximumDistance && context.player -> isMoving)
 		{
 			context.player->setProperty("isInDialogue", false);
 			dialogueMode = false;
@@ -244,8 +252,10 @@
 		// Restore the position
 		bodySprite.setPosition(position);
 
-		if (dialogueMode == true)
-			overheadText.render();
+		context.window->setView(context.window->getDefaultView());
+			if (dialogueMode == true)
+				overheadText.render();
+		context.window->setView(context.player->getCamera());
 
 		// ENABLE TO SEE THE COLLISION RECTANGLE
 		/*sf::RectangleShape shape;

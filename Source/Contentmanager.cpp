@@ -52,6 +52,7 @@
 		loadFont(Fonts::FRENCH_GROTESQUE, "Content/Fonts/french_grotesque.ttf");
 		loadFont(Fonts::CLOISTER_BLACK, "Content/Fonts/cloister_black.ttf");
 		loadFont(Fonts::SEGOEUI, "Content/Fonts/segoeui.ttf");
+		loadFont(Fonts::ARIAL, "Content/Fonts/arial.ttf");
 
 		// Load the shaders
 		loadShader(Shaders::MENU, "Content/Shaders/menu.frag", sf::Shader::Fragment);

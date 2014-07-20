@@ -45,7 +45,7 @@ Console::Console(State::Context context)
 	line[1].color = sf::Color(51, 51, 51);
 
 	// Creates the standard texts for the console!
-	sf::Text tempText("", context.contentManager->getFont(Fonts::SEGOEUI), characterSize);
+	sf::Text tempText("", context.contentManager->getFont(Fonts::ARIAL), characterSize);
 	tempText.setPosition(sf::Vector2f(consoleWindow.getPosition().x + 20, consoleWindow.getPosition().y + consoleWindow.getSize().y - characterSize - 6));
 	consoleTextList.push_back(tempText);
 

@@ -53,6 +53,7 @@ namespace Fonts
 {
 	enum ID
 	{
+		ARIAL,
 		FRENCH_GROTESQUE,
 		CLOISTER_BLACK,
 		SEGOEUI
