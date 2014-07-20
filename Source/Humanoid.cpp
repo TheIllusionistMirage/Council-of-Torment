@@ -96,8 +96,8 @@
 			}
 
 		// Check if player is out of range
-		int x = bodySprite.getPosition().x - context.player->getPosition().x;
-		int y = bodySprite.getPosition().y - context.player->getPosition().y;
+		float x = bodySprite.getPosition().x - context.player->getPosition().x;
+		float y = bodySprite.getPosition().y - context.player->getPosition().y;
 		int maximumDistance = 100;
 
 		if(dialogueMode && sqrt(x*x + y*y) > maximumDistance)
@@ -729,7 +729,7 @@
 
 			context.player->flushDialogues();
 
-			for (unsigned int i = 1; i <= optionCount; i++)
+			for (int i = 1; i <= optionCount; ++i)
 			{
 				DialogueBox optionBox(context, "t");
 
@@ -742,7 +742,7 @@
 				optionBox.setExecution(script.get<std::string>(currentLine + ".options.option" + std::to_string(i) + ".next_line"));
 
 				if (i == 1)
-					optionBox.setPosition(sf::Vector2f(context.window->getSize().x / 2, context.window->getSize().y / 1.5));
+					optionBox.setPosition(sf::Vector2f(context.window->getSize().x / 2.0f, context.window->getSize().y / 1.5f));
 				else
 				{
 					sf::Vector2f exPos = context.player->getDialogueReplyList()[i - 1].getPosition();

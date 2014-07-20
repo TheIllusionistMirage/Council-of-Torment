@@ -30,8 +30,8 @@
 		text.setString(t);
 	
 
-		int width = text.getGlobalBounds().width + sidePadding * 2;
-		int height = text.getGlobalBounds().height + topPadding * 2;
+		float width = text.getGlobalBounds().width + sidePadding * 2;
+		float height = text.getGlobalBounds().height + topPadding * 2;
 
 		rect.setFillColor(rectColor);
 		rect.setSize(sf::Vector2f(width, height));
@@ -64,8 +64,8 @@
 	{
 		text.setString(t);
 
-		int width = text.getGlobalBounds().width + sidePadding*2;
-		int height = text.getGlobalBounds().height + topPadding*2;
+		float width = text.getGlobalBounds().width + sidePadding*2;
+		float height = text.getGlobalBounds().height + topPadding*2;
 
 		rect.setSize(sf::Vector2f(width, height));
 
@@ -83,8 +83,8 @@
 	{
 		text.setString(t);
 
-		int width = size + sidePadding * 2;
-		int height = fontSize + topPadding * 2;
+		float width = size + sidePadding * 2.0f;
+		float height = fontSize + topPadding * 2.0f;
 
 		rect.setSize(sf::Vector2f(width, height));
 
