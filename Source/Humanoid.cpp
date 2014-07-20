@@ -96,11 +96,11 @@
 			}
 
 		// Check if player is out of range
-		int x = abs(context.player -> getPosition().x - bodySprite.getPosition().x);
-		int y = abs(context.player -> getPosition().y - bodySprite.getPosition().y);
+		int x = bodySprite.getPosition().x - context.player->getPosition().x;
+		int y = bodySprite.getPosition().y - context.player->getPosition().y;
 		int maximumDistance = 100;
 
-		if (x >= maximumDistance || y >= maximumDistance)
+		if(dialogueMode && sqrt(x*x + y*y) > maximumDistance)
 		{
 			context.player->setProperty("isInDialogue", false);
 			dialogueMode = false;
