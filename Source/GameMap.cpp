@@ -241,6 +241,7 @@
 
 							std::unique_ptr<Humanoid> h(new Humanoid(context, script.get<std::string>(luaKey+".file")));
 
+							h -> key = object->GetName();
 							h -> setPosition(sf::Vector2f((float)object->GetX(), (float)object->GetY() - 32));
 							h -> setDefaultSpeed(script.get<int>(luaKey+".velocity"));
 							h -> setName(script.get<std::string>(luaKey+".name"));
@@ -249,7 +250,13 @@
 							h -> setIdleAnimation(script.get<int>(luaKey + ".idle_animation"));
 							h -> setCanMove(script.get<bool>(luaKey+".can_move"));
 							h -> setDialogueFile(object->GetProperties().GetList()["dialogue"]);
-							h -> key = object->GetName();
+							h -> setProperty("ignoresCollision", script.get<bool>(luaKey+".ignores_collision"));
+							h -> setProperty("aggressive", script.get<bool>(luaKey + ".aggressive"));
+							h -> setProperty("isPoisoned", script.get<bool>(luaKey + ".isPoisoned"));
+							h -> setProperty("invincible", script.get<bool>(luaKey + ".invincible"));
+							h -> setProperty("canMove", script.get<bool>(luaKey + ".can_move"));
+							h -> setProperty("visible", script.get<bool>(luaKey + ".visible"));
+							h -> setProperty("hasDialogue", script.get<bool>(luaKey + ".has_dialogue"));
 
 							NPCs.insert(std::pair<std::string, std::unique_ptr<Humanoid>>(object->GetName(), std::move(h)));
 							context.console->logWarning("Inserted NPC '" + script.get<std::string>(luaKey + ".name") + "' at " + std::to_string(object->GetX() / TILE_SIZE) + ":" + std::to_string((object->GetY() - 32) / TILE_SIZE));

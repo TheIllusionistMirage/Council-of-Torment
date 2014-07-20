@@ -9,5 +9,11 @@ npc_0 = {
 	mana = 100,
 	can_move = true,
 	idle_animation = 1,
-	walk_animation = 2
+	walk_animation = 2,
+	has_dialogue = true,
+	ignores_collision = false,
+	aggressive = false,
+	isPoisoned = false,
+	invincible = true,
+	visible = true
 }

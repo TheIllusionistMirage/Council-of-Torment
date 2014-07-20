@@ -17,8 +17,8 @@ class DialogueBox
 		DialogueBox(State::Context context) : context(context) {}
 		DialogueBox(State::Context context, const std::string t);
 
-		void setSidePadding(int p)			{ sidePadding = p;							}	
-		void setTopPadding(int p)			{ topPadding = p;							}
+		void setSidePadding(int p)			{ sidePadding = p; rect.setSize(sf::Vector2f(text.getGlobalBounds().width + sidePadding * 2, rect.getSize().y)); }
+		void setTopPadding(int p)			{ topPadding = p; rect.setSize(sf::Vector2f(rect.getSize().x, text.getGlobalBounds().height + topPadding * 2)); }
 		void setFontSize(int x)				{ fontSize = x; text.setCharacterSize(x);	}
 		void setRectColor(sf::Color c)		{ rectColor = c; rect.setFillColor(c);		}
 		void setTextColor(sf::Color c)		{ textColor = c; text.setColor(c);			}

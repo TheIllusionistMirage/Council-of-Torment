@@ -51,7 +51,7 @@
 		pos = p;
 
 		rect.setPosition(pos);
-		text.setPosition(pos.x, pos.y-2);
+		text.setPosition(pos.x, pos.y-1);
 	}
 
 /* ----------------------------------------------------------------------
@@ -137,7 +137,6 @@
 					if (execute == "none")
 					{
 						context.player->setProperty("isInDialogue", false);
-						context.player->setCanMove(true);
 						context.gameMap->getNPCs()[context.player->getTargetNPC()]->setDialogueMode(false);
 					}
 					else

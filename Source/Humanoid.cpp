@@ -38,7 +38,7 @@
 	, poisonTimer(3.0f)
 	, collisionBounds()
 	, currentLine("line_1")
-	, overheadText(context, "null")
+	, overheadText(context, "")
 	{
 		// Load the texture and set it to the sprite
 		bodyTexture = context.contentManager->loadTexture("Content/Textures/Humanoids/" + name);
@@ -47,8 +47,9 @@
 		bodySprite.setTextureRect(sf::IntRect(frameX * TILE_SIZE, frameY * TILE_SIZE, TILE_SIZE, TILE_SIZE));
 		targetPos = bodySprite.getPosition();
 
-		overheadText.setFontSize(7);
-		overheadText.setSidePadding(2);
+		overheadText.setFontSize(5);
+		overheadText.setSidePadding(1);
+		overheadText.setTopPadding(1);
 
 		// Set some default properties
 		properties["hasOneHandedWeapon"] = false;
@@ -61,6 +62,7 @@
 		properties["canMove"] = true;
 		properties["visible"] = true;
 		properties["isPlayer"] = false;
+		properties["hasDialogue"] = false;
 	}
 
 /* ----------------------------------------------------------------------
@@ -71,17 +73,21 @@
 */
 	void Humanoid::updateNoPlayer(sf::Time elapsedTime)
 	{
-		if (context.player->getCollisionBounds().intersects(bodySprite.getGlobalBounds()) && dialogueMode == false && context.player->isMoving)
-		{
-			context.player->setProperty("isInDialogue", true);
-			context.player->setTargetNPC(key);
-			context.player->setCanMove(false);
+		overheadText.setPosition(sf::Vector2f(bodySprite.getPosition().x+16, bodySprite.getPosition().y - 5));
 
-			dialogueMode = true;
+		if (context.player->getCollisionBounds().intersects(bodySprite.getGlobalBounds()) && 
+			dialogueMode == false && 
+			context.player->isMoving &&
+			properties["hasDialogue"] == true)
+			{
+				context.player->setProperty("isInDialogue", true);
+				context.player->setTargetNPC(key);
+
+				dialogueMode = true;
 
 
-			sayLine("line_1");
-		}
+				sayLine("line_1");
+			}
 	}
 
 /* ----------------------------------------------------------------------
@@ -186,8 +192,6 @@
 				frameX = 0;
 			}
 		}
-
-		overheadText.setPosition(sf::Vector2f(bodySprite.getPosition().x, bodySprite.getPosition().y));
 
 		// Update the texture rect
 		bodySprite.setTextureRect(sf::IntRect(frameX * TILE_SIZE, frameY * TILE_SIZE, TILE_SIZE, TILE_SIZE));
@@ -686,7 +690,22 @@
 			currentLine = lineID;
 
 			LuaScript script(context, "Content/Dialogues/" + dialogueFile);
-			overheadText.setText(script.get<std::string>(currentLine + ".words"));
+			std::string headText = script.get<std::string>(currentLine + ".words");
+
+			for (size_t i = 0; i < headText.size(); i += 34)
+			{
+				for (unsigned int start = i; start > 0; start--)
+				{
+					if (headText[start] == ' ')
+					{
+						headText.insert(start, "\n");
+						break;
+					}
+				}
+			}
+
+			overheadText.setText(headText);
+			overheadText.setPosition(sf::Vector2f(bodySprite.getPosition().x, bodySprite.getPosition().y-overheadText.getText().getGlobalBounds().height));
 
 			int lineCount = script.get<int>("number_of_lines");
 			int optionCount = script.get<int>(currentLine + ".options.count");
