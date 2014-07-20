@@ -1,4 +1,10 @@
+#include <SFML/Graphics/RenderWindow.hpp>
+
+#include "Player.h"
 #include "DialogueBox.h"
+#include "LuaScript.h"
+#include "GameMap.h"
+#include "Console.h"
 #include "Stdafx.h"
 
 /* ----------------------------------------------------------------------
@@ -7,38 +13,31 @@
 * Description: Constructor for a Dialogue Box
 * ----------------------------------------------------------------------
 */
-	DialogueBox::DialogueBox(sf::String t) 
-	: fontSize(12)
-	, sidePadding(20)
-	, topPadding(5)
-	, rectColor(0,0,0,100)
-	, textColor(255,255,255)
+	DialogueBox::DialogueBox(State::Context context, const std::string t)
+	: context(context)
+	, fontSize(11)
+	, sidePadding(3)
+	, topPadding(2)
+	, rectColor(0,0,0,150)
+	, textColor(sf::Color::White)
 	{
-		font.loadFromFile("Content/Fonts/calibri.ttf");
+		font.loadFromFile("Content/Fonts/arial.ttf");
 
+		text.setPosition(sf::Vector2f(0, 0));
 		text.setCharacterSize(fontSize);
 		text.setColor(textColor);
-		text.setFont(font);
+		text.setFont(context.contentManager->getFont(Fonts::SEGOEUI));
 		text.setString(t);
 	
-		centerOrigin(text);
-		centerOrigin(rect);
 
-		int width = fontSize * text.getString().getSize() + sidePadding * 2;
-		int height = fontSize + topPadding * 2;
+		int width = text.getGlobalBounds().width + sidePadding * 2;
+		int height = text.getGlobalBounds().height + topPadding * 2;
 
 		rect.setFillColor(rectColor);
 		rect.setSize(sf::Vector2f(width, height));
-	}
 
-/* ----------------------------------------------------------------------
-* Author: Octav
-* Date: 18 July 2014
-* Description: Destructor for a Dialogue Box
-* ----------------------------------------------------------------------
-*/
-	DialogueBox::~DialogueBox()
-	{
+		centerOrigin(text);
+		centerOrigin(rect);
 	}
 
 /* ----------------------------------------------------------------------
@@ -51,20 +50,97 @@
 	{
 		pos = p;
 
-		text.setPosition(pos);
 		rect.setPosition(pos);
+		text.setPosition(pos.x, pos.y-2);
 	}
 
 /* ----------------------------------------------------------------------
 * Author: Octav
 * Date: 18 July 2014
-* Description: Updates the size of the element
+* Description: Sets the text
 * ----------------------------------------------------------------------
 */
-	void DialogueBox::updateDimensions()
+	void DialogueBox::setText(std::string t)
 	{
-		int width = fontSize * text.getString().getSize() + sidePadding * 2;
+		text.setString(t);
+
+		int width = text.getGlobalBounds().width + sidePadding*2;
+		int height = text.getGlobalBounds().height + topPadding*2;
+
+		rect.setSize(sf::Vector2f(width, height));
+
+		centerOrigin(text);
+		centerOrigin(rect);
+	}
+
+/* ----------------------------------------------------------------------
+* Author: Octav
+* Date: 18 July 2014
+* Description: Sets the text
+* ----------------------------------------------------------------------
+*/
+	void DialogueBox::setText(std::string t, int size)
+	{
+		text.setString(t);
+
+		int width = size + sidePadding * 2;
 		int height = fontSize + topPadding * 2;
 
 		rect.setSize(sf::Vector2f(width, height));
+
+		centerOrigin(text);
+		centerOrigin(rect);
+	}
+
+/* ----------------------------------------------------------------------
+* Author: Octav
+* Date: 18 July 2014
+* Description: Renders the dialogueBox
+* ----------------------------------------------------------------------
+*/
+	void DialogueBox::render()
+	{
+		context.window -> draw(rect);
+		context.window -> draw(text);
+	}
+
+/* ----------------------------------------------------------------------
+* Author: Octav
+* Date: 18 July 2014
+* Description: Handles the input
+* ----------------------------------------------------------------------
+*/
+	void DialogueBox::handleEvents(const sf::Event& e)
+	{
+		sf::Vector2i mousePos = sf::Mouse::getPosition(*context.window);
+		sf::FloatRect bounds = rect.getGlobalBounds();
+
+		if (e.type == sf::Event::MouseMoved)
+		{
+			if (bounds.contains(static_cast<sf::Vector2f>(mousePos)))
+			{
+				rect.setFillColor(sf::Color::White);
+				text.setColor(sf::Color::Black);
+			}
+
+			else
+			{
+				rect.setFillColor(rectColor);
+				text.setColor(textColor);
+			}
+		}
+
+		if (e.type == sf::Event::MouseButtonPressed &&
+			sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) &&
+			bounds.contains(static_cast<sf::Vector2f>(mousePos)))
+			{
+					if (execute == "none")
+					{
+						context.player->setProperty("isInDialogue", false);
+						context.player->setCanMove(true);
+						context.gameMap->getNPCs()[context.player->getTargetNPC()]->setDialogueMode(false);
+					}
+					else
+						context.gameMap -> getNPCs()[context.player->getTargetNPC()]->sayLine(execute);
+			}
 	}

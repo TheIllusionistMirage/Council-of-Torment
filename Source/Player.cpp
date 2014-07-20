@@ -26,6 +26,8 @@
 		keyBindings[sf::Keyboard::S] = MOVE_DOWN;
 
 		properties["hideGUI"] = false;
+		properties["isInDialogue"] = false;
+		properties["isPlayer"] = true;
 
 		std::unique_ptr<GUI::Label> l(new GUI::Label("test", context.contentManager->getFont(Fonts::SEGOEUI), sf::Vector2f(25,25)));
 		l->setPosition(25, 25);
@@ -137,6 +139,10 @@
 		{
 			for (auto&& i : statsLabels)
 				context.window->draw(*i.second);
+
+			if (properties["isInDialogue"])
+				for (auto&& i : dialogueReplies)
+					i.second.render();
 		}
 
 		context.window->setView(context.player->getCamera());
@@ -252,6 +258,11 @@
 
 		// Pass the other events to the inventory
 		inventory.handleEvent(windowEvent);
+
+		// Pass the events to the dialogueBox
+		if (properties["isInDialogue"])
+			for (auto&& i : dialogueReplies)
+				i.second.handleEvents(windowEvent);
 	}
 
 /* ----------------------------------------------------------------------
@@ -378,7 +389,47 @@
  * Description: returns the destination trigger name
  * ----------------------------------------------------------------------
  */
-	std::string Player::getDstinationLevel()
+	std::string Player::getDestinationLevel()
 	{
 		return destinationLevel;
+	}
+
+/* ----------------------------------------------------------------------
+* Author: Octav
+* Date: 19 July 2014
+* Description: returns the dialogue reply list
+* ----------------------------------------------------------------------
+*/
+	std::map<int, DialogueBox>& Player::getDialogueReplyList()
+	{
+		return dialogueReplies;
+	}
+
+/* ----------------------------------------------------------------------
+* Author: Octav
+* Date: 19 July 2014
+* Description: Inserts a new dialogue reply
+* ----------------------------------------------------------------------
+*/
+	void Player::insertDialogueLine(int id, DialogueBox b)
+	{
+		dialogueReplies.insert(std::make_pair(id, b));
+	}
+
+/* ----------------------------------------------------------------------
+* Author: Octav
+* Date: 19 July 2014
+* Description: Empties the replies
+* ----------------------------------------------------------------------
+*/
+	void Player::flushDialogues()
+	{
+		std::map<int, DialogueBox>::iterator itr = dialogueReplies.begin();
+		++itr;
+
+		while (itr != dialogueReplies.end()) {
+			std::map<int, DialogueBox>::iterator toErase = itr;
+			++itr;
+			dialogueReplies.erase(toErase);
+		}
 	}

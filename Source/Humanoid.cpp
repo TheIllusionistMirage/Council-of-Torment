@@ -38,6 +38,7 @@
 	, poisonTimer(3.0f)
 	, collisionBounds()
 	, currentLine("line_1")
+	, overheadText(context, "null")
 	{
 		// Load the texture and set it to the sprite
 		bodyTexture = context.contentManager->loadTexture("Content/Textures/Humanoids/" + name);
@@ -45,6 +46,9 @@
 		bodySprite.setPosition(xPos * TILE_SIZE, yPos * TILE_SIZE / 2);
 		bodySprite.setTextureRect(sf::IntRect(frameX * TILE_SIZE, frameY * TILE_SIZE, TILE_SIZE, TILE_SIZE));
 		targetPos = bodySprite.getPosition();
+
+		overheadText.setFontSize(7);
+		overheadText.setSidePadding(2);
 
 		// Set some default properties
 		properties["hasOneHandedWeapon"] = false;
@@ -56,6 +60,28 @@
 		properties["hasShield"] = false;
 		properties["canMove"] = true;
 		properties["visible"] = true;
+		properties["isPlayer"] = false;
+	}
+
+/* ----------------------------------------------------------------------
+* Author: Octav
+* Date: 19 July 2014
+* Description: Updates the humanoid but this code doesn't apply to the player
+* ----------------------------------------------------------------------
+*/
+	void Humanoid::updateNoPlayer(sf::Time elapsedTime)
+	{
+		if (context.player->getCollisionBounds().intersects(bodySprite.getGlobalBounds()) && dialogueMode == false && context.player->isMoving)
+		{
+			context.player->setProperty("isInDialogue", true);
+			context.player->setTargetNPC(key);
+			context.player->setCanMove(false);
+
+			dialogueMode = true;
+
+
+			sayLine("line_1");
+		}
 	}
 
 /* ----------------------------------------------------------------------
@@ -163,9 +189,6 @@
 
 		overheadText.setPosition(sf::Vector2f(bodySprite.getPosition().x, bodySprite.getPosition().y));
 
-		if (collisionBounds.intersects(context.player->getCollisionBounds()))
-			startDialogue();
-
 		// Update the texture rect
 		bodySprite.setTextureRect(sf::IntRect(frameX * TILE_SIZE, frameY * TILE_SIZE, TILE_SIZE, TILE_SIZE));
 
@@ -195,16 +218,21 @@
 
 		// Render the humanoid
 		if (properties["visible"] == true)
-		context.window->draw(bodySprite);
+			context.window->draw(bodySprite);
 
 		// Restore the position
 		bodySprite.setPosition(position);
 
 		if (dialogueMode == true)
-		{
-			context.window->draw(overheadText.getRect());
-			context.window->draw(overheadText.getText());
-		}
+			overheadText.render();
+
+		// ENABLE TO SEE THE COLLISION RECTANGLE
+		/*sf::RectangleShape shape;
+		shape.setFillColor(sf::Color::Green);
+		shape.setPosition(collisionBounds.left, collisionBounds.top);
+		shape.setSize(sf::Vector2f(collisionBounds.width, collisionBounds.height));
+
+		context.window->draw(shape);*/
 	}
 
 /* ----------------------------------------------------------------------
@@ -648,14 +676,47 @@
 /* ----------------------------------------------------------------------
 * Author: Octav
 * Date: 18th July 2014
-* Description: Starts the dialogue mode
+* Description: Says a certain line
 * ----------------------------------------------------------------------
 */
-	void Humanoid::startDialogue()
+	void Humanoid::sayLine(std::string lineID)
 	{
-		LuaScript script(context, "Content/Dialogues/gideon_initial.lua");
-		overheadText.setText(script.get<std::string>(currentLine+".words"));
+		if (dialogueMode)
+		{
+			currentLine = lineID;
 
-		dialogueMode = true;
-		context.player->setCanMove(false);
+			LuaScript script(context, "Content/Dialogues/" + dialogueFile);
+			overheadText.setText(script.get<std::string>(currentLine + ".words"));
+
+			int lineCount = script.get<int>("number_of_lines");
+			int optionCount = script.get<int>(currentLine + ".options.count");
+
+			context.player->flushDialogues();
+
+			for (unsigned int i = 1; i <= optionCount; i++)
+			{
+				DialogueBox optionBox(context, "t");
+
+				optionBox.id = i;
+				optionBox.setFontSize(13);
+				optionBox.setSidePadding(10);
+				optionBox.setTopPadding(7);
+				optionBox.setText(script.get<std::string>(currentLine + ".options.option" + std::to_string(i) + ".text"), 250);
+				optionBox.setTextColor(sf::Color::White);
+				optionBox.setExecution(script.get<std::string>(currentLine + ".options.option" + std::to_string(i) + ".next_line"));
+
+				if (i == 1)
+					optionBox.setPosition(sf::Vector2f(context.window->getSize().x / 2, context.window->getSize().y / 1.5));
+				else
+				{
+					sf::Vector2f exPos = context.player->getDialogueReplyList()[i - 1].getPosition();
+					optionBox.setPosition(sf::Vector2f(exPos.x, exPos.y + optionBox.getFontSize() + optionBox.getTopPadding() * 2 + 2));
+				}
+
+				if (optionBox.getText().getString() == "Good-Bye." || optionBox.getText().getString() == "Goodbye.")
+					optionBox.setTextColor(sf::Color(199, 44, 5));
+
+				context.player->getDialogueReplyList()[i] = optionBox;
+			}
+		}
 	}

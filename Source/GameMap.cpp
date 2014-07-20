@@ -187,7 +187,7 @@
 							context.player->setPosition(spawnLocation.x, spawnLocation.y - 1.0f);
 						}
 						else if(object -> GetType() == "level_change" && 
-								object -> GetName() == context.player->getDstinationLevel())
+								object -> GetName() == context.player->getDestinationLevel())
 								{
 									// Spawn location of the player
 									spawnLocation.x = float(object->GetX() / TILE_SIZE);
@@ -249,6 +249,7 @@
 							h -> setIdleAnimation(script.get<int>(luaKey + ".idle_animation"));
 							h -> setCanMove(script.get<bool>(luaKey+".can_move"));
 							h -> setDialogueFile(object->GetProperties().GetList()["dialogue"]);
+							h -> key = object->GetName();
 
 							NPCs.insert(std::pair<std::string, std::unique_ptr<Humanoid>>(object->GetName(), std::move(h)));
 							context.console->logWarning("Inserted NPC '" + script.get<std::string>(luaKey + ".name") + "' at " + std::to_string(object->GetX() / TILE_SIZE) + ":" + std::to_string((object->GetY() - 32) / TILE_SIZE));
@@ -418,6 +419,9 @@
 
 		for(auto&& anim : animationMap)
 			anim->update(elapsedTime);
+
+		for (auto&& i : NPCs)
+			i.second->updateNoPlayer(elapsedTime);
 	}
 
 /* ----------------------------------------------------------------------

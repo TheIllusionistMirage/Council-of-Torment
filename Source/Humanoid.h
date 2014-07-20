@@ -1,7 +1,7 @@
 #pragma once
 
-#include "DialogueBox.h"
 #include "State.h"
+#include "DialogueBox.h"
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
@@ -49,6 +49,7 @@ class Humanoid
 	public:
 		Humanoid(State::Context context, std::string entName, float xPos = 0.0f, float yPos = 0.0f);
 
+		virtual void updateNoPlayer(sf::Time elapsedTime);
 		virtual void update(sf::Time elapsedTime);
 		virtual void move(int direction, int squares);
 		virtual void move(int direction, sf::Time elapsedTime);
@@ -67,8 +68,10 @@ class Humanoid
 		virtual void setCanMove(bool flag);
 		virtual void setProperty(std::string key, bool value);
 		virtual void setDialogueFile(std::string filename);
-		virtual void startDialogue();
+		virtual void sayLine(std::string lineID);
 
+		virtual void setDialogueMode(bool state) { dialogueMode = state; }
+		virtual std::string getDialogueFile() { return dialogueFile; }
 		virtual bool cantTrigger() const { return noTrigger; }
 		virtual std::string getName();
 		virtual sf::Vector2f getPosition() const;
@@ -77,6 +80,8 @@ class Humanoid
 		virtual sf::Sprite& getSprite();
 		virtual sf::FloatRect getCollisionBounds() const { return collisionBounds; }
 		virtual bool getProperty(std::string key);
+
+		std::string key; // the key that points to this humanoid in the gameMap
 
 	protected:
 		DialogueBox overheadText;

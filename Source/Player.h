@@ -42,16 +42,21 @@ class Player : public Humanoid
 		void renderCollisionShapes();
 		void handleEvent(const sf::Event& windowEvent);
 
-		void changeSprite(std::string fileName);
 		void assignKey(Action action, sf::Keyboard::Key key);
-		void toggleChangingState();
+		void insertDialogueLine(int id, DialogueBox b);
 		void setDestinationLevelExit(std::string s);
+		void changeSprite(std::string fileName);
+		void toggleChangingState();
+		void flushDialogues();
 
 		bool isAbleToMove();
-		bool showCollision() { return collision; }
-		void showCollision(bool show) { collision = show; }
-		std::string getDstinationLevel();
+		bool showCollision()				{ return collision; }
+		void showCollision(bool show)		{ collision = show; }
+		void setTargetNPC(std::string s)	{ targetNPC = s;	}
+		std::string getTargetNPC()			{ return targetNPC; }
+		std::string getDestinationLevel();
 		sf::Keyboard::Key getAssignedKey(Action action) const;
+		std::map<int, DialogueBox>& getDialogueReplyList();
 		Inventory& getInventory();
 		sf::View& getCamera();
 
@@ -65,7 +70,8 @@ class Player : public Humanoid
 		sf::View camera;
 		std::map<sf::Keyboard::Key, Action> keyBindings;
 		std::map<sf::String, std::unique_ptr<GUI::Label>> statsLabels;
-		std::map<sf::String, DialogueBox> dialogueReplies;
+		std::map<int, DialogueBox> dialogueReplies;
+		std::string targetNPC;
 
 		int hunger;
 		int thirst;
