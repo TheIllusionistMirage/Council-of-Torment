@@ -6,6 +6,7 @@
 #include "Player.h"
 
 #include <string>
+#include <math.h>
 #include <map>
 
 /* ----------------------------------------------------------------------
@@ -73,9 +74,14 @@
 */
 	void Humanoid::updateNoPlayer(sf::Time elapsedTime)
 	{
+		float xDistance = 5;
+		float yDistance = 25;
+		collisionBounds = sf::FloatRect(targetPos.x + xDistance, targetPos.y + yDistance, TILE_SIZE - 2 * xDistance, TILE_SIZE - yDistance);
+
+		// Update Dialogues
 		overheadText.setPosition(sf::Vector2f(bodySprite.getPosition().x+16, bodySprite.getPosition().y - 5));
 
-		if (context.player->getCollisionBounds().intersects(bodySprite.getGlobalBounds()) && 
+		if (context.player->getCollisionBounds().intersects(collisionBounds) && 
 			dialogueMode == false && 
 			context.player->isMoving &&
 			properties["hasDialogue"] == true)
@@ -88,6 +94,17 @@
 
 				sayLine("line_1");
 			}
+
+		// Check if player is out of range
+		int x = abs(context.player -> getPosition().x - bodySprite.getPosition().x);
+		int y = abs(context.player -> getPosition().y - bodySprite.getPosition().y);
+		int maximumDistance = 100;
+
+		if (x >= maximumDistance || y >= maximumDistance)
+		{
+			context.player->setProperty("isInDialogue", false);
+			dialogueMode = false;
+		}
 	}
 
 /* ----------------------------------------------------------------------
