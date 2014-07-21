@@ -103,6 +103,10 @@ void GameWorld::render()
 	context.gameMap->render("roof-shadow");
 	context.gameMap -> renderAnimations("roof");
 
+	// Draw any conversation bubble.	
+	for (auto&& npc : context.gameMap->getNPCs())
+		npc.second->drawOverheadText();
+
 	// Render the light manager
 	if(Game::currentState == States::GAME)
 		context.lightManager->render(context.player->getCamera());

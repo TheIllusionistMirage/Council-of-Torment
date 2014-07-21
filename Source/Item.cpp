@@ -107,17 +107,8 @@ void Item::updateDescriptionText()
 
 	std::string desc = "\n\"" + properties["description"] + "\"";
 
-	for (size_t i = 0; i < desc.size(); i += 34)
-	{
-		for (unsigned int start = i; start > 0; start--)
-		{
-			if (desc[start] == ' ')
-			{
-				desc.insert(start, "\n");
-				break;
-			}
-		}
-	}
+	desc = wrap(desc, 34);
+	desc.insert(0, "\n");
 
 	stream << desc;
 

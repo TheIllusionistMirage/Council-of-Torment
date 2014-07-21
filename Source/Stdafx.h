@@ -72,3 +72,4 @@ float distance(const sf::Vector2f first, const sf::Vector2f second);
 float dotProduct(const sf::Vector2f& vector1, const sf::Vector2f& vector2);
 float magnitude(const sf::Vector2f& vector);
 sf::Vector2f normalize(const sf::Vector2f&vector);
+std::string wrap(std::string text, size_t line_length = 35);

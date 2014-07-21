@@ -172,3 +172,102 @@ item_8 = {
 	iconID = "9"
 }
 
+----------------------------
+-- IRON INGOT
+----------------------------
+item_9 = {
+	name = "Iron Ingot",
+	description = "This metal ingot is the most common metal in Erden. It's cold upon touch and it seems to have cracked during the smelting process. I can probably fancy something out of it...",
+	max_number = "1",
+	weight = "4",
+	value = "15",
+	category = "MATERIALS",
+	equipable = "False",
+	craftable = "True",
+	consumable = "false",
+	can_sell = "True",
+	can_drop = "True",
+	recipe = {},
+	result_count = "1",
+	iconID = "10"
+}
+
+----------------------------
+-- STEEL INGOT
+----------------------------
+item_10 = {
+	name = "Steel Ingot",
+	description = "Although costier than iron, it is far better. For better or worse, the smelter combined some coal with the iron to drive out the impurities and make a stronger metal.",
+	max_number = "1",
+	weight = "5",
+	value = "45",
+	category = "MATERIALS",
+	equipable = "False",
+	craftable = "True",
+	consumable = "false",
+	can_sell = "True",
+	can_drop = "True",
+	recipe = {},
+	result_count = "1",
+	iconID = "10"
+}
+
+----------------------------
+-- SILVER INGOT
+----------------------------
+item_11 = {
+	name = "Silver Ingot",
+	description = "The shine on this ingot is blinding me! It's a beautiful and pure metal found only in the dwarven lands. Perhaps that's why humans use gold currencies and dwarves use silver...",
+	max_number = "1",
+	weight = "7",
+	value = "100",
+	category = "MATERIALS",
+	equipable = "False",
+	craftable = "True",
+	consumable = "false",
+	can_sell = "True",
+	can_drop = "True",
+	recipe = {},
+	result_count = "1",
+	iconID = "10"
+}
+
+----------------------------
+-- GOLD INGOT
+----------------------------
+item_12 = {
+	name = "Gold Ingot",
+	description = "This ingot is a lot heavier than it looks! It's so precious... Uncle told me some mad mage tried to turn cabbage into gold once. I pity that fool.",
+	max_number = "1",
+	weight = "10",
+	value = "300",
+	category = "MATERIALS",
+	equipable = "False",
+	craftable = "True",
+	consumable = "false",
+	can_sell = "True",
+	can_drop = "True",
+	recipe = {},
+	result_count = "1",
+	iconID = "10"
+}
+
+----------------------------
+-- GOLD INGOT
+----------------------------
+item_13 = {
+	name = "Hardium Ingot",
+	description = "The sily name of this unbreakable metal is not actually from the word 'hard' but rather from 'hardanag' in ancient dwarven, it means 'royal'.",
+	max_number = "1",
+	weight = "10",
+	value = "550",
+	category = "MATERIALS",
+	equipable = "False",
+	craftable = "True",
+	consumable = "false",
+	can_sell = "True",
+	can_drop = "True",
+	recipe = {},
+	result_count = "1",
+	iconID = "10"
+}

@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "GameMap.h"
+#include "Console.h"
 #include <string>
 #include <map>
 
@@ -276,10 +277,19 @@
 		// Zooming out
 		camera.zoom(1.1f);
 
+
 		// Prevent the view to be too zoomed out
 		if(camera.getSize().x > context.window->getSize().x)
 			camera.setSize(float(context.window->getSize().x), float(context.window->getSize().y));
-	}
+
+		float playerCamPosX = (float)camera.getSize().x;
+		float playerCamPosY = (float)camera.getSize().y;
+		float defaultPosX = (float) context.window->getSize().x / 2.0f;
+		float defaultPosY = (float)context.window->getSize().y / 2.0f;
+
+		context.gameMap->getNPCs()[targetNPC]->getOverheadText().getText().setScale(context.player->getCamera().getSize().x / context.window->getDefaultView().getSize().x, context.player->getCamera().getSize().y / context.window->getDefaultView().getSize().y);
+		context.gameMap->getNPCs()[targetNPC]->getOverheadText().getRect().setScale((context.player->getCamera().getSize().x / context.window->getDefaultView().getSize().x)*2, (context.player->getCamera().getSize().y / context.window->getDefaultView().getSize().y)*2);
+}
 
 /* ----------------------------------------------------------------------
  * Author: Julian
@@ -295,7 +305,15 @@
 		// Prevent the view to be too zoomed in
 		if(camera.getSize().x < context.window->getSize().x / 10)
 			camera.setSize(float(context.window->getSize().x / 10), float(context.window->getSize().y / 10));
-	}
+
+		float playerCamPosX = (float)camera.getSize().x;
+		float playerCamPosY = (float)camera.getSize().y;
+		float defaultPosX = (float)context.window->getSize().x / 2.0f;
+		float defaultPosY = (float)context.window->getSize().y / 2.0f;
+
+		context.gameMap->getNPCs()[targetNPC]->getOverheadText().getText().setScale(context.player->getCamera().getSize().x / context.window->getDefaultView().getSize().x, context.player->getCamera().getSize().y / context.window->getDefaultView().getSize().y);
+		context.gameMap->getNPCs()[targetNPC]->getOverheadText().getRect().setScale((context.player->getCamera().getSize().x / context.window->getDefaultView().getSize().x)*2, (context.player->getCamera().getSize().y / context.window->getDefaultView().getSize().y)*2);
+}
 
 /* ----------------------------------------------------------------------
  * Author: Julian

@@ -15,7 +15,7 @@
 */
 	DialogueBox::DialogueBox(State::Context context, const std::string t)
 	: context(context)
-	, fontSize(11)
+	, fontSize(30)
 	, sidePadding(3)
 	, topPadding(2)
 	, rectColor(0,0,0,150)

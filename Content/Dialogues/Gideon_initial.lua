@@ -1,8 +1,8 @@
-number_of_lines = 2
+number_of_lines = 5
 
 line_1 = 
 {
-	words = "Good morning, dear Baldric!",
+	words = "Good morning, my dear apprentice!",
 
 	options = 
 	{
@@ -17,7 +17,7 @@ line_1 =
 		option2 = 
 		{
 			text = "What is that book you're holding?",
-			next_line = "line_3"
+			next_line = "line_5"
 		},
 		-----------------------------------------
 		option3 = 
@@ -27,10 +27,10 @@ line_1 =
 		}
 	}
 }
-
+----------------------------------------------------------------
 line_2 = 
 {
-	words = "I have a task for you...  Hillstop Tower is so old and the bricks are falling apart. The floor looks like it is absorbing me and this whole nexus of knowledge with every moment...",
+	words = "Oh I am getting so old... I have a task for you... Hill's top tower, our home, is slowly falling apart. The cracked floors are slowly collapsing underneath my feet...",
 
 	options = 
 	{
@@ -39,7 +39,7 @@ line_2 =
 		option1 = 
 		{
 			text = "How can I help?",
-			next_line = "none"
+			next_line = "line_3"
 		},
 		-----------------------------------------
 		option2 = 
@@ -50,3 +50,62 @@ line_2 =
 		},
 	}
 }
+----------------------------------------------------------------
+line_3 = 
+{
+	words = "There's a small village south of here, mostly dealing in lumber and crops. Go to the main lumber station there and have him send 200 units of lumber.",
+
+	options = 
+	{
+		count = 1,
+	
+		option1 = 
+		{
+			text = "I will return at once.",
+			next_line = "line_4"
+		},
+	}
+}
+----------------------------------------------------------------
+line_4 = 
+{
+	words = "Wait. You will need these gold coins. Don't spend them on anything else!",
+
+	options = 
+	{
+		count = 1,
+	
+		option1 = 
+		{
+			text = "Don't worry, uncle!",
+			next_line = "none"
+		},
+	}
+}
+----------------------------------------------------------------
+line_5 = 
+{
+	words = "Oh, this old tome? I will explain it in time... For now, it's enough for you to know that it contains knowledge...",
+
+	options = 
+	{
+		count = 2,
+	
+		option1 = 
+		{
+			text = "What was it you wanted to tell me?",
+			next_line = "line_2"
+		},
+		-----------------------------------------
+		option2 = 
+		{
+			text = "Goodbye.",
+			next_line = "none"
+
+		},
+	}
+}
+
+
+
+

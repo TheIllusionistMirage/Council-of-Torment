@@ -49,8 +49,9 @@
 		targetPos = bodySprite.getPosition();
 
 		overheadText.setFontSize(12);
-		overheadText.setSidePadding(1);
-		overheadText.setTopPadding(1);
+		overheadText.setSidePadding(3);
+		overheadText.setTopPadding(2);
+		overheadText.getText().setScale(0.5f, 0.5f);
 		//overheadText.getText().scale(0.2f, 0.2f);
 
 		// Set some default properties
@@ -79,15 +80,15 @@
 		float yDistance = 25;
 		collisionBounds = sf::FloatRect(targetPos.x + xDistance, targetPos.y + yDistance, TILE_SIZE - 2 * xDistance, TILE_SIZE - yDistance);
 
+		float zoomFactor{ context.player->getCamera().getSize().x / context.window->getDefaultView().getSize().x };
+
 		// Update Dialogues
-		sf::Vector2f p(bodySprite.getPosition().x - (context.player->getCamera().getCenter().x - context.window->getDefaultView().getSize().x / 2),
-			bodySprite.getPosition().y - (context.player->getCamera().getCenter().y - context.window->getDefaultView().getSize().y / 2));
-		
+		int xpos = bodySprite.getPosition().x + 16;
+		int ypos = bodySprite.getPosition().y - overheadText.getRect().getGlobalBounds().height/2;
+
+		sf::Vector2f p(xpos, ypos);
 
 		overheadText.setPosition(p);
-		//std::cout << overheadText.getPosition().x << std::endl;
-		//context.console->logWarning(std::to_string(bodySprite.getPosition().x));
-		context.console->logWarning(std::to_string(p.x));
 
 		if (context.player->getCollisionBounds().intersects(collisionBounds) && 
 			dialogueMode == false && 
@@ -251,11 +252,6 @@
 
 		// Restore the position
 		bodySprite.setPosition(position);
-
-		context.window->setView(context.window->getDefaultView());
-			if (dialogueMode == true)
-				overheadText.render();
-		context.window->setView(context.player->getCamera());
 
 		// ENABLE TO SEE THE COLLISION RECTANGLE
 		/*sf::RectangleShape shape;
@@ -719,20 +715,10 @@
 			LuaScript script(context, "Content/Dialogues/" + dialogueFile);
 			std::string headText = script.get<std::string>(currentLine + ".words");
 
-			for (size_t i = 0; i < headText.size(); i += 34)
-			{
-				for (unsigned int start = i; start > 0; start--)
-				{
-					if (headText[start] == ' ')
-					{
-						headText.insert(start, "\n");
-						break;
-					}
-				}
-			}
+			headText = wrap(headText, 45); 
 
 			overheadText.setText(headText);
-			overheadText.setPosition(sf::Vector2f(bodySprite.getPosition().x, bodySprite.getPosition().y-overheadText.getText().getGlobalBounds().height));
+			overheadText.setPosition(sf::Vector2f(bodySprite.getPosition().x+16, bodySprite.getPosition().y-overheadText.getText().getGlobalBounds().height/2));
 
 			int lineCount = script.get<int>("number_of_lines");
 			int optionCount = script.get<int>(currentLine + ".options.count");
@@ -765,4 +751,16 @@
 				context.player->getDialogueReplyList()[i] = optionBox;
 			}
 		}
+	}
+
+/* ----------------------------------------------------------------------
+* Author: Octav
+* Date: 18th July 2014
+* Description: draws the overhead text
+* ----------------------------------------------------------------------
+*/
+	void Humanoid::drawOverheadText()
+	{
+		if (dialogueMode == true)
+			overheadText.render();
 	}

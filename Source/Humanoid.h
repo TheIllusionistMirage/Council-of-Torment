@@ -54,6 +54,7 @@ class Humanoid
 		virtual void move(int direction, int squares);
 		virtual void move(int direction, sf::Time elapsedTime);
 		virtual void unMove() { if(!noTrigger) isMoving = false; }
+		virtual void drawOverheadText();
 		virtual void render();
 
 		virtual void playAnimationOnce(int animationID);
@@ -71,6 +72,7 @@ class Humanoid
 		virtual void sayLine(std::string lineID);
 
 		virtual void setDialogueMode(bool state) { dialogueMode = state; }
+		DialogueBox& getOverheadText() { return overheadText; }
 		virtual std::string getDialogueFile() { return dialogueFile; }
 		virtual bool cantTrigger() const { return noTrigger; }
 		virtual std::string getName();
