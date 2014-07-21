@@ -184,7 +184,7 @@ item_9 = {
 	category = "MATERIALS",
 	equipable = "False",
 	craftable = "True",
-	consumable = "false",
+	consumable = "False",
 	can_sell = "True",
 	can_drop = "True",
 	recipe = {},
@@ -204,7 +204,7 @@ item_10 = {
 	category = "MATERIALS",
 	equipable = "False",
 	craftable = "True",
-	consumable = "false",
+	consumable = "False",
 	can_sell = "True",
 	can_drop = "True",
 	recipe = {},
@@ -224,7 +224,7 @@ item_11 = {
 	category = "MATERIALS",
 	equipable = "False",
 	craftable = "True",
-	consumable = "false",
+	consumable = "False",
 	can_sell = "True",
 	can_drop = "True",
 	recipe = {},
@@ -233,7 +233,7 @@ item_11 = {
 }
 
 ----------------------------
--- GOLD INGOT
+-- GOLD_INGOT
 ----------------------------
 item_12 = {
 	name = "Gold Ingot",
@@ -244,7 +244,7 @@ item_12 = {
 	category = "MATERIALS",
 	equipable = "False",
 	craftable = "True",
-	consumable = "false",
+	consumable = "False",
 	can_sell = "True",
 	can_drop = "True",
 	recipe = {},
@@ -253,7 +253,7 @@ item_12 = {
 }
 
 ----------------------------
--- GOLD INGOT
+-- HARDIUM_INGOT
 ----------------------------
 item_13 = {
 	name = "Hardium Ingot",
@@ -264,10 +264,114 @@ item_13 = {
 	category = "MATERIALS",
 	equipable = "False",
 	craftable = "True",
-	consumable = "false",
+	consumable = "False",
 	can_sell = "True",
 	can_drop = "True",
 	recipe = {},
 	result_count = "1",
 	iconID = "10"
 }
+
+----------------------------
+-- IRON_ORE
+----------------------------
+item_14 = {
+	name = "Iron Ore",
+	description = "There are bits of metal in this pile of dirt. The resulting ore will contain many impurities, but it should still be good for something.",
+	max_number = "20",
+	weight = "2",
+	value = "5",
+	category = "MATERIALS",
+	equipable = "False",
+	craftable = "False",
+	consumable = "False",
+	can_sell = "True",
+	can_drop = "True",
+	recipe = {},
+	result_count = "1",
+	iconID = "11"
+}
+
+----------------------------
+-- COAL
+----------------------------
+item_15 = {
+	name = "Coal",
+	description = "Can be used as fuel, or to reduce impurities in ores. It could also make a pretty good torch...",
+	max_number = "20",
+	weight = "0.3",
+	value = "5",
+	category = "MATERIALS",
+	equipable = "False",
+	craftable = "False",
+	consumable = "False",
+	can_sell = "True",
+	can_drop = "True",
+	recipe = {},
+	result_count = "1",
+	iconID = "12"
+}
+
+----------------------------
+-- SILVER_ORE
+----------------------------
+item_16 = {
+	name = "Silver Ore",
+	description = "This ore comes from the dwarven mines, it's valuable but aside from the fact it's rare, nothing really adds up to its value.",
+	max_number = "20",
+	weight = "2",
+	value = "5",
+	category = "MATERIALS",
+	equipable = "False",
+	craftable = "False",
+	consumable = "False",
+	can_sell = "True",
+	can_drop = "True",
+	recipe = {},
+	result_count = "1",
+	iconID = "11"
+}
+
+----------------------------
+-- GOLD_ORE
+----------------------------
+item_17 = {
+	name = "Gold Ore",
+	description = "If I smelt this into an ingot, I can probably sell it for a high amount of coin. The ore itself isn't worth as much..",
+	max_number = "20",
+	weight = "2",
+	value = "50",
+	category = "MATERIALS",
+	equipable = "False",
+	craftable = "False",
+	consumable = "False",
+	can_sell = "True",
+	can_drop = "True",
+	recipe = {},
+	result_count = "1",
+	iconID = "11"
+}
+
+----------------------------
+-- HARDIUM_ORE
+----------------------------
+item_18 = {
+	name = "Hardium Ore",
+	description = "This ore took a lot of effort to mine. I can make some of the best armor with the ore, so I'd better be careful.",
+	max_number = "5",
+	weight = "2",
+	value = "150",
+	category = "MATERIALS",
+	equipable = "False",
+	craftable = "False",
+	consumable = "False",
+	can_sell = "True",
+	can_drop = "True",
+	recipe = {},
+	result_count = "1",
+	iconID = "11"
+}
+
+
+
+
