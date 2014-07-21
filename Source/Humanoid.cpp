@@ -76,15 +76,15 @@
 */
 	void Humanoid::updateNoPlayer(sf::Time elapsedTime)
 	{
-		float xDistance = 5;
-		float yDistance = 25;
+		static float xDistance = 5;
+		static float yDistance = 25;
 		collisionBounds = sf::FloatRect(targetPos.x + xDistance, targetPos.y + yDistance, TILE_SIZE - 2 * xDistance, TILE_SIZE - yDistance);
 
 		float zoomFactor{ context.player->getCamera().getSize().x / context.window->getDefaultView().getSize().x };
 
 		// Update Dialogues
-		int xpos = bodySprite.getPosition().x + 16;
-		int ypos = bodySprite.getPosition().y - overheadText.getRect().getGlobalBounds().height/2;
+		float xpos = bodySprite.getPosition().x + 16;
+		float ypos = bodySprite.getPosition().y - overheadText.getRect().getGlobalBounds().height/2;
 
 		sf::Vector2f p(xpos, ypos);
 
