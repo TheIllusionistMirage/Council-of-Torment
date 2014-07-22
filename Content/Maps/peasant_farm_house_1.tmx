@@ -47,9 +47,12 @@
    eJxjYBgFo2D4gngam59CY/NHwSgYBaNgFNAGAACOHADE
   </data>
  </layer>
+ <objectgroup name="images">
+  <object gid="100" x="352" y="320"/>
+ </objectgroup>
  <layer name="roof" width="24" height="24">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo4D6wIKB4QApmAzzMYA3FjFukl2O23xsgNbmkwtg5kcCcRQQR0P5EVQ2HwQykdgJNDCfFgBmfiwNzUc2O5wG5pOCR8EoGAWYAACSJhOi
+   eJxjYBgFo4D6wIKB4QApmAzzMYA3FjFukl2O23xsgNbmkwtg5kcCcRQQR0P5EVQ2HwQykdgJNDCfFgBmfiySWBwDQwM1zUc2OxyI06hsPil4FIyCUYAJADQfFWY=
   </data>
  </layer>
  <layer name="roof2" width="24" height="24">
@@ -59,7 +62,7 @@
  </layer>
  <layer name="roof-shadow" width="24" height="24">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo4D6gB2I2YjEQLUNpJrPQYIeDlINHzV/RJgfS2PzU2loPjDPOADzzgFiMFDtATKsGAWjYNgDAEo2Dtc=
+   eJxjYBgFo4D6gB2I2YjEQLUNpJrPQYIeDlINHzV/RJgfS2PzU9HE4nD4iRzzgXnGAZh3DhCDgWoPkGHFKBgFwx4AAGM7D7U=
   </data>
  </layer>
  <objectgroup name="triggers">
@@ -152,38 +155,75 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="collision" visible="0">
-  <object gid="331" x="384" y="320"/>
-  <object gid="331" x="384" y="384"/>
-  <object gid="331" x="384" y="416"/>
-  <object gid="331" x="384" y="448"/>
-  <object gid="331" x="384" y="480"/>
-  <object gid="331" x="384" y="512"/>
-  <object gid="331" x="352" y="512"/>
-  <object gid="331" x="352" y="480"/>
-  <object gid="331" x="320" y="512"/>
-  <object gid="331" x="288" y="512"/>
-  <object gid="331" x="256" y="512"/>
-  <object gid="331" x="256" y="480"/>
-  <object gid="331" x="224" y="480"/>
-  <object gid="331" x="192" y="448"/>
-  <object gid="331" x="192" y="480"/>
-  <object gid="331" x="192" y="416"/>
-  <object gid="331" x="192" y="384"/>
-  <object gid="331" x="192" y="352"/>
-  <object gid="331" x="192" y="320"/>
-  <object gid="331" x="192" y="288"/>
-  <object gid="331" x="224" y="288"/>
-  <object gid="331" x="256" y="288"/>
-  <object gid="331" x="288" y="288"/>
-  <object gid="331" x="288" y="256"/>
-  <object gid="331" x="320" y="256"/>
-  <object gid="331" x="352" y="256"/>
-  <object gid="331" x="384" y="256"/>
-  <object gid="331" x="384" y="288"/>
-  <object gid="331" x="352" y="288"/>
-  <object gid="331" x="352" y="320"/>
-  <object name="collide_only_south" gid="331" x="288" y="384"/>
-  <object gid="331" x="384" y="352"/>
+ <objectgroup name="collision">
+  <object x="384" y="368">
+   <polygon points="0,0 32,0 32,136 0,136"/>
+  </object>
+  <object x="200" y="480">
+   <polygon points="0,0 184,0 184,24 0,24"/>
+  </object>
+  <object x="200" y="200">
+   <polygon points="0,0 24,0 24,280 0,280"/>
+  </object>
+  <object x="224" y="448">
+   <polygon points="0,0 64,0 64,32 0,32"/>
+  </object>
+  <object x="296" y="368">
+   <polygon points="0,0 16,0 16,16 0,16"/>
+  </object>
+  <object x="224" y="200">
+   <polygon points="0,0 352,0 352,24 0,24"/>
+  </object>
+  <object x="544" y="224">
+   <polygon points="0,0 32,0 32,288 0,288"/>
+  </object>
+  <object x="416" y="480">
+   <polygon points="0,0 128,0 128,32 0,32"/>
+  </object>
+  <object x="384" y="224">
+   <polygon points="0,0 32,0 32,128 0,128"/>
+  </object>
+  <object x="392" y="352">
+   <polygon points="0,0 16,0 16,16 0,16"/>
+  </object>
+  <object x="352" y="296">
+   <polygon points="0,0 32,0 32,24 0,24"/>
+  </object>
+  <object x="296" y="264">
+   <polygon points="0,0 24,0 24,16 0,16"/>
+  </object>
+  <object x="224" y="224">
+   <polygon points="0,0 320,0 320,32 0,32"/>
+  </object>
+  <object x="224" y="256">
+   <polygon points="0,0 64,0 64,24 0,24"/>
+  </object>
+  <object x="232" y="280">
+   <polygon points="0,0 16,0 16,16 0,16"/>
+  </object>
+  <object x="360" y="288">
+   <polygon points="0,0 16,0 16,8 0,8"/>
+  </object>
+  <object x="360" y="264">
+   <polygon points="0,0 16,0 16,8 0,8"/>
+  </object>
+  <object x="368" y="448">
+   <polygon points="0,0 16,0 16,16 0,16"/>
+  </object>
+  <object x="352" y="456">
+   <polygon points="0,0 16,0 16,24 0,24"/>
+  </object>
+  <object x="328" y="464">
+   <polygon points="0,0 16,0 16,16 0,16"/>
+  </object>
+  <object x="456" y="256">
+   <polygon points="0,0 48,0 48,48 0,48"/>
+  </object>
+  <object x="416" y="256">
+   <polygon points="0,0 32,0 32,24 0,24"/>
+  </object>
+  <object x="512" y="256">
+   <polygon points="0,0 32,0 32,32 0,32"/>
+  </object>
  </objectgroup>
 </map>
