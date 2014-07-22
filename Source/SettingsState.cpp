@@ -196,8 +196,7 @@ void SettingsState::saveResolution()
 	// Don't forget to close the file
 	resolutionFile.close();
 
-	// Set the framelimit and enable vSync
-	context.window->setFramerateLimit(60);
+	// Enable vSync
 	context.window->setVerticalSyncEnabled(true);
 
 	// Create the effect manager texture

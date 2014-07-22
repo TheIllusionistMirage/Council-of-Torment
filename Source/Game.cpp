@@ -37,6 +37,7 @@ Game::Game()
 , endPos(1600.0f)
 , loadMap(true)
 , right(true)
+, fpsText {"Fps: ", contentManager.getFont(Fonts::SEGOEUI), 18}
 {
 	// Generate random numbers
 	srand(unsigned int(time(0)));
@@ -44,9 +45,8 @@ Game::Game()
 	// Load the resolution
 	loadResolution();
 
-	// Set the framelimit and enable vSync
-	window.setFramerateLimit(60);
-	window.setVerticalSyncEnabled(false);
+	// Enable vSync
+	window.setVerticalSyncEnabled(true);
 
 	// Create the effect manager texture
 	context.effectManager->createTexture();
@@ -85,6 +85,9 @@ void Game::run()
 		console.logError("Failed to load icon!");
 	window.setIcon(50, 50, icon.getPixelsPtr());
 
+	int frameCounter {60};
+	float frameTimer {0};
+
 	while(window.isOpen())
 	{
 		// Get the elapsed time and add it to the variable
@@ -95,6 +98,7 @@ void Game::run()
 		{
 			// Reduce the time of the lag und update everything until the lag is over
 			lastUpdateTime -= FrameTime;
+			frameTimer -= FrameTime.asSeconds();
 
 			// Handle the events and update the game
 			handleEvent();
@@ -111,6 +115,19 @@ void Game::run()
 			if(stateStack.isEmpty())
 				window.close();
 		}
+
+		if(frameTimer < 0)
+		{
+			std::stringstream stream;
+			stream << frameCounter;
+			fpsText.setString("Fps: " + stream.str());
+			fpsText.setPosition(window.getSize().x - static_cast<float>(static_cast<int>(fpsText.getLocalBounds().width + 10)), 5);
+
+			frameTimer = 1.0f;
+			frameCounter = 0;
+		}
+		else
+			++frameCounter;
 
 		// Render the game
 		render();
@@ -208,6 +225,9 @@ void Game::render()
 
 	// Render the console
 	window.draw(console);
+
+	// Render Frames per second text
+	window.draw(fpsText);
 
 	// Display the window
 	window.display();

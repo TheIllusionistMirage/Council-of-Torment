@@ -54,6 +54,7 @@ class Game
 		GameMap gameMap;
 		GameMap menuMap;
 		Player player;
+		sf::Text fpsText;
 
 		LightManager lightManager;
 };
