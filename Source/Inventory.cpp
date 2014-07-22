@@ -26,6 +26,7 @@ Inventory::Inventory(State::Context context)
 , rightMouseButton {false}
 , itemDescribed {false}
 , showScroll(false)
+, recipeMode {false}
 , itemMoved(false)
 , itemDrag(false)
 , moving(false)
@@ -82,26 +83,29 @@ void Inventory::update(sf::Time elapsedTime)
 
 	if(open && !moving)
 	{
-		for(int i = ALL; i != CATEGORY_COUNT; ++i)
+		if(!recipeMode)
 		{
-			float xPos =  inventory.getPosition().x + 25.0f + i * 41.0f;
-			float yPos =  inventory.getPosition().y + 33.0f;
-
-			if(mousePos.x > xPos && mousePos.x < xPos + 36.0f && mousePos.y > yPos && mousePos.y < yPos + 36.0f)
+			for(int i = ALL; i != CATEGORY_COUNT; ++i)
 			{
-				categoryHighlight.setPosition(xPos, yPos);
+				float xPos = inventory.getPosition().x + 25.0f + i * 41.0f;
+				float yPos = inventory.getPosition().y + 33.0f;
 
-				if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mousePressed)
+				if(mousePos.x > xPos && mousePos.x < xPos + 36.0f && mousePos.y > yPos && mousePos.y < yPos + 36.0f)
 				{
-					if(itemDescribed)
-					{
-						itemList[category][describedIndex]->setDescribed(false);
-						itemDescribed = false;
-					}
-					category = Category(i);
+					categoryHighlight.setPosition(xPos, yPos);
 
-					for(auto& item : itemList[category])
-						item->setPosition(sf::Vector2f(inventory.getPosition().x + 23.0f, inventory.getPosition().y + 86.0f + item->getOrder() * 20.0f - scrollValue[category]));
+					if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mousePressed)
+					{
+						if(itemDescribed)
+						{
+							itemList[category][describedIndex]->setDescribed(false);
+							itemDescribed = false;
+						}
+						category = Category(i);
+
+						for(auto& item : itemList[category])
+							item->setPosition(sf::Vector2f(inventory.getPosition().x + 23.0f, inventory.getPosition().y + 86.0f + item->getOrder() * 20.0f - scrollValue[category]));
+					}
 				}
 			}
 		}
@@ -120,46 +124,66 @@ void Inventory::update(sf::Time elapsedTime)
 				order = describedIndex + offset;
 			}
 
-			itemHighlight.setPosition(inventory.getPosition().x + 22.0f, inventory.getPosition().y + 85.0f + order * 20.0f - scrollValue[category]);
-
-			if(itemDescribed && order > describedIndex)
-				itemHighlight.setPosition(itemHighlight.getPosition().x, itemHighlight.getPosition().y + itemList[category][describedIndex]->getDescriptionText().getLocalBounds().height + 8.0f);
-
-			if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mousePressed)
+			if(!itemList[category][order]->isBlocked())
 			{
-				if(itemDescribed)
-				{
-					itemList[category][describedIndex]->setDescribed(false);
-					itemDescribed = false;
-				}
-				dragItem = itemList[category][order].get();
-				clickedPosition = mousePos.y - dragItem->getPosition().y;
-				itemDrag = true;
-			}
-			else if(sf::Mouse::isButtonPressed(sf::Mouse::Right) && !rightMouseButton)
-			{
-				if(itemDescribed)
-					itemList[category][describedIndex]->setDescribed(false);
+				itemHighlight.setPosition(inventory.getPosition().x + 22.0f, inventory.getPosition().y + 85.0f + order * 20.0f - scrollValue[category]);
 
-				// Show description
-				if((describedIndex != order && itemDescribed) || !itemDescribed)
-				{
-					describedIndex = order;
-					itemDescribed = true;
-					itemList[category][describedIndex]->setDescribed(true);
+				if(itemDescribed && order > describedIndex)
+					itemHighlight.setPosition(itemHighlight.getPosition().x, itemHighlight.getPosition().y + itemList[category][describedIndex]->getDescriptionText().getLocalBounds().height + 8.0f);
 
+				if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mousePressed)
+				{
+					// Undescribe an item
 					if(itemDescribed)
-						itemList[category][describedIndex]->updateDescriptionText();
-
-					for(auto&& item : itemList[category])
 					{
-						item->setPosition(sf::Vector2f(inventory.getPosition().x + 23.0f, inventory.getPosition().y + 86.0f + item->getOrder() * 20.0f - scrollValue[category]));
-						if(itemDescribed && item->getOrder() > describedIndex)
-							item->setPosition(sf::Vector2f(item->getPosition().x, item->getPosition().y + itemList[category][describedIndex]->getDescriptionText().getLocalBounds().height + 8.0f));
+						itemList[category][describedIndex]->setDescribed(false);
+						itemDescribed = false;
+					}
+					if(!recipeMode)
+					{
+						// No draging allowed in recipeMode
+						dragItem = itemList[category][order].get();
+						clickedPosition = mousePos.y - dragItem->getPosition().y;
+						itemDrag = true;
+					}
+					else
+					{
+						// Insert mode!
+						updateOrder(itemList[category], order);
+						context.crafting->increaseIncredient(std::stoi(itemList[category][order]->getProperties()["id"]), std::stoi(itemList[category][order]->getProperties()["number"]));
+						craftingBackup.push_back(std::move(itemList[category][order]));	// Move that item to the Backup
+						itemList[category].erase(itemList[category].begin() + order);	// Delete that item from the original list
+
+						// Uodate the position
+						for(auto& item : itemList[category])
+							item->setPosition(sf::Vector2f(inventory.getPosition().x + 23.0f, inventory.getPosition().y + 86.0f + item->getOrder() * 20.0f - scrollValue[category]));
 					}
 				}
-				else
-					itemDescribed = false;
+				else if(sf::Mouse::isButtonPressed(sf::Mouse::Right) && !rightMouseButton && !recipeMode)
+				{
+					if(itemDescribed)
+						itemList[category][describedIndex]->setDescribed(false);
+
+					// Show description
+					if((describedIndex != order && itemDescribed) || !itemDescribed)
+					{
+						describedIndex = order;
+						itemDescribed = true;
+						itemList[category][describedIndex]->setDescribed(true);
+
+						if(itemDescribed)
+							itemList[category][describedIndex]->updateDescriptionText();
+
+						for(auto&& item : itemList[category])
+						{
+							item->setPosition(sf::Vector2f(inventory.getPosition().x + 23.0f, inventory.getPosition().y + 86.0f + item->getOrder() * 20.0f - scrollValue[category]));
+							if(itemDescribed && item->getOrder() > describedIndex)
+								item->setPosition(sf::Vector2f(item->getPosition().x, item->getPosition().y + itemList[category][describedIndex]->getDescriptionText().getLocalBounds().height + 8.0f));
+						}
+					}
+					else
+						itemDescribed = false;
+				}
 			}
 		}
 
@@ -373,27 +397,6 @@ void Inventory::changeOrder(float yPos)
 	}
 }
 
-bool Inventory::checkIfIngredientAvailable(std::pair<int, int> ingredient)
-{
-	bool available {false};
-
-	for(auto& item : itemList[ALL])
-	{
-		if(std::stoi(item->getProperties()["id"]) == ingredient.first)
-		{
-			ingredient.second -= std::stoi(item->getProperties()["number"]);
-
-			if(ingredient.second <= 0)
-			{
-				available = true;
-				break;
-			}
-		}
-	}
-
-	return available;
-}
-
 bool Inventory::checkIfRecipeComplete(const std::vector<int>& ingredients)
 {
 	bool complete {true};
@@ -428,66 +431,136 @@ bool Inventory::checkIfRecipeComplete(const std::vector<int>& ingredients)
 	return complete;
 }
 
-void Inventory::craft(std::vector<Item> ingredients, ItemID id, unsigned int number)
+void Inventory::blockItems(const std::vector<int>& ingredients)
 {
-	// Remove the ingredients from the inventory
+	if(itemDescribed)
+	{
+		itemList[category][describedIndex]->setDescribed(false);
+		itemDescribed = false;
+	}
+
+	// Block all Items
+	for(auto& item : itemList[ALL])
+		item->setBlocked(true);
+
+	recipeMode = true;
+
+	// Change category
+	category = ALL;
+	for(auto& item : itemList[category])
+		item->setPosition(sf::Vector2f(inventory.getPosition().x + 23.0f, inventory.getPosition().y + 86.0f + item->getOrder() * 20.0f - scrollValue[category]));
+
+	std::vector<bool> available(ingredients.size());
+	for(auto& i : available)
+		i = false;
+
+	// Check if an ingredient is available
+	for(size_t i {0}; i != ingredients.size(); ++i)
+	{
+		for(auto& item : itemList[ALL])
+		{
+			if(std::stoi(item->getProperties()["id"]) == ingredients[i])
+			{
+				available[i] = true;
+				break;
+			}
+		}
+	}
+
+	for(size_t i {0}; i != ingredients.size(); ++i)
+	{
+		// Unblock the items which are needed for the recipe
+		if(available[i])
+		{
+			for(auto& item : itemList[ALL])
+				if(std::stoi(item->getProperties()["id"]) == ingredients[i])
+					item->setBlocked(false);
+		}
+	}
+}
+
+void Inventory::cancelCrafting()
+{
+	for(auto& item : itemList[ALL])
+		item->setBlocked(false);
+
+	// Restore the items
+	recipeMode = false;
+	restoreBackup();
+}
+
+void Inventory::restoreBackup()
+{
+	// Restore the items
+	std::reverse(std::begin(craftingBackup), std::end(craftingBackup));
+	for(auto& i = std::begin(craftingBackup); i != std::end(craftingBackup);)
+	{
+		updateOrder(itemList[category], (*i)->getOrder(), true);
+
+		auto& iter = std::begin(itemList[category]) + (*i)->getOrder();
+		itemList[category].insert(iter, std::move(*i));
+		i = craftingBackup.erase(i);
+	}
+}
+
+void Inventory::craft(std::vector<Item>& ingredients, ItemID id, unsigned int number)
+{
+	// Go through all the ingredients
 	for(auto& ingredient : ingredients)
 	{
-		int ingredientAmount {std::stoi(ingredient.getProperties()["number"])};
-		while(ingredientAmount > 0)
-		{
-			for(auto iter = std::begin(itemList[ALL]); iter != std::end(itemList[ALL]);)
-			{
-				//std::cout << (*iter)->getProperties()["category"] << std::endl;
-				if(std::stoi((*iter)->getProperties()["id"]) == std::stoi(ingredient.getProperties()["id"]))
-				{
-					int amount = std::stoi((*iter)->getProperties()["number"]);
-					float itemWeight = std::stof((*iter)->getProperties()["weight"]);
+		// Decrease the inserted number
+		int ingredientNumber {std::stoi(ingredient.getProperties()["number"])};
+		ingredient.setInsertedNumber(ingredient.getInsertedNumber() - ingredientNumber);
 
-					if(amount - ingredientAmount <= 0)
+		while(ingredientNumber != 0)
+		{
+			for(auto& craftingIter = std::begin(craftingBackup); craftingIter != std::end(craftingBackup);)
+			{
+				if(ingredient.getProperties()["id"] == (*craftingIter)->getProperties()["id"])
+				{
+					if(ingredientNumber - std::stoi((*craftingIter)->getProperties()["number"]) < 0)
 					{
-						for(auto iter2 = std::begin(itemList[toCategory((*iter)->getProperties()["category"])]); iter2 != std::end(itemList[toCategory((*iter)->getProperties()["category"])]);)
+						// If we put in more ingredients than needed, just decreasing the number
+						std::stringstream stream;
+						stream << std::stoi((*craftingIter)->getProperties()["number"]) - ingredientNumber;
+
+						// Search the equivalent category item and decrease the number there too
+						for(auto& i : itemList[toCategory((*craftingIter)->getProperties()["category"])])
 						{
-							if(std::stoi((*iter2)->getProperties()["id"]) == std::stoi(ingredient.getProperties()["id"]))
+							if(i->getProperties()["id"] == (*craftingIter)->getProperties()["id"] && i->getProperties()["number"] == (*craftingIter)->getProperties()["number"])
 							{
-								updateOrder(itemList[toCategory((*iter)->getProperties()["category"])], (*iter2)->getOrder());
-								iter2 = itemList[toCategory((*iter)->getProperties()["category"])].erase(iter2);
+								i->getProperties()["number"] = stream.str();
 								break;
 							}
-							else
-								++iter2;
 						}
 
-						updateOrder(itemList[ALL], (*iter)->getOrder());
-						iter = itemList[ALL].erase(iter);
+						// Set the number of the crafting Backup, too ofc
+						(*craftingIter)->getProperties()["number"] = stream.str();
+
+						ingredientNumber = 0;
+						++craftingIter;
 					}
 					else
 					{
-						std::stringstream stream;
-						stream << std::stoi((*iter)->getProperties()["number"]) - ingredientAmount;
-						(*iter)->getProperties()["number"] = stream.str();
-						for(auto iter2 = std::begin(itemList[toCategory((*iter)->getProperties()["category"])]); iter2 != std::end(itemList[toCategory((*iter)->getProperties()["category"])]);)
+						// Otherwise deleting that item
+						int category {toCategory((*craftingIter)->getProperties()["category"])};
+						for(auto& i = std::begin(itemList[category]); i != std::end(itemList[category]);)
 						{
-							if(std::stoi((*iter2)->getProperties()["id"]) == std::stoi(ingredient.getProperties()["id"]))
+							if((*i)->getProperties()["id"] == (*craftingIter)->getProperties()["id"] && (*i)->getProperties()["number"] == (*craftingIter)->getProperties()["number"])
 							{
-								(*iter2)->getProperties()["number"] = stream.str();
+								updateOrder(itemList[category], (*i)->getOrder());
+								i = itemList[category].erase(i);
 								break;
 							}
 							else
-								++iter2;
+								++i;
 						}
-						++iter;
+						ingredientNumber -= std::stoi((*craftingIter)->getProperties()["number"]);
+						craftingIter = craftingBackup.erase(craftingIter);
 					}
-
-					// Decrease the ammount and weight
-					ingredientAmount -= amount;
-					weight -= itemWeight * amount;
-
-					if(ingredientAmount <= 0)
-						break;
 				}
 				else
-					++iter;
+					++craftingIter;
 			}
 		}
 	}
@@ -496,11 +569,21 @@ void Inventory::craft(std::vector<Item> ingredients, ItemID id, unsigned int num
 	addItem(id, number);
 }
 
-void Inventory::updateOrder(std::vector<std::unique_ptr<Item>>& itemList, int order)
+void Inventory::updateOrder(std::vector<std::unique_ptr<Item>>& itemList, int order, bool add)
 {
 	for(auto& item : itemList)
-		if(item->getOrder() > order)
-			item->setOrder(item->getOrder() - 1);
+	{
+		if(add)
+		{
+			if(item->getOrder() >= order)
+				item->setOrder(item->getOrder() + 1);
+		}
+		else
+		{
+			if(item->getOrder() > order)
+				item->setOrder(item->getOrder() - 1);
+		}
+	}
 }
 
 void Inventory::addItem(ItemID id, unsigned int number)

@@ -1,17 +1,21 @@
 #include "Item.h"
 #include "Console.h"
 
-Item::Item(State::Context context, sf::IntRect rect, sf::IntRect iconRect, int order, std::map<std::string, std::string> properties)
+Item::Item(State::Context context, sf::IntRect rect, sf::IntRect iconRect, int order, std::map<std::string, std::string> properties, bool ingredient)
 : context(context)
 , order(order)
 , properties(properties)
 , line(sf::Lines, 2)
 , scaleFactor {2.5f}
+, insertedNumber {0}
 , equipped(false)
 , described {false}
-, craftItem {false}
+, lines(true)
+, blocked {false}
+, ingredient {ingredient}
 , increaseScale {false}
 , itemIconShape {{32, 32}}
+, blockedShape {{214.0f, 20.0f}}
 , item(context.contentManager->getTexture(Textures::ITEMS), rect)
 , itemIcon(context.contentManager->getTexture(Textures::ICON_ITEMS), iconRect)
 , description {properties["description"], context.contentManager->getFont(Fonts::SEGOEUI), 12}
@@ -29,6 +33,8 @@ Item::Item(State::Context context, sf::IntRect rect, sf::IntRect iconRect, int o
 	itemIconShape.setOutlineThickness(1);
 	itemIconShape.setOutlineColor(sf::Color(100, 100, 100));
 	itemIconShape.setFillColor(sf::Color::Transparent);
+
+	blockedShape.setFillColor({0, 0, 0, 150});
 
 	context.contentManager->getTexture(Textures::ICON_ITEMS).setSmooth(true);
 }
@@ -68,21 +74,25 @@ void Item::render()
 {
 	context.window->draw(item);
 	context.window->draw(name);
-	if(!craftItem)
+	if(lines)
 		context.window->draw(line);
 
 	if(equipped)
 		context.window->draw(equipShape);
 
-	if((!craftItem && std::stoi(properties["number"]) > 1) || craftItem)
-	{
-		std::stringstream stream;
+	std::stringstream stream;
+	if(ingredient)
+		stream << insertedNumber << "/" << std::stoi(properties["number"]);
+	else if(std::stoi(properties["number"]) > 1)
 		stream << "x" << std::stoi(properties["number"]);
-		sf::Text number {stream.str(), context.contentManager->getFont(Fonts::SEGOEUI), 12};
-		number.setPosition(name.getPosition() + sf::Vector2f(190.0f - number.getLocalBounds().width, 0.0f));
-		number.setColor(color);
-		context.window->draw(number);
-	}
+
+	sf::Text number {stream.str(), context.contentManager->getFont(Fonts::SEGOEUI), 12};
+	number.setPosition(name.getPosition() + sf::Vector2f(190.0f - number.getLocalBounds().width, 0.0f));
+	number.setColor(color);
+	context.window->draw(number);
+
+	if(blocked)
+		context.window->draw(blockedShape);
 
 	// If the player wants to have more information by right clicking on the item
 	if(described)
@@ -125,6 +135,7 @@ void Item::setPosition(sf::Vector2f pos)
 	item.setPosition(pos);
 	name.setPosition(pos.x + 18.0f, pos.y);
 	equipShape.setPosition(pos.x - 1.0f, pos.y - 1.0f);
+	blockedShape.setPosition(pos.x - 1.0f, pos.y - 1.0f);
 	line[0].position = sf::Vector2f(pos.x - 1.0f, pos.y + 18.0f);
 	line[1].position = sf::Vector2f(pos.x + 213.0f, pos.y + 18.0f);
 }
@@ -140,13 +151,12 @@ void Item::equip()
 		this->properties["equipped"] = "False";
 }
 
-void Item::setColor(const sf::Color& newColor, bool craft)
+void Item::setColor(const sf::Color& newColor)
 {
-	craftItem = craft;
 	color = newColor;
 	item.setColor(color);
 	name.setColor(color);
 
-	line[0].color = sf::Color(150, 150, 150);
-	line[1].color = sf::Color(150, 150, 150);
+	line[0].color = sf::Color(100, 100, 100);
+	line[1].color = sf::Color(100, 100, 100);
 }

@@ -2,6 +2,7 @@
 #include "Item.h"
 #include "LuaScript.h"
 #include "Player.h"
+#include "Console.h"
 
 Crafting::Crafting(State::Context context)
 : context {context}
@@ -10,6 +11,7 @@ Crafting::Crafting(State::Context context)
 , selectedHighlight {{178.0f, 20.0f}}
 , recipeHighlight {{178.0f, 20.0f}}
 , buttonHighlight {{106.0f, 34.0f}}
+, darkButton {{106.0f, 34.0f}}
 , leftMouseButton {false}
 , cPressed {false}
 , isMoving {false}
@@ -19,14 +21,15 @@ Crafting::Crafting(State::Context context)
 	selectedHighlight.setFillColor({150, 150, 150, 80});
 	recipeHighlight.setFillColor({200, 200, 200, 100});
 	buttonHighlight.setFillColor({200, 200, 200, 100});
+	darkButton.setFillColor({0, 0, 0, 150});
 }
 
 void Crafting::update(const sf::Time& elapsedTime)
 {
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::C) && !cPressed)
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::C) && !cPressed && !context.console->isVisible())
 		openCrafting(!open);
 
-	if(open)
+	if(open && !context.console->isVisible())
 	{
 		recipeHighlight.setPosition(-100.0f, -100.0f);
 		buttonHighlight.setPosition(-100.0f, -100.0f);
@@ -72,11 +75,16 @@ void Crafting::update(const sf::Time& elapsedTime)
 			if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && !leftMouseButton)
 			{
 				if(selectedRecipe && recipeHighlight.getPosition() == selectedHighlight.getPosition())
+				{
 					selectedRecipe = nullptr;
+					context.player->getInventory().cancelCrafting();
+				}
 				else
 				{
 					selectedRecipe = &recipes[index];
 					createIngredients(selectedRecipe);
+					context.player->getInventory().cancelCrafting();
+					context.player->getInventory().blockItems(selectedRecipe->ingredients);
 				}
 			}
 		}
@@ -86,8 +94,10 @@ void Crafting::update(const sf::Time& elapsedTime)
 		   mousePos.y > craftingPos.y + 351.0f && mousePos.y < craftingPos.y + 384.0f && !context.player->getInventory().isMouseInside())
 		{
 			int index {static_cast<int>((mousePos.x - craftingPos.x - 424.0f) / 106.0f)};
-
-			buttonHighlight.setPosition(craftingPos.x + 424.0f + index * 106.0f, craftingPos.y + 351.0f);
+			if(index == 1 && (!selectedRecipe || (selectedRecipe && !selectedRecipe->complete)))
+				buttonHighlight.setPosition(-100.0f, -100.0f);
+			else
+				buttonHighlight.setPosition(craftingPos.x + 424.0f + index * 106.0f, craftingPos.y + 351.0f);
 
 			if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && !leftMouseButton)
 			{
@@ -95,11 +105,15 @@ void Crafting::update(const sf::Time& elapsedTime)
 					openCrafting(false);
 				else if(index == 1 && selectedRecipe && selectedRecipe->complete)
 				{
-					context.player->getInventory().craft(ingredients, static_cast<ItemID>(std::stoi(selectedRecipe->craftedItem.back().getProperties()["id"])),
-														 std::stoi(selectedRecipe->craftedItem.back().getProperties()["number"]));
+					// Craft that item
+					craft();
 				}
 			}
 		}
+
+		// If no item can be crafted, this rectangle will overlay the crafting button
+		if(!selectedRecipe || (selectedRecipe && !selectedRecipe->complete))
+			darkButton.setPosition(craftingPos.x + 532.0f, craftingPos.y + 351.0f);
 
 		for(size_t i {0}; i != recipes.size(); ++i)
 			recipes[i].recipe.setPosition(craftingPos.x + 98.0f - static_cast<int>(recipes[i].recipe.getLocalBounds().width / 2), craftingPos.y + 75.0f + i * 20.0f);
@@ -147,6 +161,9 @@ void Crafting::render()
 		context.window->draw(recipeHighlight);
 		context.window->draw(buttonHighlight);
 
+		if(!selectedRecipe || (selectedRecipe && !selectedRecipe->complete))
+			context.window->draw(darkButton);
+
 		// Restore the camera
 		context.window->setView(camera);
 	}
@@ -158,9 +175,18 @@ void Crafting::openCrafting(bool newOpen)
 	open = newOpen;
 	if(open)
 	{
+		// Open the inventory
+		context.player->getInventory().setMoving(true);
+
 		// Check for complete recipes
 		for(auto& recipe : recipes)
 			checkIfComplete(recipe);
+	}
+	else
+	{
+		if(selectedRecipe)
+			selectedRecipe = nullptr;
+		context.player->getInventory().cancelCrafting();
 	}
 }
 
@@ -187,6 +213,7 @@ void Crafting::addRecipe(const std::string& itemName, int id)
 
 	sf::Vector2f craftingPos {craftingWindow.getPosition()};
 	recipes.back().craftedItem.push_back(Item(context, rect, sf::IntRect(), 0, properties));
+	recipes.back().craftedItem.back().showLine(false);
 
 	if(open)
 		checkIfComplete(recipes.back());
@@ -226,37 +253,80 @@ void Crafting::createIngredients(Recipe* recipe)
 			int iconID = std::stoi(script.get<std::string>(stream.str() + ".iconID"));
 			sf::IntRect rect {(iconID % 8) * 16, int(iconID / 8) * 16, 16, 16};
 
-			ingredients.push_back(Item(context, rect, sf::IntRect(), ingredients.size(), properties));
+			ingredients.push_back(Item(context, rect, sf::IntRect(), ingredients.size(), properties, true));
 		}
 	}
 
-	sf::Vector2f craftingPos {craftingWindow.getPosition()};
 	for(auto& ingredient : ingredients)
 	{
-		int id {std::stoi(ingredient.getProperties()["id"])};
-		int number {std::stoi(ingredient.getProperties()["number"])};
-
-		if(context.player->getInventory().checkIfIngredientAvailable(std::make_pair(id, number)))
-			ingredient.setColor(sf::Color::White, false);
+		if(std::stoi(ingredient.getProperties()["number"]) <= ingredient.getInsertedNumber())
+			ingredient.setColor(sf::Color::White);
 		else
-			ingredient.setColor({200, 200, 200, 180}, false);
+			ingredient.setColor(sf::Color(150, 150, 150));
 	}
+
+	// If no ingredients are needed, the recipe is complete ofc
+	if(ingredients.empty())
+		selectedRecipe->complete = true;
+}
+
+void Crafting::increaseIncredient(int id, int number)
+{
+	for(auto& ingredient : ingredients)
+	{
+		if(std::stoi(ingredient.getProperties()["id"]) == id)
+		{
+			ingredient.setInsertedNumber(ingredient.getInsertedNumber() + number);
+			if(std::stoi(ingredient.getProperties()["number"]) <= ingredient.getInsertedNumber())
+				ingredient.setColor(sf::Color::White);
+			break;
+		}
+	}
+
+	// Check if all are complete
+	checkIfIngredientsComplete();
+}
+
+void Crafting::checkIfIngredientsComplete()
+{
+	// Check if all are complete
+	bool complete {true};
+	for(auto& ingredient : ingredients)
+	{
+		if(std::stoi(ingredient.getProperties()["number"]) > ingredient.getInsertedNumber())
+		{
+			complete = false;
+			ingredient.setColor(sf::Color(150, 150, 150));
+		}
+	}
+
+	// Select if it is complete or not
+	selectedRecipe->complete = complete;
 }
 
 void Crafting::checkIfComplete(Recipe& recipe)
 {
 	if(context.player->getInventory().checkIfRecipeComplete(recipe.ingredients))
 	{
-		recipe.recipe.setColor(sf::Color::White);
-		recipe.craftedItem.back().setColor(sf::Color::White, true);
-		recipe.complete = true;
+		recipe.recipe.setColor({100, 200, 100, 200});
+		recipe.craftedItem.back().setColor(sf::Color::White);
 	}
 	else
 	{
-		recipe.recipe.setColor({200, 200, 200, 180});
-		recipe.craftedItem.back().setColor({200, 200, 200, 180}, true);
-		recipe.complete = false;
+		recipe.recipe.setColor({200, 100, 100, 200});
+		recipe.craftedItem.back().setColor({200, 200, 200, 180});
 	}
+}
+
+void Crafting::craft()
+{
+	// Craft that item and block everything new
+	context.player->getInventory().craft(ingredients, static_cast<ItemID>(std::stoi(selectedRecipe->craftedItem.back().getProperties()["id"])),
+										 std::stoi(selectedRecipe->craftedItem.back().getProperties()["number"]));
+	context.player->getInventory().blockItems(selectedRecipe->ingredients);
+
+	// Check if ingredients are complete
+	checkIfIngredientsComplete();
 }
 
 void Crafting::updateRecipes()
@@ -265,21 +335,6 @@ void Crafting::updateRecipes()
 	{
 		for(auto& recipe : recipes)
 			checkIfComplete(recipe);
-
-		if(selectedRecipe)
-		{
-			sf::Vector2f craftingPos {craftingWindow.getPosition()};
-			for(auto& ingredient : ingredients)
-			{
-				int id {std::stoi(ingredient.getProperties()["id"])};
-				int number {std::stoi(ingredient.getProperties()["number"])};
-
-				if(context.player->getInventory().checkIfIngredientAvailable(std::make_pair(id, number)))
-					ingredient.setColor(sf::Color::White, false);
-				else
-					ingredient.setColor({200, 200, 200, 180}, false);
-			}
-		}
 	}
 }
 
