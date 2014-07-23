@@ -120,8 +120,8 @@
   <object gid="141" x="256" y="1056"/>
   <object gid="141" x="288" y="1056"/>
   <object gid="141" x="320" y="1056"/>
-  <object gid="141" x="224" y="1056"/>
-  <object gid="141" x="352" y="1056"/>
+  <object gid="141" x="224" y="1040"/>
+  <object gid="141" x="352" y="1048"/>
   <object gid="61" x="192" y="1056"/>
   <object gid="61" x="160" y="1056"/>
   <object gid="61" x="128" y="1056"/>
@@ -140,15 +140,17 @@
   <object gid="142" x="320" y="1024"/>
   <object gid="133" x="320" y="1024"/>
   <object gid="133" x="352" y="1024"/>
+  <object gid="68" x="352" y="1248"/>
+  <object gid="77" x="256" y="1408"/>
  </objectgroup>
  <layer name="roof" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer name="roof2" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt2M0OgjAMB/DeDXqDl0FP6s2HAPHgwXfw0V2jh0kER1Zsqf9fskD4bMc2YEQAAPNaaQcgxEseoGetHYAgL7m0oZx7245E90MoCuGIOznJA+zgvl9pByGgJB95AAB802SeX9Bz7N8kHLvPvNeY/vfav7toByAgpU39Erexjt7r9vZaFhnX1Gi7XLep3znWnkNsLLZrtF4OHGPln9VyHU/B9YmxBwCs8jA+sU47gBlYeR9L8ZaPl/fiEp8L/nEBhnGf5j6y5DGK40+dT7MqnhPkOYZtKLtof/1hm0UPXFgM7g==
+   eJzt2M0OgjAMB/DeDXqDl0FP6s2HAPHgwXfw0V2jh0kER1Zsqf9fsmAQtB37YkQAAPNaaQcgxEseoGetHYAgL7m0oZx7545E90MoCuGIOznJA+zgvl9pByGgJB95AAB802TeX9Bz7N8kXLvP/K8x/fXav7toByAgpU39Erexjt7r9vY6Fhm/qdF2uW5T1znWnkNsLLZr9LkcuMbKO6vlOp6C6xNjDwBY5WF8Yp12ADOwMh9L8ZaPl3lxiesUvOMCDOM+zX1kyWMUx5+6n2ZVvCfIewzbUHbR9/WHcxY9AMcWDVM=
   </data>
  </layer>
  <layer name="roof-shadow" width="50" height="50">
@@ -194,7 +196,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="collision" visible="0">
+ <objectgroup name="collision">
   <object x="1248" y="288">
    <polygon points="0,0 64,0 64,32 0,32"/>
   </object>
@@ -833,6 +835,9 @@
   </object>
   <object x="120" y="1480">
    <polygon points="0,0 16,0 16,112 0,112"/>
+  </object>
+  <object x="264" y="1400">
+   <polygon points="0,0 0,-16 16,-16"/>
   </object>
  </objectgroup>
 </map>
