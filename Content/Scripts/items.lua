@@ -191,7 +191,7 @@ item_9 = {
 	consumable = "False",
 	can_sell = "True",
 	can_drop = "True",
-	iconID = "10"
+	iconID = "12"
 }
 
 ----------------------------
@@ -211,7 +211,7 @@ item_10 = {
 	can_drop = "True",
 	recipe = {},
 	result_count = "1",
-	iconID = "11"
+	iconID = "13"
 }
 
 ----------------------------
@@ -231,7 +231,7 @@ item_11 = {
 	can_drop = "True",
 	recipe = {},
 	result_count = "1",
-	iconID = "11"
+	iconID = "13"
 }
 
 ----------------------------
@@ -251,7 +251,7 @@ item_12 = {
 	can_drop = "True",
 	recipe = {},
 	result_count = "1",
-	iconID = "11"
+	iconID = "13"
 }
 
 ----------------------------
@@ -271,7 +271,7 @@ item_13 = {
 	can_drop = "True",
 	recipe = {},
 	result_count = "1",
-	iconID = "11"
+	iconID = "13"
 }
 
 ----------------------------
@@ -291,7 +291,7 @@ item_14 = {
 	can_drop = "True",
 	recipe = {},
 	result_count = "1",
-	iconID = "11"
+	iconID = "13"
 }
 
 ----------------------------
@@ -311,7 +311,7 @@ item_15 = {
 	can_drop = "True",
 	recipe = {},
 	result_count = "1",
-	iconID = "12"
+	iconID = "14"
 }
 
 ----------------------------
@@ -331,7 +331,7 @@ item_16 = {
 	can_drop = "True",
 	recipe = {},
 	result_count = "1",
-	iconID = "13"
+	iconID = "15"
 }
 
 ----------------------------
@@ -351,7 +351,7 @@ item_17 = {
 	can_drop = "True",
 	recipe = {},
 	result_count = "1",
-	iconID = "12"
+	iconID = "14"
 }
 
 ----------------------------
@@ -371,7 +371,7 @@ item_18 = {
 	can_drop = "True",
 	recipe = {},
 	result_count = "1",
-	iconID = "12"
+	iconID = "14"
 }
 
 ----------------------------
@@ -391,7 +391,7 @@ item_19 = {
 	can_drop = "True",
 	recipe = {},
 	result_count = "1",
-	iconID = "12"
+	iconID = "14"
 }
 
 ----------------------------
@@ -433,6 +433,27 @@ item_21 = {
 	result_count = "1",
 	iconID = "2"
 }
+
+----------------------------
+-- FLASK OF WATER
+----------------------------
+item_22 = {
+	name = "Flask of Water",
+	description = "Crystal clear water. Fortunately for me, the leather strap on it keeps it cool!",
+	max_number = "1",
+	weight = "2",
+	value = "15",
+	category = "MATERIALS",
+	equipable = "False",
+	craftable = "True",
+	consumable = "True",
+	can_sell = "True",
+	can_drop = "True",
+	recipe = {},
+	result_count = "1",
+	iconID = "2"
+}
+
 
 
 

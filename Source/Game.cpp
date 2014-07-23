@@ -37,7 +37,7 @@ Game::Game()
 , endPos(1600.0f)
 , loadMap(true)
 , right(true)
-, fpsText {"Fps: ", contentManager.getFont(Fonts::SEGOEUI), 18}
+, fpsText {"", contentManager.getFont(Fonts::ARIAL), 18}
 {
 	// Generate random numbers
 	srand(unsigned int(time(0)));
@@ -120,8 +120,9 @@ void Game::run()
 		{
 			std::stringstream stream;
 			stream << frameCounter;
-			fpsText.setString("Fps: " + stream.str());
-			fpsText.setPosition(window.getSize().x - static_cast<float>(static_cast<int>(fpsText.getLocalBounds().width + 10)), 5);
+			fpsText.setString("" + stream.str());
+			fpsText.setCharacterSize(16);
+			fpsText.setPosition(window.getSize().x - 25 - static_cast<float>(static_cast<int>(fpsText.getLocalBounds().width + 10)), 25);
 
 			frameTimer = 1.0f;
 			frameCounter = 0;
