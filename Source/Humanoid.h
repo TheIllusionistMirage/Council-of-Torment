@@ -70,6 +70,8 @@ class Humanoid
 		virtual void setProperty(std::string key, bool value);
 		virtual void setDialogueFile(std::string filename);
 		virtual void sayLine(std::string lineID);
+		virtual void attack(Humanoid& target);
+		virtual void toggleDefendMode();
 
 		virtual void setDialogueMode(bool state) { dialogueMode = state; }
 		DialogueBox& getOverheadText() { return overheadText; }
@@ -105,6 +107,7 @@ class Humanoid
 		bool playOnce;
 		bool noTrigger;
 		bool dialogueMode;
+		bool defendMode;
 		int velocity;
 		int health;
 		int mana;

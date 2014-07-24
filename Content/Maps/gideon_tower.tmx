@@ -102,7 +102,7 @@
   <object name="gideon" type="npc" gid="327" x="1280" y="1536">
    <properties>
     <property name="dialogue" value="gideon_initial.lua"/>
-    <property name="id" value="0"/>
+    <property name="id" value="1"/>
    </properties>
   </object>
  </objectgroup>

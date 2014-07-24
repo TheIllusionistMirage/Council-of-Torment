@@ -25,6 +25,9 @@
 		keyBindings[sf::Keyboard::D] = MOVE_RIGHT;
 		keyBindings[sf::Keyboard::W] = MOVE_UP;
 		keyBindings[sf::Keyboard::S] = MOVE_DOWN;
+		keyBindings[sf::Keyboard::Space] = ATTACK;
+		keyBindings[sf::Keyboard::LShift] = SNEAK;
+		keyBindings[sf::Keyboard::LControl] = DEFEND;
 
 		properties["hideGUI"] = false;
 		properties["isInDialogue"] = false;
@@ -251,11 +254,6 @@
 			if(windowEvent.mouseButton.button == sf::Mouse::Middle)
 				camera.setSize(context.window->getSize().x / 2.0f, context.window->getSize().y / 2.0f);
 		}
-
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
-			setSpeed(40);
-		else
-			setSpeed(defaultVelocity);
 
 		// Pass the other events to the inventory
 		inventory.handleEvent(windowEvent);

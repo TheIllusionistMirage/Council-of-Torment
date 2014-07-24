@@ -208,6 +208,12 @@
     <property name="red" value="255"/>
    </properties>
   </object>
+  <object name="gideon" type="npc" gid="327" x="384" y="264">
+   <properties>
+    <property name="dialogue" value="fisherman_joey_initial.lua"/>
+    <property name="id" value="0"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="collision" visible="0">
   <object gid="331" x="352" y="224"/>

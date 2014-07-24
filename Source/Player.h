@@ -28,6 +28,9 @@ class Player : public Humanoid
 			MOVE_RIGHT,
 			MOVE_UP,
 			MOVE_DOWN,
+			ATTACK,
+			DEFEND,
+			SNEAK,
 			ACTION_COUNT
 		};
 
@@ -50,10 +53,11 @@ class Player : public Humanoid
 		void flushDialogues();
 
 		bool isAbleToMove();
-		bool showCollision()				{ return collision; }
-		void showCollision(bool show)		{ collision = show; }
-		void setTargetNPC(std::string s)	{ targetNPC = s;	}
-		std::string getTargetNPC()			{ return targetNPC; }
+		int getDefaultSpeed()				{ return defaultVelocity;	}
+		bool showCollision()				{ return collision;			}
+		void showCollision(bool show)		{ collision = show;			}
+		void setTargetNPC(std::string s)	{ targetNPC = s;			}
+		std::string getTargetNPC()			{ return targetNPC;			}
 		std::string getDestinationLevel();
 		sf::Keyboard::Key getAssignedKey(Action action) const;
 		std::map<int, DialogueBox>& getDialogueReplyList();

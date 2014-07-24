@@ -19,7 +19,6 @@
 	: context(context)
 	, name(entName)
 	, health(100)
-	, noTrigger(false)
 	, defaultVelocity(100)
 	, velocity(100)
 	, maximumHealth(100)
@@ -33,6 +32,8 @@
 	, defaultFrameTime(0.1f)
 	, timer(defaultFrameTime)
 	, frameY(currentAnimation)
+	, noTrigger(false)
+	, defendMode(false)
 	, isMoving(false)
 	, playOnce(false)
 	, dialogueMode(false)
@@ -763,4 +764,26 @@
 	{
 		if (dialogueMode == true)
 			overheadText.render();
+	}
+
+/* ----------------------------------------------------------------------
+* Author: Octav
+* Date: 24th July 2014
+* Description: Toggles the defence mode
+* ----------------------------------------------------------------------
+*/
+	void Humanoid::toggleDefendMode()
+	{
+		defendMode = !defendMode;
+	}
+
+/* ----------------------------------------------------------------------
+* Author: Octav
+* Date: 24th July 2014
+* Description: Attacks a certain humanoid target
+* ----------------------------------------------------------------------
+*/
+	void Humanoid::attack(Humanoid& target)
+	{
+		context.console->logInfo("Player attacked humanoid: " + target.getName());
 	}

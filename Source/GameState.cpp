@@ -43,6 +43,11 @@ bool GameState::update(sf::Time elapsedTime)
 		// Move around
 		if(!getContext().console->isVisible() && getContext().effectManager->getEffectList().empty())
 		{
+			if (sf::Keyboard::isKeyPressed(player.getAssignedKey(player.SNEAK)))
+				player.setSpeed(40);
+			else
+				player.setSpeed(player.getDefaultSpeed());
+
 			if(sf::Keyboard::isKeyPressed(player.getAssignedKey(player.MOVE_UP)) && !sf::Keyboard::isKeyPressed(player.getAssignedKey(player.MOVE_DOWN)))
 			{
 				player.move(NORTH, elapsedTime);
