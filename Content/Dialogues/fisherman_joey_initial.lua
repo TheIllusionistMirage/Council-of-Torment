@@ -2,7 +2,7 @@ number_of_lines = 5
 
 line_1 = 
 {
-	words = "Good morning, my dear apprentice!",
+	words = "*whistling vigorously*",
 
 	options = 
 	{
@@ -10,17 +10,11 @@ line_1 =
 		
 		option1 = 
 		{
-			text = "Good morning, uncle.",
+			text = "Hi.",
 			next_line = "line_2"
 		},
 		-----------------------------------------
 		option2 = 
-		{
-			text = "What is that book you're holding?",
-			next_line = "line_5"
-		},
-		-----------------------------------------
-		option3 = 
 		{
 			text = "Goodbye.",
 			next_line = "none"
@@ -30,7 +24,7 @@ line_1 =
 ----------------------------------------------------------------
 line_2 = 
 {
-	words = "Oh I am getting so old... I have a task for you... Hill's top tower, our home, is slowly falling apart. The cracked floors are slowly collapsing underneath my feet...",
+	words = "Well aren't you a sturdy fellow! Never seen you before. Are you from Southdell?",
 
 	options = 
 	{
@@ -38,7 +32,7 @@ line_2 =
 	
 		option1 = 
 		{
-			text = "How can I help?",
+			text = "No. I grew up in Hill's Top Tower. Who are you, what are you doing here?",
 			next_line = "line_3"
 		},
 		-----------------------------------------
@@ -53,39 +47,7 @@ line_2 =
 ----------------------------------------------------------------
 line_3 = 
 {
-	words = "There's a small village south of here, mostly dealing in lumber and crops. Go to the main lumber station there and have him send 200 units of lumber.",
-
-	options = 
-	{
-		count = 1,
-	
-		option1 = 
-		{
-			text = "I will return at once.",
-			next_line = "line_4"
-		},
-	}
-}
-----------------------------------------------------------------
-line_4 = 
-{
-	words = "Wait. You will need these gold coins. Don't spend them on anything else!",
-
-	options = 
-	{
-		count = 1,
-	
-		option1 = 
-		{
-			text = "Don't worry, uncle!",
-			next_line = "none"
-		},
-	}
-}
-----------------------------------------------------------------
-line_5 = 
-{
-	words = "Oh, this old tome? I will explain it in time... For now, it's enough for you to know that it contains knowledge...",
+	words = "Oh just fishing... I've been here in the same spot for six years now. There is something about this particular patch of water...",
 
 	options = 
 	{
@@ -93,8 +55,8 @@ line_5 =
 	
 		option1 = 
 		{
-			text = "What was it you wanted to tell me?",
-			next_line = "line_2"
+			text = "Oh?",
+			next_line = "line_4"
 		},
 		-----------------------------------------
 		option2 = 
@@ -103,6 +65,119 @@ line_5 =
 			next_line = "none"
 
 		},
+
+	}
+}
+----------------------------------------------------------------
+line_4 = 
+{
+	words = "Nobody knows where this small patch of water comes from, because the trees cover up all the endings, but I suspect it's a stream coming from the north ending here. I always catch a lot of fish when I come here!",
+
+	options = 
+	{
+		count = 2,
+	
+		option1 = 
+		{
+			text = "That's pretty interesting. I suppose you don't just eat fish every day, why do you come here? What's your name?",
+			next_line = "line_5"
+		},
+		-----------------------------------------
+		option2 = 
+		{
+			text = "Goodbye.",
+			next_line = "none"
+
+		},
+
+	}
+}
+----------------------------------------------------------------
+line_5 = 
+{
+	words = "Hah. Damn right I don't just eat fish. Name's Joey the Fisherman! I sell all my fish to Southdell's chief; he buys them all and sells them to some dwarven merchant that gives him silver in exchange.",
+
+	options = 
+	{
+		count = 3,
+	
+		option1 = 
+		{
+			text = "Fair exchange, I suppose.",
+			next_line = "line_6"
+		},
+		-----------------------------------------
+		option2 = 
+		{
+			text = "What does he do with silver? It's useless around these parts.",
+			next_line = "line_7"
+		},
+		-----------------------------------------
+		option3 = 
+		{
+			text = "Goodbye.",
+			next_line = "none"
+		}
+	}
+}
+----------------------------------------------------------------
+line_6 = 
+{
+	words = "Keeps me well fed. I don't have a family, so that gives me all the time in the world to fish.",
+
+	options = 
+	{
+		count = 2,
+	
+		option1 = 
+		{
+			text = "Alright. I think I'll get going now.",
+			next_line = "line_8"
+		},
+		-----------------------------------------
+		option2 = 
+		{
+			text = "Goodbye.",
+			next_line = "none"
+		}
+	}
+}
+----------------------------------------------------------------
+line_7 = 
+{
+	words = "Silver? Useless? No way! Whoever has silver can buy the most exotic goods in Erden: dwarven luxuries and the like. Chief Rolith doesn't buy anything with it though. Rumor has it that the man collects silver in his basement. Who knows though; he doesn't allow anyone down there.",
+
+	options = 
+	{
+		count = 2,
+	
+		option1 = 
+		{
+			text = "I see. Thanks for your time but I have some business to attend in Southdell; I think I'll get going now!",
+			next_line = "line_8"
+		},
+		-----------------------------------------
+		option2 = 
+		{
+			text = "Goodbye.",
+			next_line = "none"
+		}
+	}
+}
+----------------------------------------------------------------
+line_8 = 
+{
+	words = "Alright, friend. Pleasure having your company around. Follow the dirth path west of here and you'll reach Southdell in no time.",
+
+	options = 
+	{
+		count = 1,
+	
+		option1 = 
+		{
+			text = "I will. Thanks, Joey!",
+			next_line = "none"
+		}
 	}
 }
 
