@@ -120,9 +120,9 @@ void Game::run()
 		{
 			std::stringstream stream;
 			stream << frameCounter;
-			fpsText.setString("" + stream.str());
+			fpsText.setString(stream.str());
 			fpsText.setCharacterSize(16);
-			fpsText.setPosition(window.getSize().x - 25 - static_cast<float>(static_cast<int>(fpsText.getLocalBounds().width + 10)), 25);
+			fpsText.setPosition(window.getSize().x - 25 - static_cast<float>(static_cast<int>(fpsText.getLocalBounds().width)), 20);
 
 			frameTimer = 1.0f;
 			frameCounter = 0;
