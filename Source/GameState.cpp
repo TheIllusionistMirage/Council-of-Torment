@@ -77,6 +77,18 @@ bool GameState::update(sf::Time elapsedTime)
 			else
 				playerMovement[EAST - 1] = false;
 
+			bool diagonal {false};
+			if((playerMovement[NORTH - 1] && playerMovement[WEST - 1]) ||
+			   (playerMovement[NORTH - 1] && playerMovement[EAST - 1]) ||
+			   (playerMovement[SOUTH - 1] && playerMovement[WEST - 1]) ||
+			   (playerMovement[SOUTH - 1] && playerMovement[EAST - 1]))
+			   diagonal = true;
+
+			if(diagonal)
+				player.setSpeed(player.getDefaultVelocity() / sqrt(2));
+			else
+				player.setSpeed(player.getDefaultVelocity());
+
 			bool unMove = true;
 			for(auto i : playerMovement)
 				if(i)

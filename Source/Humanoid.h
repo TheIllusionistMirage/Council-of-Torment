@@ -77,6 +77,7 @@ class Humanoid
 		DialogueBox& getOverheadText() { return overheadText; }
 		virtual std::string getDialogueFile() { return dialogueFile; }
 		virtual bool cantTrigger() const { return noTrigger; }
+		virtual int getDefaultVelocity() const { return defaultVelocity; }
 		virtual std::string getName();
 		virtual sf::Vector2f getPosition() const;
 		virtual sf::Vector2f getRelativePosition() const;

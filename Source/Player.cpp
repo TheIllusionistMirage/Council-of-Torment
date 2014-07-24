@@ -277,9 +277,8 @@
 
 		// Calculate zoom factor and set the view to that
 		float zoomFactor {camera.getSize().x / context.window->getDefaultView().getSize().x};
-		zoomFactor = std::round(zoomFactor * 100) / 100.0f;
+		zoomFactor = std::round(zoomFactor * 100) / 100.0f + 0.005f;
 		camera.setSize(context.window->getDefaultView().getSize() * zoomFactor);
-		std::cout << zoomFactor << std::endl;
 
 		// Prevent the view to be too zoomed out
 		if(camera.getSize().x > context.window->getSize().x)
@@ -307,9 +306,8 @@
 
 		// Calculate zoom factor and set the view to that
 		float zoomFactor {camera.getSize().x / context.window->getDefaultView().getSize().x};
-		zoomFactor = std::round(zoomFactor * 100) / 100.0f;
+		zoomFactor = std::round(zoomFactor * 100) / 100.0f + 0.005f;
 		camera.setSize(context.window->getDefaultView().getSize() * zoomFactor);
-		std::cout << zoomFactor << std::endl;
 
 		// Prevent the view to be too zoomed in
 		if(camera.getSize().x < context.window->getSize().x / 10)
