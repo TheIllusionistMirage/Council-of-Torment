@@ -85,7 +85,7 @@ bool GameState::update(sf::Time elapsedTime)
 			   diagonal = true;
 
 			if(diagonal)
-				player.setSpeed(player.getDefaultVelocity() / sqrt(2));
+				player.setSpeed(static_cast<int>(player.getDefaultVelocity() / sqrt(2)));
 			else
 				player.setSpeed(player.getDefaultVelocity());
 

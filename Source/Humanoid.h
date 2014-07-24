@@ -78,6 +78,7 @@ class Humanoid
 		virtual std::string getDialogueFile() { return dialogueFile; }
 		virtual bool cantTrigger() const { return noTrigger; }
 		virtual int getDefaultVelocity() const { return defaultVelocity; }
+		virtual int getVelocity() const { return velocity; }
 		virtual std::string getName();
 		virtual sf::Vector2f getPosition() const;
 		virtual sf::Vector2f getRelativePosition() const;
