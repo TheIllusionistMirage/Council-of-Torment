@@ -6,7 +6,7 @@ line_1 =
 
 	options = 
 	{
-		count = 3,
+		count = 2,
 		
 		option1 = 
 		{

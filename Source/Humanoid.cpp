@@ -734,16 +734,16 @@
 				optionBox.setFontSize(13);
 				optionBox.setSidePadding(10);
 				optionBox.setTopPadding(7);
-				optionBox.setText(script.get<std::string>(currentLine + ".options.option" + std::to_string(i) + ".text"), 250);
 				optionBox.setTextColor(sf::Color::White);
+				optionBox.setText(wrap(script.get<std::string>(currentLine + ".options.option" + std::to_string(i) + ".text"), 40), 250);
 				optionBox.setExecution(script.get<std::string>(currentLine + ".options.option" + std::to_string(i) + ".next_line"));
-
+				
 				if (i == 1)
 					optionBox.setPosition(sf::Vector2f(context.window->getSize().x / 2.0f, context.window->getSize().y / 1.5f));
 				else
 				{
-					sf::Vector2f exPos = context.player->getDialogueReplyList()[i - 1].getPosition();
-					optionBox.setPosition(sf::Vector2f(exPos.x, exPos.y + optionBox.getFontSize() + optionBox.getTopPadding() * 2 + 2));
+					sf::Vector2f exPos = context.player->getDialogueReplyList()[i - 1].getRect().getPosition();
+					optionBox.setPosition(sf::Vector2f(exPos.x, exPos.y + context.player->getDialogueReplyList()[i-1].getRect().getGlobalBounds().height/2 + optionBox.getRect().getSize().y));
 				}
 
 				if (optionBox.getText().getString() == "Good-Bye." || optionBox.getText().getString() == "Goodbye.")

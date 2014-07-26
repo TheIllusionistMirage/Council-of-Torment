@@ -273,7 +273,7 @@
   </data>
  </layer>
  <objectgroup name="triggers">
-  <object name="ds2" type="level_change" gid="323" x="608" y="320">
+  <object name="ds2" type="level_change" gid="323" x="608" y="312">
    <properties>
     <property name="coresponding" value="ds1"/>
     <property name="direction" value="east"/>
@@ -290,6 +290,13 @@
     <property name="coresponding" value="lar2"/>
     <property name="direction" value="south"/>
     <property name="map" value="peasant_farm_house_1"/>
+   </properties>
+  </object>
+  <object name="ds253" type="level_change" gid="323" x="608" y="344">
+   <properties>
+    <property name="coresponding" value="ds1"/>
+    <property name="direction" value="east"/>
+    <property name="map" value="gideon_tower_outside"/>
    </properties>
   </object>
  </objectgroup>

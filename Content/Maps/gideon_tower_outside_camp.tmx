@@ -208,7 +208,7 @@
     <property name="red" value="255"/>
    </properties>
   </object>
-  <object name="gideon" type="npc" gid="327" x="384" y="264">
+  <object name="gideon" type="npc" gid="327" x="380.5" y="257">
    <properties>
     <property name="dialogue" value="fisherman_joey_initial.lua"/>
     <property name="id" value="0"/>

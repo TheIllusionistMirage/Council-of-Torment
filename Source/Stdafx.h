@@ -10,7 +10,7 @@
 #include <map>
 
 // A constant for the first loaded map in the game
-#define DEFAULT_LOADED_MAP "gideon_tower_outside_west.tmx"
+#define DEFAULT_LOADED_MAP "gideon_tower_outside_camp.tmx"
 
 // Just some constants to not get confused
 #define BRIGHT_CHECKBOX		20

@@ -50,8 +50,8 @@
 	{
 		pos = p;
 
-		rect.setPosition(pos);
-		text.setPosition(pos.x, pos.y-1);
+		rect.setPosition(static_cast<int>(pos.x), static_cast<int>(pos.y));
+		text.setPosition(static_cast<int>(pos.x), static_cast<int>(pos.y-1));
 	}
 
 /* ----------------------------------------------------------------------
@@ -83,8 +83,8 @@
 	{
 		text.setString(t);
 
-		float width = size + sidePadding * 2.0f;
-		float height = fontSize + topPadding * 2.0f;
+		float width = size + sidePadding * 2;
+		float height = text.getGlobalBounds().height + topPadding * 2;
 
 		rect.setSize(sf::Vector2f(width, height));
 
