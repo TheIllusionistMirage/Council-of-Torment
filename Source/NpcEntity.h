@@ -19,5 +19,8 @@ enum Direction
 	{
 		public:
 			NpcEntity();
+
+		protected:
+
 	};
 

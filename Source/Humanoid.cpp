@@ -788,41 +788,89 @@
 		context.console->logInfo("Player attacked humanoid: " + target.getName());
 	}
 
+/* ----------------------------------------------------------------------
+* Author: Octav
+* Date: 22th July 2014
+* Description: Enters or exits the dialogue mode
+* ----------------------------------------------------------------------
+*/
 	void Humanoid::setDialogueMode(bool state)
 	{
 		dialogueMode = state;
 	}
 
+/* ----------------------------------------------------------------------
+* Author: Octav
+* Date: 22nd July 2014
+* Description: Returns the overhead text of the humanoid
+* ----------------------------------------------------------------------
+*/
 	DialogueBox& Humanoid::getOverheadText() 
 	{ 
 		return overheadText; 
 	}
 
+/* ----------------------------------------------------------------------
+* Author: Octav
+* Date: 22nd July 2014
+* Description: Returns the lua file of the Humanoid
+* ----------------------------------------------------------------------
+*/
 	std::string Humanoid::getDialogueFile()
 	{ 
 		return dialogueFile; 
 	}
 
+/* ----------------------------------------------------------------------
+* Author: unknown
+* Date: unknown
+* Description: Disables triggering
+* ----------------------------------------------------------------------
+*/
 	bool Humanoid::cantTrigger()
 	{ 
 		return noTrigger; 
 	}
 
+/* ----------------------------------------------------------------------
+* Author: Julian
+* Date: 22nd July 2014
+* Description: Returns the default velocity
+* ----------------------------------------------------------------------
+*/
 	int Humanoid::getDefaultVelocity() 
 	{ 
 		return defaultVelocity; 
 	}
 
+/* ----------------------------------------------------------------------
+* Author: Octav
+* Date: unknown
+* Description: Returns the velocity
+* ----------------------------------------------------------------------
+*/
 	int Humanoid::getVelocity() 
 	{ 
 		return velocity; 
 	}
 
+/* ----------------------------------------------------------------------
+* Author: Octav
+* Date: unknown
+* Description: Returns the collision bounds
+* ----------------------------------------------------------------------
+*/
 	sf::FloatRect Humanoid::getCollisionBounds() 
 	{ 
 		return collisionBounds; 
 	}
 
+/* ----------------------------------------------------------------------
+* Author: Julian
+* Date: unknown
+* Description: unknown
+* ----------------------------------------------------------------------
+*/
 	void Humanoid::unMove() 
 	{ 
 		if (!noTrigger) 

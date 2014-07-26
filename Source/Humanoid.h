@@ -1,8 +1,8 @@
 #pragma once
 
-#include "State.h"
 #include "DialogueBox.h"
 #include "NpcEntity.h"
+#include "State.h"
 
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
