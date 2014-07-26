@@ -477,13 +477,13 @@
  * Description: Plays a certain animation
  * ----------------------------------------------------------------------
  */
-	void Humanoid::playAnimationOnce(int animationID)
+	void Humanoid::playAnimationOnce(int HumanAnimationID)
 	{
 		// Play a certain animation
 		frameX = 0;
 		properties["canMove"] = false;
 		playOnce = true;
-		idleAnimation = animationID;
+		idleAnimation = HumanAnimationID;
 	}
 
 /* ----------------------------------------------------------------------
@@ -543,7 +543,7 @@
  * Description: Returns the position casted to int
  * ----------------------------------------------------------------------
  */
-	sf::Vector2f Humanoid::getPosition() const
+	sf::Vector2f Humanoid::getPosition()
 	{
 		// Cast the sprite position to int
 		sf::Vector2f position(float(int(bodySprite.getPosition().x + 0.5f)), float(int(bodySprite.getPosition().y + 0.5f)));
@@ -558,7 +558,7 @@
  * Description: Returns the texture rect of the humanoid
  * ----------------------------------------------------------------------
  */
-	sf::IntRect Humanoid::getTextureRext() const
+	sf::IntRect Humanoid::getTextureRext()
 	{
 		// Return the texture rect
 		return bodySprite.getTextureRect();
@@ -570,7 +570,7 @@
  * Description: Returns the relative position of the player in squares
  * ----------------------------------------------------------------------
  */
-	sf::Vector2f Humanoid::getRelativePosition() const
+	sf::Vector2f Humanoid::getRelativePosition()
 	{
 		float x = bodySprite.getPosition().x / TILE_SIZE;
 		float y = (bodySprite.getPosition().y + TILE_SIZE/2) / TILE_SIZE;
@@ -786,4 +786,45 @@
 	void Humanoid::attack(Humanoid& target)
 	{
 		context.console->logInfo("Player attacked humanoid: " + target.getName());
+	}
+
+	void Humanoid::setDialogueMode(bool state)
+	{
+		dialogueMode = state;
+	}
+
+	DialogueBox& Humanoid::getOverheadText() 
+	{ 
+		return overheadText; 
+	}
+
+	std::string Humanoid::getDialogueFile()
+	{ 
+		return dialogueFile; 
+	}
+
+	bool Humanoid::cantTrigger()
+	{ 
+		return noTrigger; 
+	}
+
+	int Humanoid::getDefaultVelocity() 
+	{ 
+		return defaultVelocity; 
+	}
+
+	int Humanoid::getVelocity() 
+	{ 
+		return velocity; 
+	}
+
+	sf::FloatRect Humanoid::getCollisionBounds() 
+	{ 
+		return collisionBounds; 
+	}
+
+	void Humanoid::unMove() 
+	{ 
+		if (!noTrigger) 
+			isMoving = false; 
 	}
