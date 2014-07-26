@@ -5,7 +5,7 @@
 #include "AnimationTile.h"
 #include "MapTrigger.h"
 #include "MapLayer.h"
-#include "Humanoid.h"
+#include "LivingEntity.h"
 #include <memory>
 
 /*	The game map loads a map using the Tmx-parser.
@@ -32,7 +32,7 @@ class GameMap
 		int getMapHeight() const;
 		int getMapWidth() const;
 		bool isNaturalLighting() const;
-		std::map<std::string, std::unique_ptr<Humanoid>>& getNPCs();
+		std::map<std::string, std::unique_ptr<LivingEntity>>& getNPCs();
 		std::map<int, std::map<int, std::vector<sf::ConvexShape>>>& getCollisionMap();
 		std::vector<sf::Sprite>& getImageLayer();
 		std::unique_ptr<Tmx::Map>& getMapObject();
@@ -41,7 +41,7 @@ class GameMap
 	private:
 		std::map<int, std::map<int, std::vector<sf::ConvexShape>>> collisionMap;
 		std::vector<std::unique_ptr<AnimationTile>> animationMap;
-		std::map<std::string, std::unique_ptr<Humanoid>> NPCs;
+		std::map<std::string, std::unique_ptr<LivingEntity>> NPCs;
 		std::vector<Tmx::Object> objectList;
 		std::vector<sf::Sprite> imageLayer;
 		std::vector<MapLayer> layerList;

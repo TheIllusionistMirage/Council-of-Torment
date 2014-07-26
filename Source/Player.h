@@ -16,10 +16,10 @@
 	because the user plays him. Ingame the camera
 	will follow him, he will be able to trigger
 	map triggers, he has an inventory, etc...
-	He inherits from the humanoid class, but he
+	He inherits from the LivingEntity class, but he
 	is able to do so much more than that.
 */
-class Player : public Humanoid
+class Player : public LivingEntity
 {
 	public:
 		enum Action

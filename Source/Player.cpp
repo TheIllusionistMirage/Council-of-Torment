@@ -11,7 +11,7 @@
  * ----------------------------------------------------------------------
  */
 	Player::Player(State::Context context, std::string entName, float xPos, float yPos)
-	: Humanoid(context, entName, xPos, yPos)
+	: LivingEntity(context, entName, xPos, yPos)
 	, armorManager(context)
 	, inventory(context)
 	, camera()
@@ -58,8 +58,8 @@
  */
 	void Player::update(sf::Time elapsedTime)
 	{
-		// Update the humanoid part
-		Humanoid::update(elapsedTime);
+		// Update the LivingEntity part
+		LivingEntity::update(elapsedTime);
 
 		// Update the armor manager 
 		armorManager.update(*this);
@@ -92,8 +92,8 @@
  */
 	void Player::render()
 	{
-		// Render the humanoid part
-		Humanoid::render();
+		// Render the LivingEntity part
+		LivingEntity::render();
 
 		// Render the armor manager
 		armorManager.render();

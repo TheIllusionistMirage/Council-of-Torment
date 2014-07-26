@@ -5,7 +5,7 @@
 #include <map>
 
 /*	The armor manager is like a container for all the
-	different armor parts a humanoid can have.
+	different armor parts a LivingEntity can have.
 	It handles all the armor parts, and the user
 	can simply add parts.
 */
@@ -27,7 +27,7 @@ class ArmorManager
 		ArmorManager(State::Context context);
 
 		void add(ArmorPart part);
-		void update(Humanoid& humanoid);
+		void update(LivingEntity& LivingEntity);
 		void render();
 
 		bool containsPart(ArmorType type) const;
