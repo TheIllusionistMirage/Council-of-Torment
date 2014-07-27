@@ -7,6 +7,7 @@ Anyone may contribute to this repository but keep in mind it is likely to be mad
 
 Emoji  | code | When to use
 -------|------ | -------------
+:memo: | memo | **important** When new files have been added
 :lock: | lock | When you fixed an issue, and closing it (precede with #your issue)
 :pencil2: | pencil2 | When your update mostly involves tiny value changes
 :notes: | notes | When your update involves anything sound-effect related
@@ -17,7 +18,6 @@ Emoji  | code | When to use
 :apple: | apple | When your update is for Mac OS / IOS
 :iphone: | iphone | For anything Android-related
 :beetle: | beetle | When you fixed a bug
-:memo: | memo | **important** When new files have been added
 :book: | book | When you add new items/NPCs/Books/Data, without adding it to the game
 :warning: | warning | **very important** When your update adds warnings to the source
 :construction: | construction | when your commit is a WIP (Mostly use in new branches)
