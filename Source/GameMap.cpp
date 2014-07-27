@@ -239,7 +239,7 @@
 							LuaScript script{ context, "Content/Scripts/npcs.lua" };
 							std::string luaKey = "npc_" + object->GetProperties().GetList()["id"];
 
-							std::unique_ptr<Humanoid> h(new Humanoid(context, script.get<std::string>(luaKey+".file")));
+							std::unique_ptr<LivingEntity> h(new LivingEntity(context, script.get<std::string>(luaKey+".file")));
 
 							h -> key = object->GetName();
 							h -> setPosition(sf::Vector2f((float)object->GetX(), (float)object->GetY() - 32));
@@ -258,7 +258,7 @@
 							h -> setProperty("visible", script.get<bool>(luaKey + ".visible"));
 							h -> setProperty("hasDialogue", script.get<bool>(luaKey + ".has_dialogue"));
 
-							NPCs.insert(std::pair<std::string, std::unique_ptr<Humanoid>>(object->GetName(), std::move(h)));
+							NPCs.insert(std::pair<std::string, std::unique_ptr<LivingEntity>>(object->GetName(), std::move(h)));
 							context.console->logWarning("Inserted NPC '" + script.get<std::string>(luaKey + ".name") + "' at " + std::to_string(object->GetX() / TILE_SIZE) + ":" + std::to_string((object->GetY() - 32) / TILE_SIZE));
 						}
 						else if(!object->GetType().empty())
@@ -549,7 +549,7 @@
 * Description: Returns the layer of NPCs in the map
 * ----------------------------------------------------------------------
 */
-	std::map<std::string, std::unique_ptr<Humanoid>>& GameMap::getNPCs()
+	std::map<std::string, std::unique_ptr<LivingEntity>>& GameMap::getNPCs()
 	{
 		return NPCs;
 	}

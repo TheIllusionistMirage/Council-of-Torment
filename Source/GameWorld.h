@@ -5,7 +5,7 @@
 #include <SFML/Graphics/RenderTexture.hpp>
 
 /*	The game world is the class which has the game map
-	and all the humanoids in it. It draws them in a
+	and all the LivingEntitys in it. It draws them in a
 	specific order, to get our cool 2.5d look.
 */
 class GameWorld

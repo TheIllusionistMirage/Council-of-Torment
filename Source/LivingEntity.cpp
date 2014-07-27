@@ -1,4 +1,4 @@
-#include "Humanoid.h"
+#include "LivingEntity.h"
 #include "LuaScript.h"
 #include "MapLayer.h"
 #include "GameMap.h"
@@ -12,10 +12,10 @@
 /* ----------------------------------------------------------------------
  * Author: Julian
  * Date: 19 January 2014
- * Description: Constructor of the humanoid class
+ * Description: Constructor of the LivingEntity class
  * ----------------------------------------------------------------------
  */
-	Humanoid::Humanoid(State::Context context, std::string entName, float xPos, float yPos)
+	LivingEntity::LivingEntity(State::Context context, std::string entName, float xPos, float yPos)
 	: context(context)
 	, name(entName)
 	, health(100)
@@ -72,10 +72,10 @@
 /* ----------------------------------------------------------------------
 * Author: Octav
 * Date: 19 July 2014
-* Description: Updates the humanoid but this code doesn't apply to the player
+* Description: Updates the LivingEntity but this code doesn't apply to the player
 * ----------------------------------------------------------------------
 */
-	void Humanoid::updateNoPlayer(sf::Time elapsedTime)
+	void LivingEntity::updateNoPlayer(sf::Time elapsedTime)
 	{
 		static float xDistance = 5;
 		static float yDistance = 25;
@@ -120,14 +120,14 @@
 /* ----------------------------------------------------------------------
  * Author: Julian
  * Date: 19 January 2014
- * Description: Updates the humanoid
+ * Description: Updates the LivingEntity
  * ----------------------------------------------------------------------
  */
-	void Humanoid::update(sf::Time elapsedTime)
+	void LivingEntity::update(sf::Time elapsedTime)
 	{
 		if(isMoving && properties["canMove"] && noTrigger)
 		{
-			// Move the humanoid depending on the direction
+			// Move the LivingEntity depending on the direction
 			switch(directionFacing)
 			{
 				// To the north
@@ -238,16 +238,16 @@
 /* ----------------------------------------------------------------------
  * Author: Julian
  * Date: 19 January 2014
- * Description: Draw the humanoid
+ * Description: Draw the LivingEntity
  * ----------------------------------------------------------------------
  */
-	void Humanoid::render()
+	void LivingEntity::render()
 	{
 		// Save the float position and cast the sprite position to int
 		sf::Vector2f position = bodySprite.getPosition();
 		bodySprite.setPosition(float(int(position.x + 0.5f)), float(int(position.y + 0.5f)));
 
-		// Render the humanoid
+		// Render the LivingEntity
 		if (properties["visible"] == true)
 			context.window->draw(bodySprite);
 
@@ -266,12 +266,12 @@
 /* ----------------------------------------------------------------------
  * Author: Julian
  * Date: 19 January 2014
- * Description: Move the humanoid
+ * Description: Move the LivingEntity
  * ----------------------------------------------------------------------
  */
-	void Humanoid::move(int direction, int squares)
+	void LivingEntity::move(int direction, int squares)
 	{
-		// Move the humanoid
+		// Move the LivingEntity
 		if(!isMoving)
 		{
 			// Change direction
@@ -287,7 +287,7 @@
 		}
 	}
 
-	void Humanoid::move(int direction, sf::Time elapsedTime)
+	void LivingEntity::move(int direction, sf::Time elapsedTime)
 	{
 		if(!noTrigger)
 		{
@@ -477,7 +477,7 @@
  * Description: Plays a certain animation
  * ----------------------------------------------------------------------
  */
-	void Humanoid::playAnimationOnce(int HumanAnimationID)
+	void LivingEntity::playAnimationOnce(int HumanAnimationID)
 	{
 		// Play a certain animation
 		frameX = 0;
@@ -492,7 +492,7 @@
  * Description: Sets a new position (coordinates as parameter)
  * ----------------------------------------------------------------------
  */
-	void Humanoid::setPosition(float tileX, float tileY)
+	void LivingEntity::setPosition(float tileX, float tileY)
 	{
 		// Set a new position and set isMoving to false
 		bodySprite.setPosition(tileX * TILE_SIZE, tileY * TILE_SIZE - 16);
@@ -506,7 +506,7 @@
  * Description: Sets a new position (position as parameter)
  * ----------------------------------------------------------------------
  */
-	void Humanoid::setPosition(sf::Vector2f position)
+	void LivingEntity::setPosition(sf::Vector2f position)
 	{
 		// Set a new position
 		bodySprite.setPosition(position);
@@ -519,7 +519,7 @@
  * Description: Sets the new health
  * ----------------------------------------------------------------------
  */
-	void Humanoid::setHealth(int health)
+	void LivingEntity::setHealth(int health)
 	{
 		// Set the new health
 		this->health = health;
@@ -531,7 +531,7 @@
  * Description: Sets the new mana
  * ----------------------------------------------------------------------
  */
-	void Humanoid::setMana(int mana)
+	void LivingEntity::setMana(int mana)
 	{
 		// Set the new mana
 		this->mana = mana;
@@ -543,7 +543,7 @@
  * Description: Returns the position casted to int
  * ----------------------------------------------------------------------
  */
-	sf::Vector2f Humanoid::getPosition()
+	sf::Vector2f LivingEntity::getPosition()
 	{
 		// Cast the sprite position to int
 		sf::Vector2f position(float(int(bodySprite.getPosition().x + 0.5f)), float(int(bodySprite.getPosition().y + 0.5f)));
@@ -555,10 +555,10 @@
 /* ----------------------------------------------------------------------
  * Author: Julian
  * Date: 19 January 2014
- * Description: Returns the texture rect of the humanoid
+ * Description: Returns the texture rect of the LivingEntity
  * ----------------------------------------------------------------------
  */
-	sf::IntRect Humanoid::getTextureRext()
+	sf::IntRect LivingEntity::getTextureRext()
 	{
 		// Return the texture rect
 		return bodySprite.getTextureRect();
@@ -570,7 +570,7 @@
  * Description: Returns the relative position of the player in squares
  * ----------------------------------------------------------------------
  */
-	sf::Vector2f Humanoid::getRelativePosition()
+	sf::Vector2f LivingEntity::getRelativePosition()
 	{
 		float x = bodySprite.getPosition().x / TILE_SIZE;
 		float y = (bodySprite.getPosition().y + TILE_SIZE/2) / TILE_SIZE;
@@ -584,7 +584,7 @@
  * Description: Sets the velocity
  * ----------------------------------------------------------------------
  */
-	void Humanoid::setSpeed(int speed)
+	void LivingEntity::setSpeed(int speed)
 	{
 		// Set the velocity
 		velocity = speed;
@@ -596,7 +596,7 @@
  * Description: Sets the default velocity
  * ----------------------------------------------------------------------
  */
-	void Humanoid::setDefaultSpeed(int speed)
+	void LivingEntity::setDefaultSpeed(int speed)
 	{
 		// Set the velocity
 		defaultVelocity = speed;
@@ -605,10 +605,10 @@
 /* ----------------------------------------------------------------------
 * Author: Octav
 * Date: 26th May 2014
-* Description: Sets if the humanoid can move or not.
+* Description: Sets if the LivingEntity can move or not.
 * ----------------------------------------------------------------------
 */
-	void Humanoid::setCanMove(bool flag)
+	void LivingEntity::setCanMove(bool flag)
 	{
 		properties["canMove"] = flag;
 	}
@@ -616,10 +616,10 @@
 /* ----------------------------------------------------------------------
 * Author: Octav
 * Date: 26th May 2014
-* Description: Sets the idle animation of the humanoid
+* Description: Sets the idle animation of the LivingEntity
 * ----------------------------------------------------------------------
 */
-	void Humanoid::setIdleAnimation(int id)
+	void LivingEntity::setIdleAnimation(int id)
 	{
 		idleAnimation = id;
 	}
@@ -630,10 +630,10 @@
 * Description: Sets a certain key in the properties list
 * ----------------------------------------------------------------------
 */
-	void Humanoid::setProperty(std::string key, bool value)
+	void LivingEntity::setProperty(std::string key, bool value)
 	{
 		if (properties.find(key) == properties.end()) {
-			context.console->logError("Unable to find humanoid value [" + key + "] for " + name);
+			context.console->logError("Unable to find LivingEntity value [" + key + "] for " + name);
 		}
 		else {
 			properties[key] = value;
@@ -646,10 +646,10 @@
 * Description: Returns the value at a given key
 * ----------------------------------------------------------------------
 */
-	bool Humanoid::getProperty(std::string key)
+	bool LivingEntity::getProperty(std::string key)
 	{
 		if (properties.find(key) == properties.end()) {
-			context.console->logError("Unable to find humanoid value [" + key + "] for " + name);
+			context.console->logError("Unable to find LivingEntity value [" + key + "] for " + name);
 			return false;
 		}
 		else {
@@ -660,10 +660,10 @@
 /* ----------------------------------------------------------------------
 * Author: Octav
 * Date: 17th July 2014
-* Description: Sets the name of the humanoid entity
+* Description: Sets the name of the LivingEntity entity
 * ----------------------------------------------------------------------
 */
-	void Humanoid::setName(std::string n)
+	void LivingEntity::setName(std::string n)
 	{
 		name = n;
 	}
@@ -671,10 +671,10 @@
 /* ----------------------------------------------------------------------
 * Author: Octav
 * Date: 17th July 2014
-* Description: Gets the name of the humanoid entity
+* Description: Gets the name of the LivingEntity entity
 * ----------------------------------------------------------------------
 */
-	std::string Humanoid::getName()
+	std::string LivingEntity::getName()
 	{
 		return name;
 	}
@@ -682,10 +682,10 @@
 /* ----------------------------------------------------------------------
 * Author: Octav
 * Date: 17th July 2014
-* Description: Gets the sprite of the humanoid entity
+* Description: Gets the sprite of the LivingEntity entity
 * ----------------------------------------------------------------------
 */
-	sf::Sprite& Humanoid::getSprite()
+	sf::Sprite& LivingEntity::getSprite()
 	{
 		return bodySprite;
 	}
@@ -696,7 +696,7 @@
 * Description: Starts the dialogue mode
 * ----------------------------------------------------------------------
 */
-	void Humanoid::setDialogueFile(std::string filename)
+	void LivingEntity::setDialogueFile(std::string filename)
 	{
 		dialogueFile = filename;
 	}
@@ -707,7 +707,7 @@
 * Description: Says a certain line
 * ----------------------------------------------------------------------
 */
-	void Humanoid::sayLine(std::string lineID)
+	void LivingEntity::sayLine(std::string lineID)
 	{
 		if (dialogueMode)
 		{
@@ -760,7 +760,7 @@
 * Description: draws the overhead text
 * ----------------------------------------------------------------------
 */
-	void Humanoid::drawOverheadText()
+	void LivingEntity::drawOverheadText()
 	{
 		if (dialogueMode == true)
 			overheadText.render();
@@ -772,7 +772,7 @@
 * Description: Toggles the defence mode
 * ----------------------------------------------------------------------
 */
-	void Humanoid::toggleDefendMode()
+	void LivingEntity::toggleDefendMode()
 	{
 		defendMode = !defendMode;
 	}
@@ -780,12 +780,12 @@
 /* ----------------------------------------------------------------------
 * Author: Octav
 * Date: 24th July 2014
-* Description: Attacks a certain humanoid target
+* Description: Attacks a certain LivingEntity target
 * ----------------------------------------------------------------------
 */
-	void Humanoid::attack(Humanoid& target)
+	void LivingEntity::attack(LivingEntity& target)
 	{
-		context.console->logInfo("Player attacked humanoid: " + target.getName());
+		context.console->logInfo("Player attacked LivingEntity: " + target.getName());
 	}
 
 /* ----------------------------------------------------------------------
@@ -794,7 +794,7 @@
 * Description: Enters or exits the dialogue mode
 * ----------------------------------------------------------------------
 */
-	void Humanoid::setDialogueMode(bool state)
+	void LivingEntity::setDialogueMode(bool state)
 	{
 		dialogueMode = state;
 	}
@@ -802,10 +802,10 @@
 /* ----------------------------------------------------------------------
 * Author: Octav
 * Date: 22nd July 2014
-* Description: Returns the overhead text of the humanoid
+* Description: Returns the overhead text of the LivingEntity
 * ----------------------------------------------------------------------
 */
-	DialogueBox& Humanoid::getOverheadText() 
+	DialogueBox& LivingEntity::getOverheadText() 
 	{ 
 		return overheadText; 
 	}
@@ -813,10 +813,10 @@
 /* ----------------------------------------------------------------------
 * Author: Octav
 * Date: 22nd July 2014
-* Description: Returns the lua file of the Humanoid
+* Description: Returns the lua file of the LivingEntity
 * ----------------------------------------------------------------------
 */
-	std::string Humanoid::getDialogueFile()
+	std::string LivingEntity::getDialogueFile()
 	{ 
 		return dialogueFile; 
 	}
@@ -827,7 +827,7 @@
 * Description: Disables triggering
 * ----------------------------------------------------------------------
 */
-	bool Humanoid::cantTrigger()
+	bool LivingEntity::cantTrigger()
 	{ 
 		return noTrigger; 
 	}
@@ -838,7 +838,7 @@
 * Description: Returns the default velocity
 * ----------------------------------------------------------------------
 */
-	int Humanoid::getDefaultVelocity() 
+	int LivingEntity::getDefaultVelocity() 
 	{ 
 		return defaultVelocity; 
 	}
@@ -849,7 +849,7 @@
 * Description: Returns the velocity
 * ----------------------------------------------------------------------
 */
-	int Humanoid::getVelocity() 
+	int LivingEntity::getVelocity() 
 	{ 
 		return velocity; 
 	}
@@ -860,7 +860,7 @@
 * Description: Returns the collision bounds
 * ----------------------------------------------------------------------
 */
-	sf::FloatRect Humanoid::getCollisionBounds() 
+	sf::FloatRect LivingEntity::getCollisionBounds() 
 	{ 
 		return collisionBounds; 
 	}
@@ -871,7 +871,7 @@
 * Description: unknown
 * ----------------------------------------------------------------------
 */
-	void Humanoid::unMove() 
+	void LivingEntity::unMove() 
 	{ 
 		if (!noTrigger) 
 			isMoving = false; 

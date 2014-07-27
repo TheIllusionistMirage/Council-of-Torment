@@ -1,6 +1,6 @@
 #include "Console.h"
 #include "Game.h"
-#include "Humanoid.h"
+#include "LivingEntity.h"
 
 #include <algorithm>
 #include <string>

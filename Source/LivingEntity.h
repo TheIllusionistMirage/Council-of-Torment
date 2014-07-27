@@ -1,7 +1,6 @@
 #pragma once
 
 #include "DialogueBox.h"
-#include "NpcEntity.h"
 #include "State.h"
 
 #include <SFML/Graphics/RectangleShape.hpp>
@@ -31,15 +30,24 @@ enum HumanAnimationID
 	TOTAL_ANIMATIONS
 };
 
-/*	The humanoid is the base class for the player and
-	the class for all NPC's. It contains various data
-	and functions about what a humanoid needs.
-	It is very powerful in a container full of NPC's.
+enum Direction
+{
+	NO_DIRECTION,
+	NORTH,
+	SOUTH,
+	WEST,
+	EAST,
+};
+
+/*	The LivingEntity is the base class for the player and
+	the class for all NPCs. It contains various data
+	and functions about what a LivingEntity needs.
+	It is very powerful in a container full of NPCs.
 */
-	class Humanoid
+	class LivingEntity
 	{
 		public:
-			Humanoid(State::Context context, std::string entName, float xPos = 0.0f, float yPos = 0.0f);
+			LivingEntity(State::Context context, std::string entName, float xPos = 0.0f, float yPos = 0.0f);
 
 			virtual void move(int direction, sf::Time elapsedTime);
 			virtual void updateNoPlayer(sf::Time elapsedTime);
@@ -59,7 +67,7 @@ enum HumanAnimationID
 			virtual void sayLine(std::string lineID);
 			virtual void setDialogueMode(bool state);
 			virtual void setDefaultSpeed(int speed);
-			virtual void attack(Humanoid& target);
+			virtual void attack(LivingEntity& target);
 			virtual void setIdleAnimation(int id);
 			virtual void setName(std::string n);
 			virtual void setCanMove(bool flag);
@@ -84,7 +92,7 @@ enum HumanAnimationID
 			virtual int getVelocity();
 
 			/*---------- Public Variables ---------*/
-			// the key that points to this humanoid in the gameMap
+			// the key that points to this LivingEntity in the gameMap
 			std::string key; 
 
 		protected:

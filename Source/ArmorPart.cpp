@@ -1,5 +1,5 @@
 #include "ArmorPart.h"
-#include "Humanoid.h"
+#include "LivingEntity.h"
 
 /* ----------------------------------------------------------------------
  * Author: Julian
@@ -20,11 +20,11 @@ ArmorPart::ArmorPart(ArmorType type, State::Context context, std::string fileNam
  * Description: Updates the armor part
  * ----------------------------------------------------------------------
  */
-void ArmorPart::update(Humanoid& humanoid)
+void ArmorPart::update(LivingEntity& LivingEntity)
 {
 	// Update the position and texture rect
-	sprite.setPosition(humanoid.getPosition());
-	sprite.setTextureRect(humanoid.getTextureRext());
+	sprite.setPosition(LivingEntity.getPosition());
+	sprite.setTextureRect(LivingEntity.getTextureRext());
 }
 
 /* ----------------------------------------------------------------------

@@ -1,5 +1,5 @@
 #include "ArmorManager.h"
-#include "Humanoid.h"
+#include "LivingEntity.h"
 
 /* ----------------------------------------------------------------------
  * Author: Julian
@@ -79,18 +79,18 @@ void ArmorManager::add(ArmorPart part)
  * Description: Updates all armor parts
  * ----------------------------------------------------------------------
  */
-void ArmorManager::update(Humanoid& humanoid)
+void ArmorManager::update(LivingEntity& LivingEntity)
 {
 	// Update all armor parts
-	head.update(humanoid);
-	torso.update(humanoid);
-	neck.update(humanoid);
-	legs.update(humanoid);
-	hands.update(humanoid);
-	feet.update(humanoid);
-	ring.update(humanoid);
-	sword.update(humanoid);
-	shield.update(humanoid);
+	head.update(LivingEntity);
+	torso.update(LivingEntity);
+	neck.update(LivingEntity);
+	legs.update(LivingEntity);
+	hands.update(LivingEntity);
+	feet.update(LivingEntity);
+	ring.update(LivingEntity);
+	sword.update(LivingEntity);
+	shield.update(LivingEntity);
 }
 
 /* ----------------------------------------------------------------------
