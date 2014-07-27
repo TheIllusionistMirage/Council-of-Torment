@@ -33,7 +33,7 @@ void ArmorPart::update(LivingEntity& LivingEntity)
  * Description: Renders the armor part
  * ----------------------------------------------------------------------
  */
-void ArmorPart::render(sf::RenderWindow& window)
+void ArmorPart::render(sf::RenderTexture& window)
 {
 	// Render the armor part
 	window.draw(sprite);

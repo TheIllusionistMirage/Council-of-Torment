@@ -2,6 +2,7 @@
 
 #include "State.h"
 #include "TmxParser/Tmx.h"
+#include <SFML/Graphics.hpp>
 
 /*	The game map consists of some layers to get the
 	cool 2.5d look. Every layer can be seen as a unique

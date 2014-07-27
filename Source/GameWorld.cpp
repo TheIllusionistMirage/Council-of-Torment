@@ -13,7 +13,7 @@ GameWorld::GameWorld(State::Context context)
 {
 	// Create the render texture
 	if(!roofTexture.create(context.window->getSize().x, context.window->getSize().y))
-		context.window->close();
+		context.renderWindow->close();
 
 	// Load the default map
 	context.gameMap->loadMap(DEFAULT_LOADED_MAP, SOUTH);

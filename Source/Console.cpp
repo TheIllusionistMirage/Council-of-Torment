@@ -80,8 +80,8 @@ Console::Console(State::Context context)
 void Console::update(sf::Time elapsedTime)
 {
 	// Gets the mousePosition
-	const float mouseX = static_cast<float>(sf::Mouse::getPosition(*context.window).x);
-	const float mouseY = static_cast<float>(sf::Mouse::getPosition(*context.window).y);
+	const float mouseX = static_cast<float>(sf::Mouse::getPosition(*context.renderWindow).x);
+	const float mouseY = static_cast<float>(sf::Mouse::getPosition(*context.renderWindow).y);
 
 	// Set the color of the scrollbar
 	scrollBar[0].setFillColor(sf::Color(120, 120, 120));
@@ -554,7 +554,7 @@ void Console::newCommand(std::string command, std::string values)
 
 //==========================================================================================================================
 	else if(command == "exit")												// exit
-		context.window->close();
+		context.renderWindow->close();
 //==========================================================================================================================
 	else if(command == "player_set_position")								// player_set_position x:y
 	{

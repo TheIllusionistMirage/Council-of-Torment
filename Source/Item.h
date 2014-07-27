@@ -1,7 +1,7 @@
 #pragma once
 
 #include "State.h"
-#include <SFML/Graphics/RectangleShape.hpp>
+#include <SFML/Graphics.hpp>
 
 enum Category
 {

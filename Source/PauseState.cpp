@@ -1,8 +1,6 @@
 #include "PauseState.h"
 #include "GUI/Button.h"
-#include <SFML/Graphics/RectangleShape.hpp>
-#include <SFML/Graphics/RenderWindow.hpp>
-#include <SFML/Graphics/View.hpp>
+#include <SFML/Graphics.hpp>
 
 /* ----------------------------------------------------------------------
  * Author: Julian
@@ -71,7 +69,7 @@ bool PauseState::update(sf::Time elapsedTime)
 void PauseState::render()
 {
 	// Get the window and set the default view
-	sf::RenderWindow& window = *getContext().window;
+	sf::RenderTexture& window = *getContext().window;
 	window.setView(window.getDefaultView());
 
 	// Create an background sprite to darken the screen

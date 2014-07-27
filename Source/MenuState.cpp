@@ -51,7 +51,7 @@ bool MenuState::update(sf::Time elapsedTime)
 void MenuState::render()
 {
 	// Get the window and sets the default view
-	sf::RenderWindow& window = *getContext().window;
+	sf::RenderTexture& window = *getContext().window;
 	window.setView(window.getDefaultView());
 
 	// Render the menu

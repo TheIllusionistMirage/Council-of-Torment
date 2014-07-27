@@ -29,7 +29,7 @@ class ArmorPart
 
 		ArmorType getType() const;
 		void setType(ArmorType type);
-		void render(sf::RenderWindow& window);
+		void render(sf::RenderTexture& window);
 		void update(LivingEntity& LivingEntity);
 
 	private:

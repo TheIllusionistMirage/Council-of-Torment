@@ -7,7 +7,7 @@
  * Description: Constructor of the context struct
  * ----------------------------------------------------------------------
  */
-State::Context::Context(sf::RenderWindow& window, ContentManager& contentManager, EffectManager& effectManager, LightManager& lightManager,
+State::Context::Context(sf::RenderTexture& window, sf::RenderWindow& renderWindow, ContentManager& contentManager, EffectManager& effectManager, LightManager& lightManager,
 						Player& player, GameMap& gameMap, Console& console, Crafting& crafting, GlobalTime& globalTime)
 : window(&window)
 , player(&player)
@@ -17,6 +17,7 @@ State::Context::Context(sf::RenderWindow& window, ContentManager& contentManager
 , globalTime(&globalTime)
 , lightManager(&lightManager)
 , effectManager(&effectManager)
+, renderWindow(&renderWindow)
 , contentManager(&contentManager)
 {
 }

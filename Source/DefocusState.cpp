@@ -1,7 +1,5 @@
 #include "DefocusState.h"
-#include <SFML/Graphics/RectangleShape.hpp>
-#include <SFML/Graphics/RenderWindow.hpp>
-#include <SFML/Graphics/View.hpp>
+#include <SFML/Graphics.hpp>
 
 /* ----------------------------------------------------------------------
  * Author: Julian
@@ -15,7 +13,7 @@ DefocusState::DefocusState(StateStack& stack, Context context)
 {
 	// Get the font and the window size
 	sf::Font& font = context.contentManager->getFont(Fonts::CLOISTER_BLACK);
-	sf::Vector2f windowSize(context.window->getSize());
+	sf::Vector2f windowSize(context.renderWindow->getSize());
 
 	// Create the defocus text
 	defocusText.setFont(font);
@@ -45,7 +43,7 @@ bool DefocusState::update(sf::Time elapsedTime)
 void DefocusState::render()
 {
 	// Get the window and set the default view
-	sf::RenderWindow& window = *getContext().window;
+	sf::RenderTexture& window = *getContext().window;
 	window.setView(window.getDefaultView());
 
 	// Create an background sprite to darken the screen

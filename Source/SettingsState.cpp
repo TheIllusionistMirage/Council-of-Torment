@@ -68,7 +68,7 @@ bool SettingsState::update(sf::Time elapsedTime)
 void SettingsState::render()
 {
 	// Gets the window and sets the default view
-	sf::RenderWindow& window = *getContext().window;
+	sf::RenderTexture& window = *getContext().window;
 	window.setView(window.getDefaultView());
 
 	// Render everything
@@ -186,7 +186,7 @@ void SettingsState::saveResolution()
 		resolutionFile.write(reinterpret_cast<char*>(&currentStyle), sizeof(sf::Uint32));
 		
 		// If the resolution changed, recreate the window and reload the state
-		context.window->create(sf::VideoMode(width, height), "Council of Torment", Game::windowStyle);
+		context.renderWindow->create(sf::VideoMode(width, height), "Council of Torment", Game::windowStyle);
 		requestStackPop();
 		requestStackPush(States::SETTINGS);
 	}
@@ -197,7 +197,8 @@ void SettingsState::saveResolution()
 	resolutionFile.close();
 
 	// Enable vSync
-	context.window->setVerticalSyncEnabled(true);
+	context.renderWindow->setVerticalSyncEnabled(true);
+	context.window->create(context.renderWindow->getSize().x, context.renderWindow->getSize().y);
 
 	// Create the effect manager texture
 	context.effectManager->createTexture();

@@ -112,7 +112,7 @@
 */
 	void DialogueBox::handleEvents(const sf::Event& e)
 	{
-		sf::Vector2i mousePos = sf::Mouse::getPosition(*context.window);
+		sf::Vector2i mousePos = sf::Mouse::getPosition(*context.renderWindow);
 		sf::FloatRect bounds = rect.getGlobalBounds();
 
 		if (e.type == sf::Event::MouseMoved)

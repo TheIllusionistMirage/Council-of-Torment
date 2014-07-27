@@ -21,9 +21,10 @@ States::ID Game::currentState = States::TITLE;
  */
 Game::Game()
 : window()
+, windowTexture {}
 , globalTime()
 , contentManager()
-, context(State::Context(window, contentManager, effectManager, lightManager, player, gameMap, console, crafting, globalTime))
+, context(State::Context(windowTexture, window, contentManager, effectManager, lightManager, player, gameMap, console, crafting, globalTime))
 , player(context, "player.png")
 , effectManager(context)
 , lightManager(context)
@@ -45,8 +46,9 @@ Game::Game()
 	// Load the resolution
 	loadResolution();
 
-	// Enable vSync
+	// Enable vSync and create the texture
 	window.setVerticalSyncEnabled(true);
+	windowTexture.create(window.getSize().x, window.getSize().y);
 
 	// Create the effect manager texture
 	context.effectManager->createTexture();
@@ -212,7 +214,7 @@ void Game::update(sf::Time elapsedTime)
 void Game::render()
 {
 	// Clear the window
-	window.clear(sf::Color::White);
+	windowTexture.clear(sf::Color::White);
 
 	// Render the menu map if the state is correct
 	if(currentState == States::MENU || currentState == States::SETTINGS)
@@ -225,12 +227,15 @@ void Game::render()
 	effectManager.render();
 
 	// Render the console
-	window.draw(console);
+	windowTexture.draw(console);
 
 	// Render Frames per second text
-	window.draw(fpsText);
+	windowTexture.draw(fpsText);
 
 	// Display the window
+	window.clear();
+	windowTexture.display();
+	window.draw(sf::Sprite(windowTexture.getTexture()));
 	window.display();
 }
 
@@ -243,7 +248,7 @@ void Game::render()
 void Game::renderMenuMap()
 {
 	// Set the menu camera
-	window.setView(menuCamera);
+	windowTexture.setView(menuCamera);
 
 	// Render the layers of the map
 	menuMap.render("background");
@@ -259,7 +264,7 @@ void Game::renderMenuMap()
 	// Render the image layer of the map
 	std::vector<sf::Sprite>& imageLayerReference = menuMap.getImageLayer();
 	for(auto& x : imageLayerReference)
-		context.window->draw(x);
+		context.renderWindow->draw(x);
 
 	menuMap.render("roof");
 	menuMap.render("roof2");

@@ -34,7 +34,7 @@ void Crafting::update(const sf::Time& elapsedTime)
 		recipeHighlight.setPosition(-100.0f, -100.0f);
 		buttonHighlight.setPosition(-100.0f, -100.0f);
 
-		sf::Vector2f mousePos {sf::Mouse::getPosition(*context.window)};
+		sf::Vector2f mousePos {sf::Mouse::getPosition(*context.renderWindow)};
 		sf::Vector2f craftingPos {craftingWindow.getPosition()};
 
 		// If the mouse is inside the dragable part

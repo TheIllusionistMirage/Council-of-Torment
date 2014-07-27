@@ -84,7 +84,7 @@ namespace GUI
 			else if(windowEvent.type == sf::Event::MouseMoved)
 			{
 				// Get the mouse position
-				sf::Vector2i mousePos = sf::Mouse::getPosition(*context.window);
+				sf::Vector2i mousePos = sf::Mouse::getPosition(*context.renderWindow);
 
 				// Some variables to check if the mouse hovers over a component
 				std::size_t index = 0;
@@ -115,7 +115,7 @@ namespace GUI
 						return;
 
 					// Get the mouse position
-					sf::Vector2i mousePos = sf::Mouse::getPosition(*context.window);
+					sf::Vector2i mousePos = sf::Mouse::getPosition(*context.renderWindow);
 
 					if(childrenList[selectedChild]->getBounds().contains(static_cast<sf::Vector2f>(mousePos)))
 						childrenList[selectedChild]->activate();

@@ -26,9 +26,10 @@ class State
 		typedef std::unique_ptr<State> Ptr;
 		struct Context
 		{
-			Context(sf::RenderWindow& window, ContentManager& contentManager, EffectManager& effectManager, LightManager& lightManager,
+			Context(sf::RenderTexture& window, sf::RenderWindow& renderWindow, ContentManager& contentManager, EffectManager& effectManager, LightManager& lightManager,
 					Player& player, GameMap& gameMap, Console& console, Crafting& crafting, GlobalTime& globalTime);
-			sf::RenderWindow* window;
+			sf::RenderTexture* window;
+			sf::RenderWindow* renderWindow;
 			LightManager* lightManager;
 			EffectManager* effectManager;
 			ContentManager* contentManager;

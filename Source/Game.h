@@ -42,6 +42,7 @@ class Game
 		bool right;
 
 		sf::RenderWindow window;
+		sf::RenderTexture windowTexture;
 		State::Context context;
 		StateStack stateStack;
 

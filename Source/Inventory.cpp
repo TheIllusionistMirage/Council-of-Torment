@@ -58,7 +58,7 @@ void Inventory::update(sf::Time elapsedTime)
 	// Update the crafting menu
 	context.crafting->update(elapsedTime);
 
-	sf::Vector2f mousePos(sf::Mouse::getPosition(*context.window));
+	sf::Vector2f mousePos(sf::Mouse::getPosition(*context.renderWindow));
 
 	if(moving)
 		moveInventory(elapsedTime);
@@ -300,7 +300,7 @@ void Inventory::render()
 const bool Inventory::isMouseInside() const
 {
 	sf::FloatRect rect {inventory.getPosition().x + 10.0f, inventory.getPosition().y, inventory.getLocalBounds().width, inventory.getLocalBounds().height};
-	return rect.contains(sf::Vector2f(sf::Mouse::getPosition(*context.window)));
+	return rect.contains(sf::Vector2f(sf::Mouse::getPosition(*context.renderWindow)));
 }
 
 void Inventory::updateInventoryPosition()

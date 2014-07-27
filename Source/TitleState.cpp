@@ -1,5 +1,5 @@
 #include "TitleState.h"
-#include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics.hpp>
 
 /* ----------------------------------------------------------------------
  * Author: Julian
@@ -53,7 +53,7 @@ bool TitleState::update(sf::Time elapsedTime)
 void TitleState::render()
 {
 	// Get the window
-	sf::RenderWindow& window = *getContext().window;
+	sf::RenderTexture& window = *getContext().window;
 
 	// Render the background and the text
 	window.draw(backgroundSprite);
