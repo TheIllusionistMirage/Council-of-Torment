@@ -5,19 +5,19 @@ Council of torment (CoT) is a Top-Down 2D adventure game with a very rich storyl
 ###Contributing
 Anyone may contribute to this repository but keep in mind it is likely to be made private at one point. Please use "Update" instead of "Updated" and "Add" instead of "Added" to save character limitation, and provide a thorough description of your commit, with pictures if necesary. Also, keep in mind that it's recommended to respect our emoji commit guidelines; simply preceed your commits with the following emojis if your update applies:
 
-Emoji  | When to use
-------------- | -------------
-:lock: | When you fixed an issue, and closing it (precede with #your issue)
-:pencil2: | When your update mostly involves tiny value changes
-:notes:  | When your update involves anything sound-effect related
-:musical_note:  | When you are adding a new music file or music to an area
-:fire: | When you fix a very important or dangerous bug
-:racehorse: | When your update improves performance in any way
-:penguin: | When your update is for Linux OS
-:apple: | When your update is for Mac OS / IOS
-:iphone: | For anything Android-related
-:beetle: | When you fixed a bug
-:memo: | **important** When new files have been added
-:book: | When you add new items/NPCs/Books/Data, without adding it to the game
-:warning: | **very important** When your update adds warnings to the source
-:construction: | when your commit is a WIP (Mostly use in new branches)
+Emoji  | code | When to use
+-------|------ | -------------
+:lock: | lock | When you fixed an issue, and closing it (precede with #your issue)
+:pencil2: | pencil2 | When your update mostly involves tiny value changes
+:notes: | notes | When your update involves anything sound-effect related
+:musical_note: | musical_note  | When you are adding a new music file or music to an area
+:fire: | fire | When you fix a very important or dangerous bug
+:racehorse: | racehorse | When your update improves performance in any way
+:penguin: | penguin | When your update is for Linux OS
+:apple: | apple | When your update is for Mac OS / IOS
+:iphone: | iphone | For anything Android-related
+:beetle: | beetle | When you fixed a bug
+:memo: | memo | **important** When new files have been added
+:book: | book | When you add new items/NPCs/Books/Data, without adding it to the game
+:warning: | warning | **very important** When your update adds warnings to the source
+:construction: | construction | when your commit is a WIP (Mostly use in new branches)
