@@ -125,7 +125,7 @@
    <properties>
     <property name="alpha" value="255"/>
     <property name="blue" value="0"/>
-    <property name="flicker_radius" value="15"/>
+    <property name="flicker_radius" value="5"/>
     <property name="flicker_speed" value="50"/>
     <property name="flickering" value="True"/>
     <property name="green" value="174"/>
