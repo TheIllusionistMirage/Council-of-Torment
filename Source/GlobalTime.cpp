@@ -146,3 +146,14 @@
 	{
 		return seconds;
 	}
+
+/* ----------------------------------------------------------------------
+* Author: Octav
+* Date: 27 July 2014
+* Description: Returns the time of day (enum)
+* ----------------------------------------------------------------------
+*/
+	const int& GlobalTime::getTimeOfDay() const
+	{
+		return timeOfDay;
+	}

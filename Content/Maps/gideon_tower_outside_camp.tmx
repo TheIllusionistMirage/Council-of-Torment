@@ -196,7 +196,7 @@
     <property name="layer" value="roof"/>
    </properties>
   </object>
-  <object name="camplight" type="light_source" gid="321" x="256" y="416">
+  <object name="camplight" type="light_source" gid="321" x="272" y="432">
    <properties>
     <property name="alpha" value="255"/>
     <property name="blue" value="0"/>

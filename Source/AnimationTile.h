@@ -13,11 +13,13 @@ class AnimationTile
 	public:
 		AnimationTile(State::Context context, std::string l, std::string name, int frame_size, float frame_time);
 
-		std::string getLayer();
-		void update(sf::Time elapsedTime);
-		void setFrameSize(int size);
 		void setPosition(sf::Vector2f pos);
+		void update(sf::Time elapsedTime);
+		void setDrawAtNight(bool state);
+		void setFrameSize(int size);
 		void setFrameTime(float s);
+		std::string getLayer();
+		bool getDrawAtNight();
 		void setID(int i);
 		void render();
 
@@ -30,6 +32,7 @@ class AnimationTile
 		sf::Sprite sprite;
 		sf::IntRect bounds;
 		float frameSwitchTime;
+		bool drawAtNight;
 		int frameX, frameY;
 		int frameSize;
 		float timer;

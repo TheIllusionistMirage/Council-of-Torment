@@ -13,6 +13,7 @@ AnimationTile::AnimationTile(State::Context context, std::string l, std::string 
 	: context(context)
 	, texture(context.contentManager->loadTexture("Content/Animations/" + name))
 	, sprite(texture)
+	, drawAtNight(false)
 	{
 		frameSwitchTime = frame_time;
 		frameSize = frame_size;
@@ -137,4 +138,26 @@ AnimationTile::AnimationTile(State::Context context, std::string l, std::string 
 	std::string AnimationTile::getLayer()
 	{
 		return layer;
+	}
+
+/* ----------------------------------------------------------------------
+* Author: Octav
+* Date: 27 july 2014
+* Description: Sets whether the animation draws at night or not
+* ----------------------------------------------------------------------
+*/
+	void AnimationTile::setDrawAtNight(bool state)
+	{
+		drawAtNight = state;
+	}
+
+/* ----------------------------------------------------------------------
+* Author: Octav
+* Date: 27 july 2014
+* Description: Gets whether the animation draws at night or not
+* ----------------------------------------------------------------------
+*/
+	bool AnimationTile::getDrawAtNight()
+	{
+		return drawAtNight;
 	}

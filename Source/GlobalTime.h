@@ -3,12 +3,12 @@
 
 enum TimeOfDay
 {
-	START_MORNING = 5, MORNING = 7,
-	START_DAWN = 7, DAWN = 9,
-	START_NOON = 9, NOON = 11,
-	START_AFTERNOON = 17, AFTERNOON = 18,
-	START_DUSK = 18, DUSK = 20,
-	START_NIGHT = 20, NIGHT = 22
+	START_MORNING = 5,		MORNING = 7,
+	START_DAWN =	7,			DAWN = 9,
+	START_NOON = 9,			NOON = 11,
+	START_AFTERNOON = 17,	AFTERNOON = 18,
+	START_DUSK = 18,		DUSK = 20,
+	START_NIGHT = 20,			NIGHT = 22
 };
 
 /*	This class keeps track of the global
@@ -37,6 +37,7 @@ class GlobalTime
 		const int& getHours() const;
 		const int& getMinutes() const;
 		const float& getSeconds() const;
+		const int& getTimeOfDay() const;
 };
 
 struct TimePoint

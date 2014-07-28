@@ -1,4 +1,5 @@
 #include "LightManager.h"
+#include "GlobalTime.h"
 #include "LuaScript.h"
 #include "GameMap.h"
 #include "Console.h"
@@ -211,6 +212,13 @@
 
 							std::unique_ptr<AnimationTile> tile(new AnimationTile(context,p["layer"], p["file"], std::stoi(p["frame_size"]), std::stof(p["frame_time"])));
 							tile->setPosition(sf::Vector2f(float(object->GetX()), float(object->GetY() - 32)));
+
+							if (object->GetProperties().GetList().count("draw_at_night") == 1)
+								if (object->GetProperties().GetList()["draw_at_night"] == "True")
+									tile->setDrawAtNight(true);
+								else
+									tile->setDrawAtNight(false);
+
 							animationMap.push_back(std::move(tile));
 						}
 						else if(object->GetType() == "light_source") 
@@ -453,9 +461,15 @@
  */
 	void GameMap::renderAnimations(std::string layerName)
 	{
-		for(auto&& anim : animationMap)
-			if(anim->getLayer() == layerName)
+		for (auto&& anim : animationMap)
+		{
+			if (anim->getLayer() == layerName && isOnScreen(anim->getSprite(), context.player->getCamera()))
+			{
+				if (anim->getDrawAtNight() == true && context.globalTime->getHours() >= 18 && context.globalTime->getHours() <= 6)
+					context.window->draw(anim->getSprite());
 				context.window->draw(anim->getSprite());
+			}
+		}
 	}
 
 /* ----------------------------------------------------------------------
