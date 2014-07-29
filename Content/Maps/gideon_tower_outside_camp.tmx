@@ -29,7 +29,7 @@
  </layer>
  <layer name="object" width="25" height="25">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFowAVZAFxNhDnALE4jcwtAuJiIC4BYnkqmC3GAHErsrmlVDAX2c1yDNRxKzqgtpuxAVkGhgZ0sU4g7qKRfTAwEYgnEaFOlAERh5SASiCuwiFXyACJQ0pBIxA34ZGnll8oBchpN5cEfaS4P5MCe4gFpNpBbvjTwy/Y7MHFppX9o2B4AQBaSxxF
+   eJxjYBgFowAVZAFxNhDnALE4jcwtAuJiIC4BYnkqmC3GAHErsrmlVDAX2c1yDNRxKzqgtpuxAVkGhgZ0sU4g7qKRfTAwEYgnEaFOlAERh5SASiCuwiFXyACJQ0pBIxA34ZGnll8oBbC0Syogxf2ZFNhDLEC2I4cI9eSGP7o9uSTqJ9ceXGxa2T8KhhcAANXTGiY=
   </data>
  </layer>
  <layer name="object2" width="25" height="25">
@@ -44,17 +44,17 @@
  </layer>
  <layer name="roof" width="25" height="25">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFQwUkAnESECcDcQoQp1LJXF4g5sNhrjgVzAeZLQrEYkjmEWMuIT+ihwWpbiUmPPmR2OSERSYQZwFxNhl6SbWDloDWdoDMh6VDfgJqKbUni4Z28DIQF1bk5mOY+cS4Hzl95xJpDynmo9uRA7WHmuajA5gduPRTaj66PclQPoimRdk7CkYBpQAAeSQZHw==
+   eJxjYBgFQwUkAnESECcDcQoQp1LJXF4g5sNhrjgVzAeZLQrEYkjmEWMuIT+ihwWpbiUmPPmR2OSERSYQZwFxNhl6SbWDloDWdoDMh6VDfgJqKbUni4Z28DIQF1ZJFJpPjPth6ZtW5oOAOAMiD9HCfJgdMJBDA/OxAZA9uQwIf4FoWpS9o2AUUAoAqUcVNg==
   </data>
  </layer>
  <layer name="roof2" width="25" height="25">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo4D2gH+gHYAHJAJxEhAnA3EKEKdS0WxeIOZjoK3/aW0HsvniNLKDXgAW17QEsLREK0CO2Sk0Nh9mBzF5h5KwgeVRWpmPrSxAp0fBKBhMAABGswsd
+   eJxjYBgFo4D2gH+gHYAHJAJxEhAnA3EKEKdS0WxeIOZjoK3/aW0HsvniNLKDXgAW17QEsLRECJAbX8SYDVOXQoY9xJqPbAcDCfaQYj4IIOdNYvxDqvnIAFtZgE6PglEwmAAAF9YMgA==
   </data>
  </layer>
  <layer name="roof-shadow" width="25" height="25">
   <data encoding="base64" compression="zlib">
-   eJztk90JwCAMhANq7VgZzdEcrREqpKVtjMlLwYMDBfmO/BgBIC7/xpm8MefruXgwE0AFJn6nM2pzwgNT0q6sgd4XDb/XIvWN90Zbw2g9Fm4XMVqf61uGBz9/8J0yMAi75SFpt6ySZtFM+1S7k3J3R2Zh+R8zfE3GLP/8jyj1y8LnOXxGd1v5y8tePgD3Hx7B
+   eJztk2EKwCAIRoVq7VgeraN1tNmPwMaaOf0zSHjQYLwPLSMAxM1vyMTByOO5eDgTQAVW/JvOqM0JD06pTmUP9H/R+Hsv0tz4bLQ9rPZj8fYiR5tznWV4+POL3ykDg/C2PEp6W9aS7sKasXIXloxV/9cMjb9Bu1c5Sdh1rX+y93jP5Vj9m40XFzCqHYc=
   </data>
  </layer>
  <objectgroup name="triggers" visible="0">

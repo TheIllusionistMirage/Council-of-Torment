@@ -245,12 +245,6 @@
   <object gid="74" x="168" y="408"/>
   <object gid="74" x="136" y="440"/>
   <object gid="74" x="120" y="456"/>
-  <object x="440" y="192">
-   <polygon points="0,0 200,0 200,32 0,32"/>
-  </object>
-  <object x="440" y="224">
-   <polygon points="0,0 0,-32 -16,-32"/>
-  </object>
   <object gid="111" x="224" y="192"/>
   <object gid="103" x="224" y="168"/>
   <object gid="38" x="32" y="168"/>
@@ -300,7 +294,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="collision">
+ <objectgroup name="collision" visible="0">
   <object x="192" y="320">
    <polygon points="0,0 336,0 336,8 0,8"/>
   </object>
@@ -477,6 +471,12 @@
   </object>
   <object x="0" y="416">
    <polygon points="0,0 8,0 8,48 0,48"/>
+  </object>
+  <object x="440" y="192">
+   <polygon points="0,0 200,0 200,32 0,32"/>
+  </object>
+  <object x="440" y="224">
+   <polygon points="0,0 0,-32 -16,-32"/>
   </object>
  </objectgroup>
 </map>
