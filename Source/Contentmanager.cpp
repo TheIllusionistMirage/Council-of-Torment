@@ -31,6 +31,9 @@
 		loadTexture(Textures::ICON_ITEMS, "Content/Textures/GUI/icon_items.png");
 		loadTexture(Textures::CRAFTING_WINDOW, "Content/Textures/GUI/crafting_window.png");
 
+		// Load the images
+		loadImage(Images::HEAT_HAZE_DISTORTION, "Content/Textures/heat_haze_distortion_map.png");
+
 		// Load the tilesets
 		std::string name;
 
@@ -57,6 +60,7 @@
 		// Load the shaders
 		loadShader(Shaders::MENU, "Content/Shaders/menu.frag", sf::Shader::Fragment);
 		loadShader(Shaders::LIGHT, "Content/Shaders/light.frag", sf::Shader::Fragment);
+		loadShader(Shaders::HEAT_HAZE, "Content/Shaders/heat_haze.frag", sf::Shader::Fragment);
 	}
 
 /* ----------------------------------------------------------------------
@@ -180,6 +184,22 @@
 
 /* ----------------------------------------------------------------------
 * Author: Julian
+* Date: 28 Juli 2014
+* Description: Loads an image
+* ----------------------------------------------------------------------
+*/
+	void ContentManager::loadImage(Images::ID imageID, const std::string& filename)
+	{
+		// Create a new image, load it and save it on the map
+		std::unique_ptr<sf::Image> image(new sf::Image());
+		if(!image->loadFromFile(filename))
+			throw std::runtime_error("Failed to load image: " + filename);
+		auto inserted = imageMap.insert(std::make_pair(imageID, std::move(image)));
+		assert(inserted.second);
+	}
+
+/* ----------------------------------------------------------------------
+* Author: Julian
 * Date: 19 January 2014
 * Description: Loads a tileset
 * ----------------------------------------------------------------------
@@ -270,6 +290,20 @@
 		// Search the texture and return it
 		auto found = textureMap.find(textureID);
 		assert(found != textureMap.end());
+		return *found->second;
+	}
+
+/* ----------------------------------------------------------------------
+* Author: Julian
+* Date: 28 Juli 2014
+* Description: Returns an image
+* ----------------------------------------------------------------------
+*/
+	sf::Image& ContentManager::getImage(Images::ID imageID) const
+	{
+		// Search the texture and return it
+		auto found = imageMap.find(imageID);
+		assert(found != imageMap.end());
 		return *found->second;
 	}
 

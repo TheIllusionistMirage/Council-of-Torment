@@ -49,6 +49,7 @@
 			collisionMap.clear();
 			animationMap.clear();
 			imageLayer.clear();
+			heatHazes.clear();
 			context.lightManager->clearLights();
 
 			// Check if the lighting is natural
@@ -98,6 +99,33 @@
 						image.setPosition(imagePos);
 
 						imageLayer.push_back(image);
+					}
+				}
+				else if(objectGroup->GetName() == "heat_haze")
+				{
+					// Parse the heat hazes
+					for(auto& object : objectGroup->GetObjects())
+					{
+						const Tmx::Polygon* polygon {object->GetPolygon()};
+						if(polygon)
+						{
+							// Create a convex shape
+							sf::ConvexShape shape(polygon->GetNumPoints());
+
+							// Create the points and set the position
+							for(size_t i = 0; i != polygon->GetNumPoints(); ++i)
+								shape.setPoint(i, sf::Vector2f(static_cast<float>(polygon->GetPoint(i).x), static_cast<float>(polygon->GetPoint(i).y)));
+							shape.setPosition(static_cast<float>(object->GetX()), static_cast<float>(object->GetY()));
+
+							// Create a random rect and push back a new heat haze
+							sf::IntRect rect(rand() % 128, 0, 128, 248);
+							heatHazes.push_back(HeatHaze(context.contentManager->getShader(Shaders::HEAT_HAZE), shape));
+							heatHazes.back().texture.loadFromImage(context.contentManager->getImage(Images::HEAT_HAZE_DISTORTION), rect);
+							heatHazes.back().texture.setRepeated(true);
+							heatHazes.back().texture.setSmooth(true);
+						}
+						else
+							context.console->logError("Invalid polygon!");
 					}
 				}
 
@@ -451,6 +479,43 @@
 		for(auto&& layer : layerList) 
 			if(layer.getName() == layerName)
 				layer.render();
+	}
+
+/* ----------------------------------------------------------------------
+* Author: Julian
+* Date: 28 Juli 2014
+* Description: Renders all the shader effects
+* ----------------------------------------------------------------------
+*/
+	void GameMap::renderShaderEffects()
+	{
+		// Set the camera
+		sf::View camera {context.renderWindow->getView()};
+		context.renderWindow->setView(context.player->getCamera());
+
+		for(auto& heat : heatHazes)
+		{
+			// Calculate some helper values
+			float zoomFactor {context.player->getCamera().getSize().x / context.renderWindow->getDefaultView().getSize().x};
+			sf::Vector2i pos {context.renderWindow->mapCoordsToPixel(sf::Vector2f(heat.shape.getGlobalBounds().left, heat.shape.getGlobalBounds().top))};
+
+			// Set the texture
+			heat.shape.setTexture(&context.window->getTexture());
+			heat.shape.setTextureRect(sf::IntRect(pos.x, pos.y, static_cast<int>(heat.shape.getGlobalBounds().width / zoomFactor), static_cast<int>(heat.shape.getGlobalBounds().height / zoomFactor)));
+
+			// Set the shader parameter
+			heat.shader.setParameter("currentTexture", sf::Shader::CurrentTexture);
+			heat.shader.setParameter("distortionMapTexture", heat.texture);
+			heat.shader.setParameter("time", heat.clock.getElapsedTime().asSeconds());
+			heat.shader.setParameter("distortionFactor", heat.distortionFactor);
+			heat.shader.setParameter("riseFactor", heat.riseFactor);
+
+			// Draw the shape
+			context.renderWindow->draw(heat.shape, &heat.shader);
+		}
+
+		// Restore the view
+		context.renderWindow->setView(camera);
 	}
 
 /* ----------------------------------------------------------------------

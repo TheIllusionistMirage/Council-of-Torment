@@ -8,6 +8,25 @@
 #include "LivingEntity.h"
 #include <memory>
 
+struct HeatHaze
+{
+	HeatHaze(sf::Shader& shader, sf::ConvexShape shape)
+	: distortionFactor {0.04f}
+	, riseFactor {0.4f}
+	, shader {shader}
+	, shape {shape}
+	{
+	}
+
+	sf::ConvexShape shape;
+	sf::Texture texture;
+	sf::Shader& shader;
+	sf::Clock clock;
+
+	float distortionFactor;
+	float riseFactor;
+};
+
 /*	The game map loads a map using the Tmx-parser.
 	It also places triggers, sets the spawn, etc...
 	Without the game map, the player would walk in
@@ -21,6 +40,7 @@ class GameMap
 		void update(sf::Time elapsedTime);
 		void updateNPCs(sf::Time elapsedTime);
 		void renderNPCs();
+		void renderShaderEffects();
 		void render(std::string layerName);
 		void renderAnimations(std::string layerName);
 		void loadMap(const std::string& filename, Direction direction = NO_DIRECTION);
@@ -45,6 +65,7 @@ class GameMap
 		std::vector<Tmx::Object> objectList;
 		std::vector<sf::Sprite> imageLayer;
 		std::vector<MapLayer> layerList;
+		std::vector<HeatHaze> heatHazes;
 		State::Context context;
 
 		std::unique_ptr<Tmx::Map> map;

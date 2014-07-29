@@ -107,19 +107,24 @@ void GameWorld::render()
 	for (auto&& npc : context.gameMap->getNPCs())
 		npc.second->drawOverheadText();
 
-	// Render the light manager
 	if(Game::currentState == States::GAME)
+	{
+		// Render the light manager
 		context.lightManager->render(context.player->getCamera());
+	}
 
+	// Render the collision shapes
 	if(context.player->showCollision())
 		context.player->renderCollisionShapes();
 
-	if (Game::currentState == States::GAME)
+	if(Game::currentState == States::GAME)
+	{
+		// Render the GUI
 		context.player->renderGUI();
 
-	// Render the inventory
-	if(Game::currentState == States::GAME)
+		// Render the inventory
 		context.player->getInventory().render();
+	}
 }
 
 /* ----------------------------------------------------------------------

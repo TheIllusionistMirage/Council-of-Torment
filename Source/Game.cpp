@@ -226,16 +226,24 @@ void Game::render()
 	// Render the effect manager
 	effectManager.render();
 
-	// Render the console
-	windowTexture.draw(console);
-
-	// Render Frames per second text
-	windowTexture.draw(fpsText);
-
-	// Display the window
+	// Draw everything on the window
 	window.clear();
 	windowTexture.display();
 	window.draw(sf::Sprite(windowTexture.getTexture()));
+
+	if(currentState == States::GAME)
+	{
+		// Render the shader effects
+		context.gameMap->renderShaderEffects();
+	}
+
+	// Render the console
+	window.draw(console);
+
+	// Render Frames per second text
+	window.draw(fpsText);
+
+	// Display the window
 	window.display();
 }
 

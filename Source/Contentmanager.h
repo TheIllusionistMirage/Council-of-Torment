@@ -31,6 +31,14 @@ namespace Textures
 	};
 }
 
+namespace Images
+{
+	enum ID
+	{
+		HEAT_HAZE_DISTORTION
+	};
+}
+
 namespace Sounds
 {
 	enum ID
@@ -65,7 +73,8 @@ namespace Shaders
 	enum ID
 	{
 		MENU,
-		LIGHT
+		LIGHT,
+		HEAT_HAZE
 	};
 }
 
@@ -88,6 +97,7 @@ class ContentManager
 	public:
 		sf::Texture loadTexture(const std::string& filename) const;
 		sf::Texture& getTexture(Textures::ID textureID) const;
+		sf::Image& getImage(Images::ID imageID) const;
 		sf::Texture& getTileset(std::string key) const;
 		sf::Shader& getShader(Shaders::ID shaderID) const;
 		sf::Font& getFont(Fonts::ID fontID) const;
@@ -97,6 +107,7 @@ class ContentManager
 		std::map<Textures::ID, std::unique_ptr<sf::Texture>> textureMap;
 		std::map<std::string, std::unique_ptr<sf::Texture>> tilesetsMap;
 		std::map<Shaders::ID, std::unique_ptr<sf::Shader>> shaderMap;
+		std::map<Images::ID, std::unique_ptr<sf::Image>> imageMap;
 		std::map<Music::ID, std::unique_ptr<sf::Music>> musicMap;
 		std::map<Fonts::ID, std::unique_ptr<sf::Font>> fontMap;
 
@@ -111,6 +122,7 @@ class ContentManager
 	private:
 		void loadShader(Shaders::ID shaderID, const std::string& filename, sf::Shader::Type type);
 		void loadTexture(Textures::ID textureID, const std::string& filename);
+		void loadImage(Images::ID imageID, const std::string& filename);
 		void loadTileset(std::string key, const std::string& filename);
 		void loadSoundBuffer(Sounds::ID soundID, const std::string& filename);
 		void loadMusic(Music::ID musicID, const std::string& filename);
